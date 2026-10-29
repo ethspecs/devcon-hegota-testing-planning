@@ -1,6 +1,6 @@
 # Hegotá Testing Planning
 
-Slides for the Hegotá testing planning session at Devcon 8, Mumbai (Sunday 1 November 2026). Speakers: Pari, Barnabas, Justin, Mario, Dan, Spencer, Guru.
+Slides for the Hegotá testing planning session at L1 Days, Devcon 8, Mumbai (Sunday 1 November 2026). Speakers: Pari, Barnabas, Justin, Mario, Dan, Spencer, Guru.
 
 Open `index.html` in a browser. It is a single self-contained file with no build step. The Funnel fonts load from Google Fonts when online; offline it falls back to system fonts.
 
