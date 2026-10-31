@@ -223,6 +223,9 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   .notes-panel, .hud, .progress { display: none !important; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+a.eip { color: inherit; text-decoration: none; }
+a.eip:hover { text-decoration: underline; }
+.notes a.eip { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -267,7 +270,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
 <!-- 3. Lesson -->
 <section class="slide deep" aria-label="Lesson from Glamsterdam">
   <p class="kicker">Lesson from Glamsterdam</p>
-  <blockquote style="margin-top:auto;font-size:3.5cqw">One of the mistakes we made on our side on the EL was underestimating the complexity of 8037. The idea would be to include the more complex EIPs a lot earlier in the cycle.</blockquote>
+  <blockquote style="margin-top:auto;font-size:3.5cqw">One of the mistakes we made on our side on the EL was underestimating the complexity of <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8037.md">8037</a>. The idea would be to include the more complex EIPs a lot earlier in the cycle.</blockquote>
   <cite style="margin-top:4cqh;font-size:1.8cqw">Spencer, ACDT #97, 21 September 2026</cite>
   <ul class="ticks" style="margin:8cqh 0 auto">
     <li style="font-size:2.2cqw;margin-bottom:2.4cqh">Test the hardest interactions first: frames &times; FOCIL.</li>
@@ -285,68 +288,68 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   <div class="group">
     <h3>Scheduled for inclusion</h3>
     <div class="chips" style="margin-bottom:4.5cqh">
-      <span class="chip sfi"><b>7805</b>FOCIL</span>
-      <span class="chip sfi"><b>8141</b>Frame transactions</span>
-      <span class="chip sfi"><b>8015</b>Beacon state cleanup</span>
+      <span class="chip sfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a></b>FOCIL</span>
+      <span class="chip sfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a></b>Frame transactions</span>
+      <span class="chip sfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8015.md">8015</a></b>Beacon state cleanup</span>
     </div>
   </div>
   <div class="grid3" style="gap:3cqw;grid-template-columns:1fr 1.25fr 0.9fr">
     <div class="group">
       <h3>CFI: frames companions</h3>
       <div class="chips">
-        <span class="chip"><b>8250</b>Keyed nonces</span>
-        <span class="chip"><b>8272</b>Recent roots</span>
-        <span class="chip"><b>7906</b>Tx assertions</span>
-        <span class="chip"><b>8151</b>Restricted ecRecover</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a></b>Keyed nonces</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a></b>Recent roots</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md">7906</a></b>Tx assertions</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8151.md">8151</a></b>Restricted ecRecover</span>
       </div>
       <h3 style="margin-top:4cqh">CFI: data and networking</h3>
       <div class="chips">
-        <span class="chip"><b>7668</b>Remove blooms</span>
-        <span class="chip"><b>8116</b>Receipt fields</span>
-        <span class="chip"><b>8077</b>eth/XX nonce announce</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7668.md">7668</a></b>Remove blooms</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8116.md">8116</a></b>Receipt fields</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8077.md">8077</a></b>eth/XX nonce announce</span>
       </div>
     </div>
     <div class="group">
       <h3>CFI: EVM, state and gas</h3>
       <div class="chips">
-        <span class="chip"><b>8298</b>SETCODEFROM</span>
-        <span class="chip"><b>8253</b>Nonce bump</span>
-        <span class="chip"><b>4758</b>Deactivate SELFDESTRUCT</span>
-        <span class="chip"><b>8360</b>TCREATE</span>
-        <span class="chip"><b>8131</b>Content floor</span>
-        <span class="chip"><b>8279</b>BAL byte floor</span>
-        <span class="chip"><b>3298</b>Refund removal</span>
-        <span class="chip"><b>7709</b>BLOCKHASH from storage</span>
-        <span class="chip"><b>7979</b>CALLF / RETF</span>
-        <span class="chip"><b>5920</b>PAY</span>
-        <span class="chip"><b>8163</b>Reserve 0xae</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8298.md">8298</a></b>SETCODEFROM</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md">8253</a></b>Nonce bump</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md">4758</a></b>Deactivate SELFDESTRUCT</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md">8360</a></b>TCREATE</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md">8131</a></b>Content floor</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md">8279</a></b>BAL byte floor</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3298.md">3298</a></b>Refund removal</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7709.md">7709</a></b>BLOCKHASH from storage</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7979.md">7979</a></b>CALLF / RETF</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-5920.md">5920</a></b>PAY</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8163.md">8163</a></b>Reserve 0xae</span>
       </div>
     </div>
     <div class="group">
       <h3>CFI: CL</h3>
       <div class="chips">
-        <span class="chip"><b>8198</b>Quick slots</span>
-        <span class="chip"><b>8365</b>No new 0x00 validators</span>
-        <span class="chip"><b>8148</b>Custom sweep threshold</span>
-        <span class="chip"><b>8334</b>Bundled attestations</span>
-        <span class="chip"><b>8383</b>Shorter block retention</span>
-        <span class="chip"><b>8411</b>Fast payload broadcast</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md">8198</a></b>Quick slots</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8365.md">8365</a></b>No new 0x00 validators</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md">8148</a></b>Custom sweep threshold</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/sukunrt/EIPs/blob/sukun/attestation-broadcast/EIPS/eip-8334.md">8334</a></b>Bundled attestations</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8383.md">8383</a></b>Shorter block retention</span>
+        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8411.md">8411</a></b>Fast payload broadcast</span>
       </div>
     </div>
   </div>
   <div class="group" style="margin-top:4.5cqh">
     <h3>PFI</h3>
     <div class="chips">
-      <span class="chip pfi"><b>7907</b>Code size metering</span>
-      <span class="chip pfi"><b>8173</b>EVM control flow</span>
-      <span class="chip pfi"><b>8368</b>CPSB recalibration</span>
-      <span class="chip pfi"><b>8372</b>Normalized state gas</span>
-      <span class="chip pfi"><b>8369</b>VOPS profiles</span>
+      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md">7907</a></b>Code size metering</span>
+      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8173.md">8173</a></b>EVM control flow</span>
+      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8368.md">8368</a></b>CPSB recalibration</span>
+      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8372.md">8372</a></b>Normalized state gas</span>
+      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md">8369</a></b>VOPS profiles</span>
     </div>
   </div>
   <aside class="notes">
-    <p>EL: 8141 SFI plus 18 CFI. CL: 7805 FOCIL SFI (cross-layer), 8015 SFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>, 8198 and 8365 CFI on ACDC <a href="https://forkcast.org/calls/acdc/188/">#188</a>, 8148, 8334, 8383 and 8411 CFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>. 8205 DFI'd on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
-    <p>PFI (forkcast, 31 Oct): EL 7907, 8173, 8368, 8372. 8368 and 8372 wait for about 30 days of Glamsterdam mainnet data. CL 8369 VOPS profiles, informational, set aside on ACDC <a href="https://forkcast.org/calls/acdc/187/">#187</a>, <a href="https://forkcast.org/calls/acdc/189/">#189</a> and <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
+    <p>EL: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a> SFI plus 18 CFI. CL: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a> FOCIL SFI (cross-layer), <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8015.md">8015</a> SFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md">8198</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8365.md">8365</a> CFI on ACDC <a href="https://forkcast.org/calls/acdc/188/">#188</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md">8148</a>, <a class="eip" href="https://github.com/sukunrt/EIPs/blob/sukun/attestation-broadcast/EIPS/eip-8334.md">8334</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8383.md">8383</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8411.md">8411</a> CFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8205.md">8205</a> DFI'd on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
+    <p>PFI (forkcast, 31 Oct): EL <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md">7907</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8173.md">8173</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8368.md">8368</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8372.md">8372</a>. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8368.md">8368</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8372.md">8372</a> wait for about 30 days of Glamsterdam mainnet data. CL <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md">8369</a> VOPS profiles, informational, set aside on ACDC <a href="https://forkcast.org/calls/acdc/187/">#187</a>, <a href="https://forkcast.org/calls/acdc/189/">#189</a> and <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
     <p>Source: <a href="https://github.com/ethereum/execution-specs/issues/3664">execution-specs#3664</a>, <a href="https://forkcast.org">forkcast</a>.</p>
   </aside>
 </section>
@@ -381,7 +384,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
     </svg>
   </figure>
   <aside class="notes">
-    <p>heze-devnet-3 test release <code>tests-heze-devnet@v3.0.0</code> on 21 Oct; bogota-devnet-2 <code>tests-bogota-devnet@v2.0.0</code> on 27 Oct. hegota-devnet-0 = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>, launch after Devcon (ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>). Frame txs in inclusion lists on devnet-0: exempt like blobs (this week) or enforced at the end of the payload (10 days after Devcon). Full frames &times; FOCIL with omission claims (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>, EIP-8369) comes later.</p>
+    <p>heze-devnet-3 test release <code>tests-heze-devnet@v3.0.0</code> on 21 Oct; bogota-devnet-2 <code>tests-bogota-devnet@v2.0.0</code> on 27 Oct. hegota-devnet-0 = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>, launch after Devcon (ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>). Frame txs in inclusion lists on devnet-0: exempt like blobs (this week) or enforced at the end of the payload (10 days after Devcon). Full frames &times; FOCIL with omission claims (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md">EIP-8369</a>) comes later.</p>
     <p>heze lane releases: <code>tests-focil-devnet@v0.3.0</code> (24 Sep), <code>tests-heze-devnet@v2.0.0</code> (15 Oct), <code>v3.0.0</code> (21 Oct).</p>
     <p>Sources: <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>.</p>
   </aside>
@@ -391,24 +394,24 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
 <section class="slide" aria-label="EL devnet prioritization">
   <p class="kicker">Devnet prioritization &middot; EL</p>
   <h2>Are ELs happy with this prioritization?</h2>
-  <p class="lead" style="margin:0;max-width:none;white-space:nowrap;font-size:1.95cqw;font-family:var(--head);font-weight:600;color:var(--indigo)">Add prio list to fork meta EIPs? <span style="font-weight:400;color:var(--muted)">(<a href="https://eips.ethereum.org/EIPS/eip-8081">EIP-8081</a>)</span> <span style="color:var(--muted);font-weight:400">&middot;</span> I*+ EIP rankings should include a prio list?</p>
+  <p class="lead" style="margin:0;max-width:none;white-space:nowrap;font-size:1.95cqw;font-family:var(--head);font-weight:600;color:var(--indigo)">Add prio list to fork meta EIPs? <span style="font-weight:400;color:var(--muted)">(<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8081.md">EIP-8081</a>)</span> <span style="color:var(--muted);font-weight:400">&middot;</span> I*+ EIP rankings should include a prio list?</p>
   <div class="order" style="margin-top:auto">
     <dl class="lanes">
-      <dt>bogota-devnet-1</dt><dd class="on"><span>8141</span><span>8250</span><span>8272</span><span>7906</span></dd>
-      <dt>bogota-devnet-2</dt><dd class="on"><span>8253</span><span>8298</span><span>8151</span><span>4758</span></dd>
-      <dt>hegoat-devnet-0</dt><dd class="now"><span>7805 &times; 8141</span><span class="policy">MATCHA?</span></dd>
-    <dt>hegoat-devnet-1?</dt><dd class="next"><span>8360</span><span>8279</span><span>8131</span><span>7668</span></dd>
-      <dt>not on a devnet</dt><dd><span>3298</span><span>7709</span><span>7979</span><span>8163</span><span>5920</span><span>8077</span><span>8116</span><span class="pfi">7907</span></dd>
+      <dt>bogota-devnet-1</dt><dd class="on"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md">7906</a></span></dd>
+      <dt>bogota-devnet-2</dt><dd class="on"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md">8253</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8298.md">8298</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8151.md">8151</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md">4758</a></span></dd>
+      <dt>hegoat-devnet-0</dt><dd class="now"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a></span><span class="policy">MATCHA?</span></dd>
+    <dt>hegoat-devnet-1?</dt><dd class="next"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md">8360</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md">8279</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md">8131</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7668.md">7668</a></span></dd>
+      <dt>not on a devnet</dt><dd><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3298.md">3298</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7709.md">7709</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7979.md">7979</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8163.md">8163</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-5920.md">5920</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8077.md">8077</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8116.md">8116</a></span><span class="pfi"><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md">7907</a></span></dd>
     </dl>
   </div>
   <div class="axis axis-h" aria-hidden="true"><span>higher priority</span><i></i><span>lower priority</span></div>
   <p class="small" style="margin:auto 0 2.2cqh;font-size:1.25cqw"><a href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949">MATCHA</a>: Mempool Account Transaction Capacity from Historical Activity, mempool policy, no fork</p>
-  <div class="foot" style="margin-top:0"><span class="legend"><i class="sw on"></i>on a devnet <i class="sw now"></i>next <i class="sw next"></i>candidate, not proposed yet <i class="sw"></i>not scheduled <i class="sw pfi"></i>PFI</span><span>SFI: 7805, 8141 &middot; Order: <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's EL CFI priority list</a></span></div>
+  <div class="foot" style="margin-top:0"><span class="legend"><i class="sw on"></i>on a devnet <i class="sw now"></i>next <i class="sw next"></i>candidate, not proposed yet <i class="sw"></i>not scheduled <i class="sw pfi"></i>PFI</span><span>SFI: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a> &middot; Order: <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's EL CFI priority list</a></span></div>
   <aside class="notes">
-    <p>Order from <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's Hegotá EL CFI priority list</a>, working v1 from ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>. EIP-7723 asks facilitators and testing teams to propose this order for client developers to review.</p>
-    <p>Rule: most complex first, pairs ship together. 8298 + 8151 both on bogota-devnet-2. 4758 is on bogota-devnet-2 but its pair 8360 is not. 8279 + 8131 are candidates for hegota-devnet-1, not proposed yet (<a href="https://github.com/ethereum/execution-specs/issues/3788">#3788</a>). 8360 added to complete the 4758 pair, 7668 as next in order and the cheapest.</p>
-    <p>MATCHA (<a href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949">ethresear.ch</a>, soispoke) is a local EL mempool policy, not an EIP: no fork, no CL work, no EELS fixtures. ELs can trial it on hegota-devnet-0 if they agree parameter values. Raised on ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a> with dropping 8141's one-pending-tx-per-sender limit. A MATCHA rejection never excuses a FOCIL omission.</p>
-    <p>hegota-devnet-0 is the frames &times; FOCIL interaction (7805 &times; 8141). Quick slots (8198) also comes over from heze-devnet-3. Row = first devnet for each EIP. Everything on bogota-devnet-2 carries into hegota-devnet-0. 8077 is devp2p only. 7907 still PFI, wants a slot right away if CFI'd.</p>
+    <p>Order from <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's Hegotá EL CFI priority list</a>, working v1 from ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7723.md">EIP-7723</a> asks facilitators and testing teams to propose this order for client developers to review.</p>
+    <p>Rule: most complex first, pairs ship together. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8298.md">8298</a> + <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8151.md">8151</a> both on bogota-devnet-2. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md">4758</a> is on bogota-devnet-2 but its pair <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md">8360</a> is not. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md">8279</a> + <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md">8131</a> are candidates for hegota-devnet-1, not proposed yet (<a href="https://github.com/ethereum/execution-specs/issues/3788">#3788</a>). <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md">8360</a> added to complete the <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md">4758</a> pair, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7668.md">7668</a> as next in order and the cheapest.</p>
+    <p>MATCHA (<a href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949">ethresear.ch</a>, soispoke) is a local EL mempool policy, not an EIP: no fork, no CL work, no EELS fixtures. ELs can trial it on hegota-devnet-0 if they agree parameter values. Raised on ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a> with dropping <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a>'s one-pending-tx-per-sender limit. A MATCHA rejection never excuses a FOCIL omission.</p>
+    <p>hegota-devnet-0 is the frames &times; FOCIL interaction (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a>). Quick slots (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md">8198</a>) also comes over from heze-devnet-3. Row = first devnet for each EIP. Everything on bogota-devnet-2 carries into hegota-devnet-0. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8077.md">8077</a> is devp2p only. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md">7907</a> still PFI, wants a slot right away if CFI'd.</p>
   </aside>
 </section>
 
@@ -419,21 +422,21 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   <p class="lead" style="margin:0;font-family:var(--head);font-weight:600;color:var(--indigo)">Add fork devnet plan section to fork meta EIPs?</p>
   <div class="lanes-2col">
     <dl class="lanes">
-      <dt>heze-devnet-1</dt><dd class="on"><span>7805</span></dd>
-      <dt>heze-devnet-2</dt><dd class="on"><span>8015</span><span>8365</span></dd>
-      <dt>heze-devnet-3</dt><dd class="on"><span>8198</span></dd>
+      <dt>heze-devnet-1</dt><dd class="on"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a></span></dd>
+      <dt>heze-devnet-2</dt><dd class="on"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8015.md">8015</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8365.md">8365</a></span></dd>
+      <dt>heze-devnet-3</dt><dd class="on"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md">8198</a></span></dd>
     </dl>
     <dl class="lanes">
-      <dt>hegoat-devnet-0</dt><dd class="now"><span>7805 &times; 8141</span></dd>
-      <dt>hegoat-devnet-1?</dt><dd class="next"><span>8148</span><span>8383</span></dd>
-      <dt>hegoat-devnet-2?</dt><dd class="next"><span>8334</span><span>8411</span></dd>
-      <dt>not CFI'd</dt><dd><span class="pfi">8369</span></dd>
+      <dt>hegoat-devnet-0</dt><dd class="now"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a></span></dd>
+      <dt>hegoat-devnet-1?</dt><dd class="next"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md">8148</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8383.md">8383</a></span></dd>
+      <dt>hegoat-devnet-2?</dt><dd class="next"><span><a class="eip" href="https://github.com/sukunrt/EIPs/blob/sukun/attestation-broadcast/EIPS/eip-8334.md">8334</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8411.md">8411</a></span></dd>
+      <dt>not CFI'd</dt><dd><span class="pfi"><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md">8369</a></span></dd>
     </dl>
   </div>
-  <div class="foot" style="margin-top:0"><span class="legend"><i class="sw on"></i>on a devnet <i class="sw now"></i>next, no new EIPs <i class="sw next"></i>proposed <i class="sw pfi"></i>PFI</span><span>Proposed: loosely agreed upon in Discord &middot; SFI: 7805, 8015</span></div>
+  <div class="foot" style="margin-top:0"><span class="legend"><i class="sw on"></i>on a devnet <i class="sw now"></i>next, no new EIPs <i class="sw next"></i>proposed <i class="sw pfi"></i>PFI</span><span>Proposed: loosely agreed upon in Discord &middot; SFI: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8015.md">8015</a></span></div>
   <aside class="notes">
-    <p>From forkcast as of 31 Oct. SFI: 7805 FOCIL (ACDC <a href="https://forkcast.org/calls/acdc/175/">#175</a>), 8015 (ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>). CFI: 8198 quick slots and 8365 (ACDC <a href="https://forkcast.org/calls/acdc/188/">#188</a>), 8148, 8334, 8383, 8411 (all ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>). PFI: 8369 VOPS profiles, informational, set aside on ACDC <a href="https://forkcast.org/calls/acdc/187/">#187</a>, <a href="https://forkcast.org/calls/acdc/189/">#189</a> and <a href="https://forkcast.org/calls/acdc/190/">#190</a> with no decision.</p>
-    <p>hegota-devnet-1 proposal from Barnabas in the hegota-cl thread: 8148 + 8383 next (Prysm has an 8148 prototype, NC agrees), then 8334 + 8411 bundled as the networking EIPs. Not agreed. 8148 state-bloat fix: threshold moved into a 0x02 withdrawal credential (<a href="https://github.com/ethereum/EIPs/issues/12598">EIPs#12598</a> merged, <a href="https://github.com/ethereum/consensus-specs/issues/5790">consensus-specs#5790</a> open).</p>
+    <p>From forkcast as of 31 Oct. SFI: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">7805</a> FOCIL (ACDC <a href="https://forkcast.org/calls/acdc/175/">#175</a>), <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8015.md">8015</a> (ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>). CFI: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md">8198</a> quick slots and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8365.md">8365</a> (ACDC <a href="https://forkcast.org/calls/acdc/188/">#188</a>), <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md">8148</a>, <a class="eip" href="https://github.com/sukunrt/EIPs/blob/sukun/attestation-broadcast/EIPS/eip-8334.md">8334</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8383.md">8383</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8411.md">8411</a> (all ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>). PFI: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md">8369</a> VOPS profiles, informational, set aside on ACDC <a href="https://forkcast.org/calls/acdc/187/">#187</a>, <a href="https://forkcast.org/calls/acdc/189/">#189</a> and <a href="https://forkcast.org/calls/acdc/190/">#190</a> with no decision.</p>
+    <p>hegota-devnet-1 proposal from Barnabas in the hegota-cl thread: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md">8148</a> + <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8383.md">8383</a> next (Prysm has an <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md">8148</a> prototype, NC agrees), then <a class="eip" href="https://github.com/sukunrt/EIPs/blob/sukun/attestation-broadcast/EIPS/eip-8334.md">8334</a> + <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8411.md">8411</a> bundled as the networking EIPs. Not agreed. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md">8148</a> state-bloat fix: threshold moved into a 0x02 withdrawal credential (<a href="https://github.com/ethereum/EIPs/issues/12598">EIPs#12598</a> merged, <a href="https://github.com/ethereum/consensus-specs/issues/5790">consensus-specs#5790</a> open).</p>
     <p>No CL priority order yet. Should the CL side get a list like the EL one?</p>
   </aside>
 </section>
@@ -445,7 +448,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   <h2>Do we want to launch He🐐 devnet 0 this week?</h2>
   <p class="lead" style="margin:0;max-width:none"><span class="lime">Raise hands for yes. Otherwise 10 days after Devcon?</span></p>
   <div class="grid3 squares" style="margin-top:4.5cqh;flex:1;grid-template-columns:repeat(2,minmax(0,1fr));gap:2cqh 2cqw">
-    <div class="card"><span class="tag">EIPs</span><p style="margin-bottom:2.6cqh"><b>Update EIP-7805:</b> omission claims and per-IL VERIFY budgets (<a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a>)? <b>EL + CL.</b></p><p style="margin-bottom:2.6cqh">Design from EIP-8369 (<a href="https://github.com/ethereum/EIPs/issues/12396">EIPs#12396</a>).</p><p><b>@thomas @matt/lightclient?</b></p></div>
+    <div class="card"><span class="tag">EIPs</span><p style="margin-bottom:2.6cqh"><b>Update <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md">EIP-7805</a>:</b> omission claims and per-IL VERIFY budgets (<a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a>)? <b>EL + CL.</b></p><p style="margin-bottom:2.6cqh">Design from <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md">EIP-8369</a> (<a href="https://github.com/ethereum/EIPs/issues/12396">EIPs#12396</a>).</p><p><b>@thomas @matt/lightclient?</b></p></div>
     <div class="card"><span class="tag">Specs</span><p><b><span style="white-space:nowrap">consensus-specs</span>:</b> omission claims in Heze (<a href="https://github.com/ethereum/consensus-specs/issues/5698"><span style="white-space:nowrap">consensus-specs#5698</span></a>).</p><p><b><span style="white-space:nowrap">execution-specs</span>:</b> merge both devnet branches into <code>devnets/hegota/0</code>, add <a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a> and frames &times; FOCIL tests, release <code>tests-hegota-devnet@v0.0.0</code>.</p><p style="margin-bottom:0"><b><span style="white-space:nowrap">execution-apis</span>:</b> newPayloadV6 takes separate ILs and claims, returns the verdict (<a href="https://github.com/ethereum/execution-apis/issues/911"><span style="white-space:nowrap">execution-apis#911</span></a>).</p></div>
     <div class="card"><span class="tag">EL clients</span><p><b>Majority of changes.</b> Merge frames and FOCIL branches, add omission claims, separate ILs and frame validation at the claimed index? Nethermind has a prototype.</p></div>
     <div class="card"><span class="tag">CL clients</span><p><b>Code change:</b> omission claims (<a href="https://github.com/ethereum/consensus-specs/issues/5698"><span style="white-space:nowrap">consensus-specs#5698</span></a>) in bids, payload envelope, gossip, Engine API and fork choice. Build on your <span style="white-space:nowrap">heze-devnet-3</span> branch? First frame txs devnet on <span style="white-space:nowrap">non-Lighthouse</span> CLs!</p></div>
@@ -454,7 +457,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   <aside class="notes">
     <p>Tracker <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>. <code>devnets/hegota/0</code> = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>. ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a> agreed "after Devcon". Ask the room whether we can pull it forward to this week.</p>
     <p>Frames are EL only, so the CL side of hegota-devnet-0 is heze-devnet-3. The EL side has to combine each client's bogota (frames) and heze (FOCIL) branches.</p>
-    <p><a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a> (Marchhill, draft) is EIP-8369 Profile 2: <a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a> and <a href="https://github.com/ethereum/EIPs/issues/12396">#12396</a>, <a href="https://github.com/ethereum/execution-apis/issues/911">execution-apis#911</a>, <a href="https://github.com/ethereum/consensus-specs/issues/5698">consensus-specs#5698</a>. It targets <code>devnets/hegota/0</code>, so it needs a rebase once that branch is force-pushed.</p>
+    <p><a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a> (Marchhill, draft) is <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md">EIP-8369</a> Profile 2: <a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a> and <a href="https://github.com/ethereum/EIPs/issues/12396">#12396</a>, <a href="https://github.com/ethereum/execution-apis/issues/911">execution-apis#911</a>, <a href="https://github.com/ethereum/consensus-specs/issues/5698">consensus-specs#5698</a>. It targets <code>devnets/hegota/0</code>, so it needs a rebase once that branch is force-pushed.</p>
     <p>No Engine API change for CLs: Bogota&#39;s engine methods on the merged branch are exactly heze-devnet-3&#39;s (newPayloadV6, forkchoiceUpdatedV5, getInclusionListV1). The branch is built locally and the Bogota fill passes except the 19 frame-in-IL variants, which wait on the IL rule. Not pushed or released yet.</p>
     <p>Config only: Heze activates at the Hegota time in the devnet genesis. bogota-devnet-2 ran only Lighthouse. If ELs disagree on IL verdicts for frame txs, it shows up as CL attestations splitting.</p>
     <p>If the room picks this week with frame txs exempt: the EIPs box becomes "frame txs exempt, like blobs", and the Specs and EL boxes lose their second sentences. Enforcement makes this week unlikely.</p>
@@ -536,13 +539,13 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
         <g><rect class="d-node" x="270" y="60" width="130" height="44" rx="4"/><text class="d-title" x="284" y="88">eip-8250</text></g>
         <g><rect class="d-node" x="270" y="113" width="130" height="44" rx="4"/><text class="d-title" x="284" y="141">eip-8272</text></g>
         <g><rect class="d-node" x="270" y="208" width="130" height="44" rx="4"/><text class="d-title" x="284" y="236">eip-7906</text></g>
-        <text class="d-sub" x="270" y="282">every 8141 change rebases all three</text>
+        <text class="d-sub" x="270" y="282">every <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a> change rebases all three</text>
         <path class="d-edge" d="M400 82C415 82 415 120 430 120"/>
         <path class="d-edge dash" d="M400 135H430"/>
         <path class="d-edge dash" d="M400 230C415 230 415 150 430 150"/>
         <path class="d-edge" d="M105 160V330H575V170"/>
-        <text class="d-sub" x="120" y="322">8141 tip</text>
-        <text class="d-sub" x="432" y="46" style="fill:#9b2c4a">8250 and 8272 collide</text>
+        <text class="d-sub" x="120" y="322"><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a> tip</text>
+        <text class="d-sub" x="432" y="46" style="fill:#9b2c4a"><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a> collide</text>
         <text class="d-sub" x="432" y="66" style="fill:#9b2c4a">in frame_transaction.py</text>
         <g><rect class="d-node lime" x="430" y="100" width="160" height="70" rx="4"/><text class="d-title" x="442" y="130">devnets/bogota/1</text><text class="d-sub" x="442" y="154" style="fill:var(--ink)">assembled by hand</text></g>
         <text class="d-sub" x="432" y="194">workflow fails;</text>
@@ -550,17 +553,17 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
       </svg>
     </figure>
     <ul class="ticks">
-      <li>A devnet is a branch: the 8141 tip, 8250 fast-forwarded, 8272 and 7906 cherry-picked. The update workflow fails on the 8250 and 8272 collision, so every rebuild is manual.</li>
-      <li>Every change to 8141 rebases 8250, 8272 and 7906, each with its own force-push and lease bookkeeping.</li>
+      <li>A devnet is a branch: the <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a> tip, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a> fast-forwarded, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md">7906</a> cherry-picked. The update workflow fails on the <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a> collision, so every rebuild is manual.</li>
+      <li>Every change to <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a> rebases <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md">7906</a>, each with its own force-push and lease bookkeeping.</li>
       <li>A change spanning EIPs (#3824, #3825) has no home. On the devnet branch it is lost at the next rebuild, so it becomes stacked PRs.</li>
-      <li>Branches drift: the 8141 branch lagged <code>forks/bogota</code> by one fix, so its diff showed 29 files instead of its own 17.</li>
+      <li>Branches drift: the <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a> branch lagged <code>forks/bogota</code> by one fix, so its diff showed 29 files instead of its own 17.</li>
     </ul>
   </div>
   <p class="lead" style="margin:4cqh 0 auto;font-size:2cqw">Cost grows with EIPs &times; changes per EIP &times; devnets that include them.</p>
   <div class="foot" style="margin-top:0"><span>Solid: branch base or fast-forward. Dashed: cherry-pick. Snapshot 14 Oct 2026.</span><span>execution-specs#3824, #3825</span></div>
   <aside class="notes">
     <p>This is the 14 October snapshot from the plan document. The point is not any one incident but that the cost is multiplicative.</p>
-    <p>Details if asked: <code>update-devnet-branch</code> works for <code>devnets/heze/2</code> and <code>devnets/focil/2</code>, where the EIPs do not collide, and fails on bogota because 8250 and 8272 both insert a constants block at the same spot in <code>frame_transaction.py</code>. The 29-versus-17 drift was a modexp fix applied to ten older forks that <code>eips/bogota/eip-8141</code> never picked up.</p>
+    <p>Details if asked: <code>update-devnet-branch</code> works for <code>devnets/heze/2</code> and <code>devnets/focil/2</code>, where the EIPs do not collide, and fails on bogota because <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a> both insert a constants block at the same spot in <code>frame_transaction.py</code>. The 29-versus-17 drift was a modexp fix applied to ten older forks that <code>eips/bogota/eip-8141</code> never picked up.</p>
   </aside>
 </section>
 
@@ -578,7 +581,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
       <path class="d-edge dash" d="M260 115C380 115 380 150 500 150"/>
       <text class="d-team" x="370" y="184" text-anchor="middle">fold at fill time</text>
       <g><rect class="d-node done" x="500" y="10" width="240" height="80" rx="4"/><text class="d-title" x="514" y="38">bogota/</text><text class="d-sub" x="514" y="60">generated, checked in, plain WET</text><text class="d-sub" x="514" y="78">read by docs, clients, t8n</text></g>
-      <g><rect class="d-node next" x="500" y="110" width="240" height="80" rx="4"/><text class="d-title" x="514" y="140">bogota_devnet1</text><text class="d-sub" x="514" y="164">bogota + 8250 8272 7906</text><text class="d-sub" x="514" y="182">nothing checked in</text></g>
+      <g><rect class="d-node next" x="500" y="110" width="240" height="80" rx="4"/><text class="d-title" x="514" y="140">bogota_devnet1</text><text class="d-sub" x="514" y="164">bogota + <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a> <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a> <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md">7906</a></text><text class="d-sub" x="514" y="182">nothing checked in</text></g>
       <path class="d-edge" d="M740 50C850 50 850 100 960 100"/>
       <path class="d-edge dash" d="M740 150C850 150 850 100 960 100"/>
       <text class="d-team" x="850" y="34" text-anchor="middle">fill Bogota</text>
@@ -591,11 +594,11 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
       <span class="tag">develop/eips.py: the control board</span>
 <pre class="code">EIP_8141 = True   <span class="c"># every flag on in develop/</span>
 EIP_8250 = True
-<span class="k">REQUIRES</span> = {8250: {8141}, 8272: {8141}, 7906: {8141}}
-<span class="k">OWNED_MODULES</span> = {8250: ("keyed_nonces",), ...}
+<span class="k">REQUIRES</span> = {<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a>: {<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a>}, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a>: {<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a>}, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md">7906</a>: {<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a>}}
+<span class="k">OWNED_MODULES</span> = {<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a>: ("keyed_nonces",), ...}
 <span class="k">TARGETS</span> = {
-  "bogota":         Target({8141}, generated=True),
-  "bogota_devnet1": Target({8250, 8272, 7906}, base="bogota"),
+  "bogota":         Target({<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a>}, generated=True),
+  "bogota_devnet1": Target({<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md">7906</a>}, base="bogota"),
 }</pre>
     </div>
     <div class="card">
@@ -606,9 +609,9 @@ EIP_8250 = True
   </div>
   <div class="foot"><span>Pilot: four EIPs guarded, Bogota generated, the devnet filled as a pseudo-fork reproduces the branch fixtures, 652 of 652.</span><span></span></div>
   <aside class="notes">
-    <p>Demo here. Show <code>eips.py</code>, then <code>vm/gas.py</code> and <code>transactions/frame_transaction.py</code>, then move 8250 into Bogota, regenerate, and show the framework following with no edit.</p>
+    <p>Demo here. Show <code>eips.py</code>, then <code>vm/gas.py</code> and <code>transactions/frame_transaction.py</code>, then move <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a> into Bogota, regenerate, and show the framework following with no edit.</p>
     <p>The framework side is one line per fork: <code>class Bogota(TargetEIPs("bogota"), Amsterdam)</code> and <code>class BogotaDevnet1(TargetEIPs("bogota_devnet1"), Bogota)</code>. A hand-edited generated folder fails <code>--check</code>. A devnet is a superset of its base, so every <code>valid_from("Bogota")</code> test collects at the pseudo-fork unchanged.</p>
-    <p>Pilot numbers: <code>tests/bogota</code> at BogotaDevnet1 against the devnet worktree at release <code>tests-bogota-devnet@v1.1.1</code>: 652 identical, 0 differ, 4 branch-only (8141's own transition fixtures). Bogota fill unchanged at 256.</p>
+    <p>Pilot numbers: <code>tests/bogota</code> at BogotaDevnet1 against the devnet worktree at release <code>tests-bogota-devnet@v1.1.1</code>: 652 identical, 0 differ, 4 branch-only (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md">8141</a>'s own transition fixtures). Bogota fill unchanged at 256.</p>
   </aside>
 </section>
 
@@ -695,11 +698,11 @@ EIP_8250 = True
   </div>
   <ul class="ticks" style="margin-top:5cqh">
     <li>FOCIL has no censorship-resistance scenarios in assertoor or spamoor yet.</li>
-    <li>Fork-transition-only behaviour (8253) needs many devnets, not one.</li>
+    <li>Fork-transition-only behaviour (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md">8253</a>) needs many devnets, not one.</li>
   </ul>
   <aside class="notes">
     <p>Keep client names off the slide unless the bug is fixed and public. Details in Dan's ACDT #101 prep (vault): the fork was at block 1788 on bogota-devnet-1, intrinsic gas missing the 12,100 keyed-nonce access cost from <code>tests-bogota-devnet@v1.1.0</code>.</p>
-    <p>Public client issues: <a href="https://github.com/ethereum/go-ethereum/issues/35783">go-ethereum#35783</a> (frame tx JSON-RPC drops frames, frameReceipts and payer), <a href="https://github.com/NethermindEth/nethermind/issues/14031">nethermind#14031</a> (public pool defaults to 300k validation gas, the spec limit is 100k). Spencer and Jochem on 8253: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
+    <p>Public client issues: <a href="https://github.com/ethereum/go-ethereum/issues/35783">go-ethereum#35783</a> (frame tx JSON-RPC drops frames, frameReceipts and payer), <a href="https://github.com/NethermindEth/nethermind/issues/14031">nethermind#14031</a> (public pool defaults to 300k validation gas, the spec limit is 100k). Spencer and Jochem on <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md">8253</a>: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
   </aside>
 </section>
 
@@ -729,7 +732,7 @@ EIP_8250 = True
   <h2>What we should build next</h2>
   <div class="grid2">
     <ul class="ticks">
-      <li>Cross-EIP tests: frames in inclusion lists (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>), frames &times; 8250 &times; 8272.</li>
+      <li>Cross-EIP tests: frames in inclusion lists (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>), frames &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md">8250</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md">8272</a>.</li>
       <li>FOCIL scenarios in assertoor and spamoor: censored txs, IL timing, equivocation.</li>
       <li>Frame transaction spam and fuzzing on devnets.</li>
     </ul>
@@ -751,7 +754,7 @@ EIP_8250 = True
   <h2>Questions for the room</h2>
   <ol class="qs">
     <li>When does hegota-devnet-0 launch, and what is the gate: N clients, M days stable?</li>
-    <li>Do 8131 and 8279 go into hegota-devnet-1, and which complex EIP comes next?</li>
+    <li>Do <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md">8131</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md">8279</a> go into hegota-devnet-1, and which complex EIP comes next?</li>
     <li>How late may a consensus-breaking test release land before a launch?</li>
     <li>Where does the single source of devnet parameters live?</li>
     <li>Which FOCIL and frames scenarios do client teams want from tooling first?</li>
