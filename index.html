@@ -85,6 +85,14 @@ svg { display: block; width: 100%; height: auto; }
 .flow .hl rect { transition: fill 0.25s ease; }
 .slide[data-step="1"] .flow .hl rect { fill: var(--lime); stroke: var(--ink); stroke-width: 2.5; }
 .slide[data-step="1"] .flow .hl .d-sub { fill: var(--ink); }
+/* Proposal slide */
+.proposal { display: grid; grid-template-columns: 1fr 0.95fr; gap: 3.4cqw; flex: 1; min-height: 0; margin-top: 3cqh; }
+.proposal ol { margin: 0; padding: 0; list-style: none; counter-reset: st; }
+.proposal ol li { counter-increment: st; position: relative; padding-left: 3.6cqw; margin: 0 0 2.2cqh; font-size: 1.75cqw; }
+.proposal ol li::before { content: counter(st); position: absolute; left: 0; top: 0.05em; width: 2.4cqw; height: 2.4cqw; display: grid; place-items: center; background: var(--indigo); color: var(--lime); font-family: var(--mono); font-size: 1.35cqw; }
+.proposal ol li.new::before { background: var(--lime); color: var(--ink); }
+.proposal .shot { margin: 0; border: 1px solid #d3d4ea; background: #fff; overflow-y: auto; min-height: 0; box-shadow: 0 0.6cqw 1.8cqw rgba(25, 21, 37, 0.12); }
+.proposal .shot img { display: block; width: 100%; height: auto; }
 /* Section dividers */
 .section { justify-content: center; }
 .section .num { font-family: var(--mono); font-size: 9cqw; line-height: 1; color: var(--lime); margin: 0 0 2cqh; }
@@ -277,7 +285,7 @@ a.eip:hover { text-decoration: underline; }
   </div>
   <div class="foot"><span>Status as of 31 Oct 2026</span><span>ethPandaOps &times; Specs</span></div>
   <aside class="notes">
-    <p>Set expectations: this is a working session, not a status report. Most of the time should go to the gaps section, with the dev fork proposal on 13 to 16 as the specs-side ask.</p>
+    <p>Set expectations: this is a working session, not a status report. Most of the time should go to the gaps section, with the dev fork proposal on 14 to 17 as the specs-side ask.</p>
   </aside>
 </section>
 
@@ -538,8 +546,39 @@ a.eip:hover { text-decoration: underline; }
     <p>Press next once more to highlight Devnet scope and SFI, the two ACD steps to focus on.</p>
     <p>The rough-consensus steps belong to ACD, everyone. Client teams go through the same steps as the specs, but their testing depends on a spec test release: the filled boxes.</p>
     <p>CL lane (Justin, the last five years): clients prototype CFI&#39;d EIPs in branches, check they still support them, wait for the latest devnet to stabilize, agree the priority order, merge the priority EIPs into the fork spec on master, repeat. No per-EIP or per-devnet branches. A <code>_devnets/</code> staging directory is an open idea (Justin), Pari worries about tooling branches. Mario and Pari: the priority order (step 4) should be agreed more formally, in the meta EIP.</p>
-    <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 13 to 16) would replace the <code>eips/</code> branches with feature flags.</p>
+    <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 14 to 17) would replace the <code>eips/</code> branches with feature flags.</p>
     <p>Branch details are left off on purpose: the next slide zooms in on Devnet scope and SFI.</p>
+  </aside>
+</section>
+
+<!-- 6b. Devnet scope proposal -->
+<section class="slide" aria-label="Proposal: devnet scope in the meta EIP">
+  <p class="kicker">Proposal &middot; Devnet scope</p>
+  <h2>Record each devnet in the fork meta EIP</h2>
+  <p class="lead" style="margin:0;max-width:none;font-family:var(--head);font-weight:600;color:var(--indigo)">Same process, written down: one PR per devnet against <a class="eip" style="white-space:nowrap" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8081.md" title="EIP-8081: Hardfork Meta - Hegot&aacute;">EIP-8081</a>.</p>
+  <div class="proposal">
+    <div>
+      <ol>
+        <li>Discuss devnet scope on ACDE and ACDC. <span class="small">Unchanged.</span></li>
+        <li class="new">Open a PR against the fork meta EIP: one entry per devnet, with its list of EIPs.</li>
+        <li class="new">Client teams approve the PR, or request changes.</li>
+        <li class="new">No response in reasonable time: agree on the next call how to move forward.</li>
+        <li>Merge. Spec and test releases are cut from the agreed list.</li>
+      </ol>
+      <ul class="ticks" style="margin-top:3.4cqh">
+        <li>Everyone sees the same list, in one place.</li>
+        <li>Agreement is explicit and on the record, not a call recording or a thread.</li>
+        <li>SFI already lands in the meta EIP by PR. Devnet scope works the same way.</li>
+      </ul>
+    </div>
+    <figure class="shot" tabindex="0" aria-label="Draft of a Devnets section in EIP-8081, scrollable">
+      <img src="img/eip-8081-devnets.png" alt="Draft Devnets section for EIP-8081: hegota-devnet-1 proposed with 8360, 8279, 8131, 7668, 8148 and 8383; hegota-devnet-0 planned, combining bogota-devnet-2 and heze-devnet-3; a table of the feature devnets with launch dates and test releases." loading="lazy">
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Lime numbers are the new steps. Nothing else changes: the call still decides, the PR records it and lets client teams sign off asynchronously.</p>
+    <p>EIP-7723 already asks facilitators and testing teams to propose a CFI priority order and reflect it in the meta EIP. This makes the per-devnet result explicit.</p>
+    <p>The screenshot is a local draft (Dan&#39;s EIPs branch <code>eip-8081-devnet-scope</code>, not opened as a PR). It uses the devnets from slides 6 to 9. The frame scrolls.</p>
   </aside>
 </section>
 
