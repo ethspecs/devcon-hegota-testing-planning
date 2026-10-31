@@ -66,6 +66,11 @@ ul.ticks li::before { content: ""; position: absolute; left: 0; top: 0.55em; wid
 .card .tag { font-family: var(--mono); font-size: 1.2cqw; color: var(--indigo); margin-bottom: 0.8cqh; display: block; }
 .dark .card { background: var(--indigo-2); border-color: #424aa0; }
 .dark .card .tag { color: var(--lime); }
+.squares .card { min-width: 0; }
+.squares code { white-space: nowrap; }
+.squares .card p { font-size: 1.5cqw; margin: 0 0 1.8cqh; }
+.squares .card .tag { margin-bottom: 1.8cqh; font-size: 1.6cqw; font-weight: 700; letter-spacing: 0.02em; }
+.squares .card b { font-weight: 700; color: #fff; }
 figure { margin: 0; }
 svg { display: block; width: 100%; height: auto; }
 .wordmark { display: flex; gap: 0.9cqw; align-items: center; font-family: var(--mono); font-size: 1.15cqw; line-height: 1.15; color: var(--paper); }
@@ -77,7 +82,7 @@ svg { display: block; width: 100%; height: auto; }
 /* Cover */
 .cover h1 { max-width: 60cqw; margin-top: 12cqh; }
 .cover .lead { margin-top: 3cqh; color: var(--lime); font-family: var(--head); font-weight: 600; }
-.speakers { display: flex; flex-wrap: wrap; gap: 0.8cqw; margin: 3cqh 0 0; max-width: 56cqw; }
+.speakers { display: flex; flex-wrap: wrap; gap: 0.8cqw; margin: 3cqh 0 0; max-width: 66cqw; }
 .speakers li { font-size: 1.75cqw; padding: 0.7cqh 1.2cqw; border: 1px solid var(--peri); }
 
 /* Quote */
@@ -93,6 +98,13 @@ cite { display: block; margin-top: 3cqh; font-style: normal; font-size: 1.6cqw; 
 .chip.sfi { background: var(--indigo); color: var(--paper); border-color: var(--indigo); }
 .chip.sfi b { color: var(--lime); }
 .group h3 { font-size: 1.5cqw; font-family: var(--mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+/* Scope slide: roomier chips and group spacing. */
+.scope h2 { margin-bottom: 4cqh; }
+.scope .group h3 { margin-bottom: 1.5cqh; }
+.scope .chips { gap: 1.1cqh 0.8cqw; }
+.scope .chip { font-size: 1.4cqw; padding: 0.85cqh 0.9cqw; }
+.scope .chip.pfi { color: #8d90b3; border: 1px dotted #a3a5c4; background: transparent; }
+.scope .chip.pfi b { color: #8d90b3; }
 
 /* Tables */
 table { border-collapse: collapse; width: 100%; font-size: 1.45cqw; }
@@ -114,6 +126,42 @@ pre.code .k { color: var(--indigo); font-weight: 600; }
 ol.qs.one { grid-template-columns: 1fr; gap: 1.8cqh; }
 ol.qs.one li { font-size: 1.6cqw; }
 .dark .group h3, .deep .group h3 { color: var(--peri); }
+.roomy ul.ticks li { font-size: 2.05cqw; margin-bottom: 2.4cqh; }
+.roomy .group h3 { margin-top: 1.5cqh; }
+.buys-list ul.ticks li { font-size: 2.15cqw; margin-bottom: 4.2cqh; }
+.agenda .card { padding: 3cqh 2.4cqw; }
+.agenda .card .tag { font-size: 1.6cqw; font-weight: 700; margin-bottom: 1.8cqh; }
+.agenda .card p { font-size: 1.9cqw; }
+/* Devnet lanes: one row per devnet, EIP numbers only. */
+dl.lanes { display: grid; grid-template-columns: 20cqw 1fr; gap: 2.4cqh 2cqw; align-items: center; margin: 1cqh 0 0; }
+dl.lanes dt { font-family: var(--mono); font-size: 1.45cqw; color: var(--muted); }
+dl.lanes dd { margin: 0; display: flex; flex-wrap: wrap; gap: 0.9cqw; }
+dl.lanes dd span { font-family: var(--mono); font-weight: 600; font-size: 2.1cqw; padding: 0.8cqh 1.2cqw; border: 1px solid var(--indigo); color: var(--indigo); background: #fff; }
+dl.lanes dd.on span { background: var(--indigo); color: var(--lime); }
+dl.lanes dd.next span { border-style: dashed; }
+dl.lanes dd.now span { background: var(--lime); color: var(--ink); border-color: var(--ink); }
+dl.lanes dd span.policy { border-style: dashed; }
+dl.lanes dd span.pfi { color: #a3a5c4; border: 1px dotted #b9bbd6; background: transparent; }
+/* Swatch legend matching the lane chips. */
+.legend { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 0.6cqw; }
+.legend .sw { display: inline-block; width: 1.8cqw; height: 1.2cqw; border: 1px solid var(--indigo); background: #fff; margin-left: 1.2cqw; }
+.legend .sw:first-child { margin-left: 0; }
+.legend .sw.on { background: var(--indigo); }
+.legend .sw.next { border-style: dashed; }
+.legend .sw.now { background: var(--lime); border-color: var(--ink); }
+/* CL lanes in two columns: heze devnets, then hegoat devnets. */
+.lanes-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 4cqw; margin: auto 0; align-items: start; }
+.lanes-2col dl.lanes { margin: 0; grid-template-columns: 17cqw 1fr; column-gap: 2cqw; row-gap: 4.6cqh; }
+.lanes-2col dl.lanes dt { font-size: 1.6cqw; }
+.lanes-2col dl.lanes dd span { font-size: 2.4cqw; padding: 1cqh 1.4cqw; }
+.legend .sw.pfi { border: 1px dotted #a3a5c4; background: transparent; }
+/* Priority axis on the EL lanes: left to right under the rows. */
+.order { position: relative; }
+.order dl.lanes { margin: 0; column-gap: 3.5cqw; row-gap: 4cqh; }
+.axis { font-family: var(--mono); font-size: 1.2cqw; color: var(--muted); }
+.axis-h { display: flex; align-items: center; gap: 1.2cqw; margin: 4.5cqh 0 3.5cqh 23.5cqw; }
+.axis-h i { flex: 1; position: relative; border-top: 2px solid var(--indigo); }
+.axis-h i::after { content: ""; position: absolute; right: -1px; top: calc(-0.55cqw - 1px); border-style: solid; border-color: transparent transparent transparent var(--indigo); border-width: 0.55cqw 0 0.55cqw 1cqw; }
 
 /* Speaker notes: hidden in deck mode until N is pressed. */
 aside.notes { display: none; }
@@ -133,6 +181,8 @@ aside.notes { display: none; }
 .d-band { fill: var(--lime); opacity: 0.35; }
 .d-band-label { font-family: var(--mono); font-size: 13px; fill: var(--ink); letter-spacing: 0.08em; }
 .d-team { font-family: var(--mono); font-size: 13px; fill: var(--indigo); letter-spacing: 0.06em; }
+.d-link { text-decoration: underline; }
+figure a:hover .d-node { stroke: var(--lime); stroke-width: 3; }
 
 /* ---------- Deck mode (enabled by script) ---------- */
 html.deck, html.deck body { height: 100%; overflow: hidden; }
@@ -140,6 +190,9 @@ html.deck body { display: grid; place-items: center; }
 html.deck .slide { position: absolute; inset: 0; margin: auto; width: min(100vw, 177.78vh); visibility: hidden; opacity: 0; transition: opacity 0.18s ease; }
 html.deck .slide.active { visibility: visible; opacity: 1; }
 html.deck.show-notes .slide { width: min(100vw, 177.78vh * 0.74); top: 0; bottom: auto; }
+/* Pad by the slide's own size, not the window's, so a tall or wide window keeps the 16:9 layout. */
+html.deck:not(.overview) .slide { --sw: min(100vw, 177.78vh); padding: calc(var(--sw) * 0.03375) calc(var(--sw) * 0.06); }
+html.deck.show-notes:not(.overview) .slide { --sw: min(100vw, 131.56vh); }
 .notes-panel { display: none; }
 html.deck.show-notes .notes-panel {
   display: block; position: fixed; inset: auto 0 0 0; height: 26vh; overflow: auto;
@@ -191,7 +244,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   <div class="foot"><span>L1 Days at Devcon 8, Mumbai &middot; Sunday 1 November 2026</span><span>ethPandaOps &times; Specs</span></div>
   <aside class="notes">
     <p>Working title; confirm against the schedule.</p>
-    <p>Status on these slides is as of 29 October 2026 (EELS tracker #3664 and test releases). Refresh on Saturday.</p>
+    <p>Status on these slides is as of 31 October 2026 (EELS tracker <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, forkcast and test releases).</p>
   </aside>
 </section>
 
@@ -199,53 +252,54 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
 <section class="slide" aria-label="Goals for this session">
   <p class="kicker">This session</p>
   <h2>Leave the room with a testing plan for Hegotá</h2>
-  <div class="grid3">
-    <div class="card"><span class="tag">01 Sequence</span><p>Agree the devnet order from now until the first full Hegotá devnet, hardest interactions first.</p></div>
-    <div class="card"><span class="tag">02 Flow</span><p>One path from EIP to devnet: spec, tests, release, hive, kurtosis, devnet. Who owns each step.</p></div>
-    <div class="card"><span class="tag">03 Gaps</span><p>Name what we do not test today and decide what to build before the next devnets.</p></div>
+  <div class="grid3 agenda" style="flex:1;margin:5cqh 0 4cqh;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr">
+    <div class="card"><span class="tag">01 Prioritization</span><p>Decide when to launch hegota-devnet-0, then agree the EL and CL priority order for the devnets after it. Keep the plans in the fork meta EIP moving forward?</p></div>
+    <div class="card"><span class="tag">02 Flow</span><p>A reminder of the existing flow from EIP to devnet. Updates/definitions on execution/consensus-specs CFI process.</p></div>
+    <div class="card"><span class="tag">03 Development fork</span><p>Guru&#39;s <code>develop/</code> proposal for execution-specs: every CFI EIP behind a flag, devnets generated as targets instead of EIP branches.</p></div>
+    <div class="card"><span class="tag">04 Gaps</span><p>State the gaps. What do client teams fear for Hegot&aacute;, which EIPs need more thought, and what tooling are we missing?</p></div>
   </div>
-  <div class="foot"><span>Status as of 29 Oct 2026</span><span>ethPandaOps &times; Specs</span></div>
+  <div class="foot"><span>Status as of 31 Oct 2026</span><span>ethPandaOps &times; Specs</span></div>
   <aside class="notes">
-    <p>Set expectations: this is a working session, not a status report. Most of the time should go to slides 12 and 13 (config drift, gaps), with the dev fork proposal on 7 to 10 as the specs-side ask.</p>
+    <p>Set expectations: this is a working session, not a status report. Most of the time should go to slides 15 and 16 (config drift, gaps), with the dev fork proposal on 10 to 13 as the specs-side ask.</p>
   </aside>
 </section>
 
 <!-- 3. Lesson -->
 <section class="slide deep" aria-label="Lesson from Glamsterdam">
   <p class="kicker">Lesson from Glamsterdam</p>
-  <blockquote>One of the mistakes we made on our side on the EL was underestimating the complexity of 8037. The idea would be to include the more complex EIPs a lot earlier in the cycle.</blockquote>
-  <cite>Spencer, ACDT #97, 21 September 2026</cite>
-  <ul class="ticks" style="margin-top:6cqh">
-    <li>Test the hardest interactions first: frames &times; FOCIL.</li>
-    <li>Then the complex single EIPs. Simple EIPs ride along later.</li>
+  <blockquote style="margin-top:auto;font-size:3.5cqw">One of the mistakes we made on our side on the EL was underestimating the complexity of 8037. The idea would be to include the more complex EIPs a lot earlier in the cycle.</blockquote>
+  <cite style="margin-top:4cqh;font-size:1.8cqw">Spencer, ACDT #97, 21 September 2026</cite>
+  <ul class="ticks" style="margin:8cqh 0 auto">
+    <li style="font-size:2.2cqw;margin-bottom:2.4cqh">Test the hardest interactions first: frames &times; FOCIL.</li>
+    <li style="font-size:2.2cqw">Then the complex single EIPs. Simple EIPs ride along later.</li>
   </ul>
   <aside class="notes">
-    <p>Source: ACDT #97 transcript, t=2092. The EELS tracker (#3664) states the same principle: "aiming to test the most complex EIPs first: frames x FOCIL interactions, then the more complex single EIPs."</p>
+    <p>Source: ACDT #97 transcript, t=2092. The EELS tracker (<a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>) states the same principle: "aiming to test the most complex EIPs first: frames x FOCIL interactions, then the more complex single EIPs."</p>
   </aside>
 </section>
 
 <!-- 4. Scope -->
-<section class="slide" aria-label="What is in Hegotá">
+<section class="slide scope" aria-label="What is in Hegotá">
   <p class="kicker">Scope</p>
   <h2>Two headliners and a long CFI list</h2>
   <div class="group">
     <h3>Scheduled for inclusion</h3>
-    <div class="chips" style="margin-bottom:3cqh">
+    <div class="chips" style="margin-bottom:4.5cqh">
       <span class="chip sfi"><b>7805</b>FOCIL</span>
       <span class="chip sfi"><b>8141</b>Frame transactions</span>
+      <span class="chip sfi"><b>8015</b>Beacon state cleanup</span>
     </div>
   </div>
-  <div class="grid2" style="gap:3cqw">
+  <div class="grid3" style="gap:3cqw;grid-template-columns:1fr 1.25fr 0.9fr">
     <div class="group">
-      <h3>CFI: frames companions and slots</h3>
+      <h3>CFI: frames companions</h3>
       <div class="chips">
         <span class="chip"><b>8250</b>Keyed nonces</span>
         <span class="chip"><b>8272</b>Recent roots</span>
         <span class="chip"><b>7906</b>Tx assertions</span>
         <span class="chip"><b>8151</b>Restricted ecRecover</span>
-        <span class="chip"><b>8198</b>Quick slots</span>
       </div>
-      <h3 style="margin-top:3cqh">CFI: data and networking</h3>
+      <h3 style="margin-top:4cqh">CFI: data and networking</h3>
       <div class="chips">
         <span class="chip"><b>7668</b>Remove blooms</span>
         <span class="chip"><b>8116</b>Receipt fields</span>
@@ -268,49 +322,142 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
         <span class="chip"><b>8163</b>Reserve 0xae</span>
       </div>
     </div>
+    <div class="group">
+      <h3>CFI: CL</h3>
+      <div class="chips">
+        <span class="chip"><b>8198</b>Quick slots</span>
+        <span class="chip"><b>8365</b>No new 0x00 validators</span>
+        <span class="chip"><b>8148</b>Custom sweep threshold</span>
+        <span class="chip"><b>8334</b>Bundled attestations</span>
+        <span class="chip"><b>8383</b>Shorter block retention</span>
+        <span class="chip"><b>8411</b>Fast payload broadcast</span>
+      </div>
+    </div>
   </div>
-  <div class="foot"><span>EL view, from the EELS Hegotá scoping tracker (ethereum/execution-specs#3664). CL-only: 8015, 8365.</span><span></span></div>
+  <div class="group" style="margin-top:4.5cqh">
+    <h3>PFI</h3>
+    <div class="chips">
+      <span class="chip pfi"><b>7907</b>Code size metering</span>
+      <span class="chip pfi"><b>8173</b>EVM control flow</span>
+      <span class="chip pfi"><b>8368</b>CPSB recalibration</span>
+      <span class="chip pfi"><b>8372</b>Normalized state gas</span>
+      <span class="chip pfi"><b>8369</b>VOPS profiles</span>
+    </div>
+  </div>
   <aside class="notes">
-    <p>19 CFI EIPs on the EL side. PFI: 7907 (decided at ACDE #248). 8368 and 8372 wait for about 30 days of Glamsterdam mainnet data.</p>
-    <p>Source: <a href="https://github.com/ethereum/execution-specs/issues/3664">execution-specs#3664</a>.</p>
+    <p>EL: 8141 SFI plus 18 CFI. CL: 7805 FOCIL SFI (cross-layer), 8015 SFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>, 8198 and 8365 CFI on ACDC <a href="https://forkcast.org/calls/acdc/188/">#188</a>, 8148, 8334, 8383 and 8411 CFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>. 8205 DFI'd on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
+    <p>PFI (forkcast, 31 Oct): EL 7907, 8173, 8368, 8372. 8368 and 8372 wait for about 30 days of Glamsterdam mainnet data. CL 8369 VOPS profiles, informational, set aside on ACDC <a href="https://forkcast.org/calls/acdc/187/">#187</a>, <a href="https://forkcast.org/calls/acdc/189/">#189</a> and <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
+    <p>Source: <a href="https://github.com/ethereum/execution-specs/issues/3664">execution-specs#3664</a>, <a href="https://forkcast.org">forkcast</a>.</p>
   </aside>
 </section>
 
 <!-- 5. Devnet ladder -->
 <section class="slide" aria-label="Devnet sequence">
   <p class="kicker">Devnet sequence</p>
-  <h2>Two feature lanes, merged after Devcon</h2>
-  <figure>
-    <svg viewBox="0 0 1200 420" role="img" aria-labelledby="ladder-t ladder-d">
-      <title id="ladder-t">Hegotá devnet sequence</title>
-      <desc id="ladder-d">The heze lane (FOCIL, CL and EL) runs devnets 1 to 3. The bogota lane (frames, EL only) runs devnets 1 and 2. Both merge into hegota-devnet-0 after Devcon, followed by hegota-devnet-1 with 8131 and 8279, not yet agreed.</desc>
-      <rect class="d-band" x="664" y="20" width="74" height="380"/>
-      <text class="d-band-label" x="701" y="410" text-anchor="middle">DEVCON</text>
-      <text class="d-lane" x="40" y="40">heze &middot; FOCIL &middot; CL + EL</text>
-      <text class="d-lane" x="40" y="236">bogota &middot; frames &middot; EL only</text>
-      <path class="d-edge" d="M215 110H235M405 110H425"/>
-      <path class="d-edge" d="M405 300H475"/>
-      <path class="d-edge" d="M595 110C690 110 680 205 765 205M645 300C710 300 690 205 765 205"/>
-      <path class="d-edge dash" d="M935 205H975"/>
-      <g><rect class="d-node done" x="45" y="72" width="170" height="76" rx="4"/><text class="d-title" x="60" y="102">heze-devnet-1</text><text class="d-sub" x="60" y="126">7805 &middot; live 6 Oct</text></g>
-      <g><rect class="d-node done" x="235" y="72" width="170" height="76" rx="4"/><text class="d-title" x="250" y="102">heze-devnet-2</text><text class="d-sub" x="250" y="126">+ CL 8015, 8365</text></g>
-      <g><rect class="d-node done" x="425" y="72" width="170" height="76" rx="4"/><text class="d-title" x="440" y="102">heze-devnet-3</text><text class="d-sub" x="440" y="126">+ 8198 at 9 s slots</text></g>
-      <g><rect class="d-node done" x="235" y="262" width="170" height="76" rx="4"/><text class="d-title" x="250" y="292">bogota-devnet-1</text><text class="d-sub" x="250" y="316">8141 8250 8272 7906</text></g>
-      <g><rect class="d-node" x="475" y="262" width="170" height="76" rx="4"/><text class="d-title" x="490" y="292">bogota-devnet-2</text><text class="d-sub" x="490" y="316">+ 8298 8253 4758 8151</text></g>
-      <g><rect class="d-node lime" x="765" y="160" width="170" height="90" rx="4"/><text class="d-title" x="780" y="190">hegota-devnet-0</text><text class="d-sub" x="780" y="214" style="fill:var(--ink)">frames &times; FOCIL</text><text class="d-sub" x="780" y="234" style="fill:var(--ink)">no new EIPs</text></g>
-      <g><rect class="d-node next" x="975" y="167" width="170" height="76" rx="4"/><text class="d-title" x="990" y="197">hegota-devnet-1</text><text class="d-sub" x="990" y="221">8131 8279 &middot; TBD</text></g>
-      <text class="d-sub" x="45" y="176">test releases 24 Sep, 15 Oct, 21 Oct</text>
-      <text class="d-sub" x="235" y="366">live 15 Oct</text>
-      <text class="d-sub" x="475" y="366">tests v2.0.0 27 Oct</text>
-      <text class="d-sub" x="765" y="276">agreed ACDE #248</text>
-      <text class="d-sub" x="975" y="269">not yet agreed</text>
+  <h2>heze + bogotá = He🐐á</h2>
+  <figure style="margin:auto 0">
+    <svg viewBox="0 0 920 376" role="img" aria-label="Hegotá devnet sequence. The heze lane (FOCIL, CL and EL) runs devnets 1 to 3. The bogota lane (frames, EL only) runs devnets 1 and 2. Both merge into hegota-devnet-0 after Devcon, followed by hegota-devnet-1 with 8131 and 8279 and then hegota-devnet-N with the remaining CFI EIPs, neither agreed yet. Each devnet box links to its test release.">
+      <rect class="d-band" x="636" y="10" width="74" height="326"/>
+      <text class="d-band-label" x="673" y="356" text-anchor="middle">DEVCON</text>
+      <text class="d-lane" x="10" y="34">heze &middot; FOCIL &middot; CL + EL</text>
+      <text class="d-lane" x="10" y="200">bogota &middot; frames &middot; EL only</text>
+      <path class="d-edge" d="M180 88H200M370 88H390"/>
+      <path class="d-edge" d="M370 254H440"/>
+      <path class="d-edge" d="M560 88C650 88 650 96 740 96M610 254C690 254 660 96 740 96"/>
+      <path class="d-edge dash" d="M825 152V182M825 258V290"/>
+      <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-focil-devnet%40v0.3.0"><g><rect class="d-node done" x="10" y="50" width="170" height="76" rx="4"/><text class="d-title" x="25" y="80">heze-devnet-1</text><text class="d-sub" x="25" y="104">7805</text></g></a>
+      <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-heze-devnet%40v2.0.1"><g><rect class="d-node done" x="200" y="50" width="170" height="76" rx="4"/><text class="d-title" x="215" y="80">heze-devnet-2</text><text class="d-sub" x="215" y="104">+ CL 8015, 8365</text></g></a>
+      <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-heze-devnet%40v3.0.0"><g><rect class="d-node done" x="390" y="50" width="170" height="76" rx="4"/><text class="d-title" x="405" y="80">heze-devnet-3</text><text class="d-sub" x="405" y="104">+ 8198 at 9 s slots</text></g></a>
+      <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-bogota-devnet%40v1.1.1"><g><rect class="d-node done" x="200" y="216" width="170" height="76" rx="4"/><text class="d-title" x="215" y="246">bogota-devnet-1</text><text class="d-sub" x="215" y="270">8141 8250 8272 7906</text></g></a>
+      <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-bogota-devnet%40v2.0.0"><g><rect class="d-node done" x="440" y="216" width="170" height="76" rx="4"/><text class="d-title" x="455" y="246">bogota-devnet-2</text><text class="d-sub" x="455" y="270">+ 8298 8253 4758 8151</text></g></a>
+      <g><rect class="d-node lime" x="740" y="40" width="170" height="112" rx="4"/><text class="d-title" x="755" y="70">hegota-devnet-0</text><text class="d-sub" x="755" y="94" style="fill:var(--ink)">frames &times; FOCIL</text><text class="d-sub" x="755" y="116" style="fill:var(--ink)">launch date TBD,</text><text class="d-sub" x="755" y="138" style="fill:var(--ink)">between 3 and 17 Nov</text></g>
+      <g><rect class="d-node next" x="740" y="182" width="170" height="76" rx="4"/><text class="d-title" x="755" y="212">hegota-devnet-1</text><text class="d-sub" x="755" y="236">devnet-0 + 2 to 4 weeks</text></g>
+      <g><rect class="d-node next" x="740" y="290" width="170" height="76" rx="4"/><text class="d-title" x="755" y="320">hegota-devnet-N</text><text class="d-sub" x="755" y="344">remaining CFI</text></g>
+      <text class="d-sub" x="10" y="150">live 6 Oct</text>
+      <text class="d-sub" x="200" y="150">live 20 Oct</text>
+      <text class="d-sub" x="390" y="150">live 21 Oct</text>
+      <text class="d-sub" x="200" y="316">live 15 Oct</text>
+      <text class="d-sub" x="440" y="316">live 29 Oct</text>
     </svg>
   </figure>
-  <div class="foot"><span>Filled: test release out. Lime: first network with both headliners. Dashed: not agreed.</span><span>execution-specs#3664, #3787</span></div>
   <aside class="notes">
-    <p>heze-devnet-3 test release <code>tests-heze-devnet@v3.0.0</code> on 21 Oct; bogota-devnet-2 <code>tests-bogota-devnet@v2.0.0</code> on 27 Oct. hegota-devnet-0 = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>, launch after Devcon (ACDE #248). New tests for hegota-devnet-0: frame transactions in inclusion lists, EELS PR #3777 (draft).</p>
+    <p>heze-devnet-3 test release <code>tests-heze-devnet@v3.0.0</code> on 21 Oct; bogota-devnet-2 <code>tests-bogota-devnet@v2.0.0</code> on 27 Oct. hegota-devnet-0 = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>, launch after Devcon (ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>). Frame txs in inclusion lists on devnet-0: exempt like blobs (this week) or enforced at the end of the payload (10 days after Devcon). Full frames &times; FOCIL with omission claims (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>, EIP-8369) comes later.</p>
     <p>heze lane releases: <code>tests-focil-devnet@v0.3.0</code> (24 Sep), <code>tests-heze-devnet@v2.0.0</code> (15 Oct), <code>v3.0.0</code> (21 Oct).</p>
     <p>Sources: <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>.</p>
+  </aside>
+</section>
+
+<!-- 5b. EL priority -->
+<section class="slide" aria-label="EL devnet prioritization">
+  <p class="kicker">Devnet prioritization &middot; EL</p>
+  <h2>Are ELs happy with this prioritization?</h2>
+  <p class="lead" style="margin:0;max-width:none;white-space:nowrap;font-size:1.95cqw;font-family:var(--head);font-weight:600;color:var(--indigo)">Add prio list to fork meta EIPs? <span style="font-weight:400;color:var(--muted)">(<a href="https://eips.ethereum.org/EIPS/eip-8081">EIP-8081</a>)</span> <span style="color:var(--muted);font-weight:400">&middot;</span> I*+ EIP rankings should include a prio list?</p>
+  <div class="order" style="margin-top:auto">
+    <dl class="lanes">
+      <dt>bogota-devnet-1</dt><dd class="on"><span>8141</span><span>8250</span><span>8272</span><span>7906</span></dd>
+      <dt>bogota-devnet-2</dt><dd class="on"><span>8253</span><span>8298</span><span>8151</span><span>4758</span></dd>
+      <dt>hegoat-devnet-0</dt><dd class="now"><span>7805 &times; 8141</span><span class="policy">MATCHA?</span></dd>
+    <dt>hegoat-devnet-1?</dt><dd class="next"><span>8360</span><span>8279</span><span>8131</span><span>7668</span></dd>
+      <dt>not on a devnet</dt><dd><span>3298</span><span>7709</span><span>7979</span><span>8163</span><span>5920</span><span>8077</span><span>8116</span><span class="pfi">7907</span></dd>
+    </dl>
+  </div>
+  <div class="axis axis-h" aria-hidden="true"><span>higher priority</span><i></i><span>lower priority</span></div>
+  <p class="small" style="margin:auto 0 2.2cqh;font-size:1.25cqw"><a href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949">MATCHA</a>: Mempool Account Transaction Capacity from Historical Activity, mempool policy, no fork</p>
+  <div class="foot" style="margin-top:0"><span class="legend"><i class="sw on"></i>on a devnet <i class="sw now"></i>next <i class="sw next"></i>candidate, not proposed yet <i class="sw"></i>not scheduled <i class="sw pfi"></i>PFI</span><span>SFI: 7805, 8141 &middot; Order: <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's EL CFI priority list</a></span></div>
+  <aside class="notes">
+    <p>Order from <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's Hegotá EL CFI priority list</a>, working v1 from ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>. EIP-7723 asks facilitators and testing teams to propose this order for client developers to review.</p>
+    <p>Rule: most complex first, pairs ship together. 8298 + 8151 both on bogota-devnet-2. 4758 is on bogota-devnet-2 but its pair 8360 is not. 8279 + 8131 are candidates for hegota-devnet-1, not proposed yet (<a href="https://github.com/ethereum/execution-specs/issues/3788">#3788</a>). 8360 added to complete the 4758 pair, 7668 as next in order and the cheapest.</p>
+    <p>MATCHA (<a href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949">ethresear.ch</a>, soispoke) is a local EL mempool policy, not an EIP: no fork, no CL work, no EELS fixtures. ELs can trial it on hegota-devnet-0 if they agree parameter values. Raised on ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a> with dropping 8141's one-pending-tx-per-sender limit. A MATCHA rejection never excuses a FOCIL omission.</p>
+    <p>hegota-devnet-0 is the frames &times; FOCIL interaction (7805 &times; 8141). Quick slots (8198) also comes over from heze-devnet-3. Row = first devnet for each EIP. Everything on bogota-devnet-2 carries into hegota-devnet-0. 8077 is devp2p only. 7907 still PFI, wants a slot right away if CFI'd.</p>
+  </aside>
+</section>
+
+<!-- 5c. CL priority -->
+<section class="slide" aria-label="CL devnet prioritization">
+  <p class="kicker">Devnet prioritization &middot; CL</p>
+  <h2>Are CLs happy with this prioritization?</h2>
+  <p class="lead" style="margin:0;font-family:var(--head);font-weight:600;color:var(--indigo)">Add fork devnet plan section to fork meta EIPs?</p>
+  <div class="lanes-2col">
+    <dl class="lanes">
+      <dt>heze-devnet-1</dt><dd class="on"><span>7805</span></dd>
+      <dt>heze-devnet-2</dt><dd class="on"><span>8015</span><span>8365</span></dd>
+      <dt>heze-devnet-3</dt><dd class="on"><span>8198</span></dd>
+    </dl>
+    <dl class="lanes">
+      <dt>hegoat-devnet-0</dt><dd class="now"><span>7805 &times; 8141</span></dd>
+      <dt>hegoat-devnet-1?</dt><dd class="next"><span>8148</span><span>8383</span></dd>
+      <dt>hegoat-devnet-2?</dt><dd class="next"><span>8334</span><span>8411</span></dd>
+      <dt>not CFI'd</dt><dd><span class="pfi">8369</span></dd>
+    </dl>
+  </div>
+  <div class="foot" style="margin-top:0"><span class="legend"><i class="sw on"></i>on a devnet <i class="sw now"></i>next, no new EIPs <i class="sw next"></i>proposed <i class="sw pfi"></i>PFI</span><span>Proposed: loosely agreed upon in Discord &middot; SFI: 7805, 8015</span></div>
+  <aside class="notes">
+    <p>From forkcast as of 31 Oct. SFI: 7805 FOCIL (ACDC <a href="https://forkcast.org/calls/acdc/175/">#175</a>), 8015 (ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>). CFI: 8198 quick slots and 8365 (ACDC <a href="https://forkcast.org/calls/acdc/188/">#188</a>), 8148, 8334, 8383, 8411 (all ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>). PFI: 8369 VOPS profiles, informational, set aside on ACDC <a href="https://forkcast.org/calls/acdc/187/">#187</a>, <a href="https://forkcast.org/calls/acdc/189/">#189</a> and <a href="https://forkcast.org/calls/acdc/190/">#190</a> with no decision.</p>
+    <p>hegota-devnet-1 proposal from Barnabas in the hegota-cl thread: 8148 + 8383 next (Prysm has an 8148 prototype, NC agrees), then 8334 + 8411 bundled as the networking EIPs. Not agreed. 8148 state-bloat fix: threshold moved into a 0x02 withdrawal credential (<a href="https://github.com/ethereum/EIPs/issues/12598">EIPs#12598</a> merged, <a href="https://github.com/ethereum/consensus-specs/issues/5790">consensus-specs#5790</a> open).</p>
+    <p>No CL priority order yet. Should the CL side get a list like the EL one?</p>
+  </aside>
+</section>
+
+<!-- 5d. hegota-devnet-0 -->
+<section class="slide dark" aria-label="hegota-devnet-0 next">
+  <svg class="pixels" data-pixels="corner" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" style="width:14cqw;inset:auto 0 0 auto;height:22cqh"></svg>
+  <p class="kicker">Next: frames &times; FOCIL</p>
+  <h2>Do we want to launch He🐐 devnet 0 this week?</h2>
+  <p class="lead" style="margin:0;max-width:none"><span class="lime">Raise hands for yes. Otherwise 10 days after Devcon?</span></p>
+  <div class="grid3 squares" style="margin-top:4.5cqh;flex:1;grid-template-columns:repeat(2,minmax(0,1fr));gap:2cqh 2cqw">
+    <div class="card"><span class="tag">EIPs</span><p style="margin-bottom:2.6cqh"><b>Update EIP-7805:</b> omission claims and per-IL VERIFY budgets (<a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a>)? <b>EL + CL.</b></p><p style="margin-bottom:2.6cqh">Design from EIP-8369 (<a href="https://github.com/ethereum/EIPs/issues/12396">EIPs#12396</a>).</p><p><b>@thomas @matt/lightclient?</b></p></div>
+    <div class="card"><span class="tag">Specs</span><p><b><span style="white-space:nowrap">consensus-specs</span>:</b> omission claims in Heze (<a href="https://github.com/ethereum/consensus-specs/issues/5698"><span style="white-space:nowrap">consensus-specs#5698</span></a>).</p><p><b><span style="white-space:nowrap">execution-specs</span>:</b> merge both devnet branches into <code>devnets/hegota/0</code>, add <a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a> and frames &times; FOCIL tests, release <code>tests-hegota-devnet@v0.0.0</code>.</p><p style="margin-bottom:0"><b><span style="white-space:nowrap">execution-apis</span>:</b> newPayloadV6 takes separate ILs and claims, returns the verdict (<a href="https://github.com/ethereum/execution-apis/issues/911"><span style="white-space:nowrap">execution-apis#911</span></a>).</p></div>
+    <div class="card"><span class="tag">EL clients</span><p><b>Majority of changes.</b> Merge frames and FOCIL branches, add omission claims, separate ILs and frame validation at the claimed index? Nethermind has a prototype.</p></div>
+    <div class="card"><span class="tag">CL clients</span><p><b>Code change:</b> omission claims (<a href="https://github.com/ethereum/consensus-specs/issues/5698"><span style="white-space:nowrap">consensus-specs#5698</span></a>) in bids, payload envelope, gossip, Engine API and fork choice. Build on your <span style="white-space:nowrap">heze-devnet-3</span> branch? First frame txs devnet on <span style="white-space:nowrap">non-Lighthouse</span> CLs!</p></div>
+  </div>
+  <p class="small" style="margin:2.6cqh 0 0;font-size:1.4cqw;text-align:center">Thanks to Marc (<a href="https://github.com/Marchhill">Marchhill</a>) from Nethermind for all of these open PRs!</p>
+  <aside class="notes">
+    <p>Tracker <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>. <code>devnets/hegota/0</code> = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>. ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a> agreed "after Devcon". Ask the room whether we can pull it forward to this week.</p>
+    <p>Frames are EL only, so the CL side of hegota-devnet-0 is heze-devnet-3. The EL side has to combine each client's bogota (frames) and heze (FOCIL) branches.</p>
+    <p><a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a> (Marchhill, draft) is EIP-8369 Profile 2: <a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a> and <a href="https://github.com/ethereum/EIPs/issues/12396">#12396</a>, <a href="https://github.com/ethereum/execution-apis/issues/911">execution-apis#911</a>, <a href="https://github.com/ethereum/consensus-specs/issues/5698">consensus-specs#5698</a>. It targets <code>devnets/hegota/0</code>, so it needs a rebase once that branch is force-pushed.</p>
+    <p>No Engine API change for CLs: Bogota&#39;s engine methods on the merged branch are exactly heze-devnet-3&#39;s (newPayloadV6, forkchoiceUpdatedV5, getInclusionListV1). The branch is built locally and the Bogota fill passes except the 19 frame-in-IL variants, which wait on the IL rule. Not pushed or released yet.</p>
+    <p>Config only: Heze activates at the Hegota time in the devnet genesis. bogota-devnet-2 ran only Lighthouse. If ELs disagree on IL verdicts for frame txs, it shows up as CL attestations splitting.</p>
+    <p>If the room picks this week with frame txs exempt: the EIPs box becomes "frame txs exempt, like blobs", and the Specs and EL boxes lose their second sentences. Enforcement makes this week unlikely.</p>
   </aside>
 </section>
 
@@ -318,44 +465,57 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
 <section class="slide" aria-label="From EIP to devnet">
   <p class="kicker">One flow</p>
   <h2>From EIP to devnet</h2>
-  <figure>
-    <svg viewBox="0 0 1200 330" role="img" aria-labelledby="flow-t flow-d">
-      <title id="flow-t">Testing flow from EIP to devnet</title>
-      <desc id="flow-d">EIP text, then EELS spec and tests on an eips branch, then a devnets branch, then a tests release, then hive, then local kurtosis, then the public devnet. Bugs found on devnets flow back into EELS as tests.</desc>
-      <text class="d-team" x="20" y="28">SPECS</text>
-      <path class="d-edge" d="M20 40H640" style="stroke:var(--peri)"/>
-      <text class="d-team" x="840" y="28">ETHPANDAOPS</text>
-      <path class="d-edge" d="M670 40H1180" style="stroke:var(--peri)"/>
-      <g transform="translate(20 70)">
-        <rect class="d-node" width="150" height="110" rx="4"/><text class="d-title" x="14" y="34">EIP</text><text class="d-sub" x="14" y="60">ethereum/EIPs</text><text class="d-sub" x="14" y="82">CFI / SFI</text>
+  <p class="lead" style="margin:0;font-family:var(--head);font-weight:600;color:var(--indigo)">Alignment on the current flow</p>
+  <figure style="margin:auto 0">
+    <svg viewBox="0 0 1200 504" role="img" aria-label="Testing flow from EIP to devnet for both layers. The EIP feeds two lanes. EL: execution-specs on an eips branch, a devnets branch, a tests release, then hive. CL: clients prototype CFI'd EIPs in branches, then priority EIPs are integrated into the Heze spec in consensus-specs, then client CI. Both lanes meet in local kurtosis and then the public devnet. Bugs found on devnets flow back into the specs as tests.">
+      <text class="d-team" x="20" y="18">SPECS</text>
+      <path class="d-edge" d="M20 28H765" style="stroke:var(--peri)"/>
+      <text class="d-team" x="785" y="18">ETHPANDAOPS</text>
+      <path class="d-edge" d="M785 28H1190" style="stroke:var(--peri)"/>
+      <text class="d-lane" x="190" y="74">EL</text>
+      <text class="d-lane" x="190" y="248">CL</text>
+      <g transform="translate(20 84)">
+        <rect class="d-node" width="150" height="296" rx="4"/><text class="d-title" x="12" y="38">EIP</text><text class="d-sub" x="12" y="68">ethereum/EIPs</text><text class="d-sub" x="12" y="92">CFI / SFI</text>
       </g>
-      <g transform="translate(190 70)">
-        <rect class="d-node" width="150" height="110" rx="4"/><text class="d-title" x="14" y="34">EELS spec</text><text class="d-sub" x="14" y="60">+ tests</text><text class="d-sub" x="14" y="82">eips/bogota/eip-*</text>
+      <g transform="translate(190 84)">
+        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38" style="font-size:13.5px">execution-specs</text><text class="d-sub" x="12" y="68">eips/&lt;fork&gt;/eip-*</text><text class="d-sub" x="12" y="92">develop/ (proposed)</text>
       </g>
-      <g transform="translate(360 70)">
-        <rect class="d-node" width="150" height="110" rx="4"/><text class="d-title" x="14" y="34">Devnet branch</text><text class="d-sub" x="14" y="60">devnets/bogota/2</text><text class="d-sub" x="14" y="82">merges EIPs</text>
+      <g transform="translate(360 84)">
+        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Devnet branch</text><text class="d-sub" x="12" y="68">devnets/&lt;fork&gt;/&lt;n&gt;</text>
       </g>
-      <g transform="translate(530 70)">
-        <rect class="d-node done" width="150" height="110" rx="4"/><text class="d-title" x="14" y="34">Release</text><text class="d-sub" x="14" y="60">tests-*-devnet</text><text class="d-sub" x="14" y="82">@vX.Y.Z</text>
+      <g transform="translate(530 84)">
+        <rect class="d-node done" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Release</text><text class="d-sub" x="12" y="68">tests-*-devnet</text>
       </g>
-      <g transform="translate(700 70)">
-        <rect class="d-node" width="150" height="110" rx="4"/><text class="d-title" x="14" y="34">Hive</text><text class="d-sub" x="14" y="60">consume engine,</text><text class="d-sub" x="14" y="82">rlp, enginex</text>
+      <g transform="translate(700 84)">
+        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Hive</text><text class="d-sub" x="12" y="68">consume engine,</text><text class="d-sub" x="12" y="92">rlp, enginex</text>
       </g>
-      <g transform="translate(870 70)">
-        <rect class="d-node" width="150" height="110" rx="4"/><text class="d-title" x="14" y="34">Kurtosis</text><text class="d-sub" x="14" y="60">local multi-client</text><text class="d-sub" x="14" y="82">assertoor</text>
+      <g transform="translate(190 260)">
+        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">CL clients</text><text class="d-sub" x="12" y="68">prototype CFI&#39;d</text><text class="d-sub" x="12" y="92">EIPs in branches</text>
       </g>
-      <g transform="translate(1040 70)">
-        <rect class="d-node lime" width="150" height="110" rx="4"/><text class="d-title" x="14" y="34">Devnet</text><text class="d-sub" x="14" y="60" style="fill:var(--ink)">spamoor, dora</text><text class="d-sub" x="14" y="82" style="fill:var(--ink)">execute remote</text>
+      <g transform="translate(360 260)">
+        <rect class="d-node" width="320" height="120" rx="4"/><text class="d-title" x="12" y="38" style="font-size:13.5px">consensus-specs</text><text class="d-sub" x="12" y="68">priority EIPs into</text><text class="d-sub" x="12" y="92">Heze spec</text>
       </g>
-      <path class="d-edge" d="M170 125H190M340 125H360M510 125H530M680 125H700M850 125H870M1020 125H1040"/>
-      <path class="d-edge dash" d="M1115 180V250H265V180"/>
-      <path d="M259 190L265 180L271 190" class="d-edge"/>
-      <text class="d-sub" x="560" y="275">bugs found on devnets become EELS tests</text>
+      <g transform="translate(700 260)">
+        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Client CI</text><text class="d-sub" x="12" y="68">spec test runners</text>
+      </g>
+      <g transform="translate(870 84)">
+        <rect class="d-node" width="150" height="296" rx="4"/><text class="d-title" x="12" y="38">Kurtosis</text><text class="d-sub" x="12" y="68">local multi-client</text><text class="d-sub" x="12" y="92">assertoor</text>
+      </g>
+      <g transform="translate(1040 84)">
+        <rect class="d-node lime" width="150" height="296" rx="4"/><text class="d-title" x="12" y="38">Devnet</text><text class="d-sub" x="12" y="68" style="fill:var(--ink)">spamoor, dora</text><text class="d-sub" x="12" y="92" style="fill:var(--ink)">execute remote</text>
+      </g>
+      <path class="d-edge" d="M170 144H190M340 144H360M510 144H530M680 144H700M850 144H870M170 320H190M340 320H360M680 320H700M850 320H870M1020 232H1040"/>
+      <path class="d-edge dash" d="M1115 84V52H265V84"/>
+      <path d="M259 74L265 84L271 74" class="d-edge"/>
+      <path class="d-edge dash" d="M1115 380V454H265V380"/>
+      <path d="M259 390L265 380L271 390" class="d-edge"/>
+      <text class="d-sub" x="560" y="486">bugs found on devnets become spec tests</text>
     </svg>
   </figure>
-  <div class="foot"><span>The release is the contract: clients, hive and kurtosis all pin to the same tag.</span><span>Hive is shared: Specs writes the simulators, ethPandaOps runs the infra.</span></div>
   <aside class="notes">
     <p>Branch model (Spencer, Mattermost 28 Sep): <code>forks/bogota</code> as the base, one <code>eips/bogota/eip-xxxx</code> branch per CFI EIP, <code>devnets/&lt;feature|fork&gt;/&lt;n&gt;</code> to combine, then <code>devnets/hegota/0</code> merges the two lanes.</p>
+    <p>CL lane (Justin, the last five years): clients prototype CFI&#39;d EIPs in branches, check they still support them, wait for the latest devnet to stabilize, agree the priority order, merge the priority EIPs into the fork spec on master, repeat. No per-EIP or per-devnet branches. A <code>_devnets/</code> staging directory is an open idea (Justin), Pari worries about tooling branches. Mario and Pari: the priority order (step 4) should be agreed more formally, in the meta EIP.</p>
+    <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 10 to 13) would replace the <code>eips/</code> branches with feature flags.</p>
     <p>Ask the room: is the hand-off from release to kurtosis to devnet explicit enough? Who confirms that every client branch runs the release before launch?</p>
   </aside>
 </section>
@@ -364,7 +524,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
 <section class="slide" aria-label="Development fork: status quo">
   <p class="kicker">A development fork for execution-specs &middot; 1 of 4</p>
   <h2>Today: one branch per EIP, devnets by hand</h2>
-  <div class="grid2" style="grid-template-columns:1.05fr 1fr">
+  <div class="grid2" style="grid-template-columns:1.05fr 1fr;margin-top:auto">
     <figure>
       <svg viewBox="0 0 600 350" role="img" aria-labelledby="sq-t sq-d">
         <title id="sq-t">Branches today</title>
@@ -396,8 +556,8 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
       <li>Branches drift: the 8141 branch lagged <code>forks/bogota</code> by one fix, so its diff showed 29 files instead of its own 17.</li>
     </ul>
   </div>
-  <p class="lead" style="margin-top:2.5cqh;font-size:2cqw">Cost grows with EIPs &times; changes per EIP &times; devnets that include them.</p>
-  <div class="foot"><span>Solid: branch base or fast-forward. Dashed: cherry-pick. Snapshot 14 Oct 2026.</span><span>execution-specs#3824, #3825</span></div>
+  <p class="lead" style="margin:4cqh 0 auto;font-size:2cqw">Cost grows with EIPs &times; changes per EIP &times; devnets that include them.</p>
+  <div class="foot" style="margin-top:0"><span>Solid: branch base or fast-forward. Dashed: cherry-pick. Snapshot 14 Oct 2026.</span><span>execution-specs#3824, #3825</span></div>
   <aside class="notes">
     <p>This is the 14 October snapshot from the plan document. The point is not any one incident but that the cost is multiplicative.</p>
     <p>Details if asked: <code>update-devnet-branch</code> works for <code>devnets/heze/2</code> and <code>devnets/focil/2</code>, where the EIPs do not collide, and fails on bogota because 8250 and 8272 both insert a constants block at the same spot in <code>frame_transaction.py</code>. The 29-versus-17 drift was a modexp fix applied to ten older forks that <code>eips/bogota/eip-8141</code> never picked up.</p>
@@ -408,7 +568,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
 <section class="slide" aria-label="Development fork: the proposal">
   <p class="kicker">A development fork for execution-specs &middot; 2 of 4</p>
   <h2>One source tree, devnets as targets</h2>
-  <figure>
+  <figure style="margin-top:auto">
     <svg viewBox="0 0 1200 200" role="img" aria-labelledby="df-t df-d">
       <title id="df-t">Proposed flow from source to fixtures</title>
       <desc id="df-d">A single source tree, develop, with every EIP behind a guard. A generator folds it into the checked-in bogota fork, which CI verifies with a check flag. A devnet such as bogota_devnet1 is a target entry, folded transiently at fill time with nothing checked in. The test framework derives its fork classes from the same targets and fills fixtures for both.</desc>
@@ -426,7 +586,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
       <g><rect class="d-node" x="960" y="45" width="220" height="110" rx="4"/><text class="d-title" x="974" y="80">fixtures</text><text class="d-sub" x="974" y="106">test forks derived</text><text class="d-sub" x="974" y="128">from TARGETS, no EIP list</text></g>
     </svg>
   </figure>
-  <div class="grid2" style="grid-template-columns:1.3fr 1fr;gap:2.6cqw;margin-top:2cqh">
+  <div class="grid2" style="grid-template-columns:1.3fr 1fr;gap:2.6cqw;margin:4cqh 0 auto">
     <div class="card">
       <span class="tag">develop/eips.py: the control board</span>
 <pre class="code">EIP_8141 = True   <span class="c"># every flag on in develop/</span>
@@ -456,7 +616,7 @@ EIP_8250 = True
 <section class="slide" aria-label="Development fork: what it buys">
   <p class="kicker">A development fork for execution-specs &middot; 3 of 4</p>
   <h2>What it buys</h2>
-  <div class="grid2">
+  <div class="grid2 buys-list" style="margin:5cqh 0 auto;gap:5cqw">
     <ul class="ticks">
       <li>No EIP branches, no rebases, no devnet assembly. A devnet is one line in <code>TARGETS</code>.</li>
       <li>EIP interactions are explicit in one place, not implicit in merge order. Adding an EIP forces its author to think about interactions with others.</li>
@@ -478,7 +638,7 @@ EIP_8250 = True
 <section class="slide dark" aria-label="Development fork: cost and open questions">
   <p class="kicker">A development fork for execution-specs &middot; 4 of 4</p>
   <h2>Cost and open questions</h2>
-  <div class="grid2">
+  <div class="grid2 roomy" style="margin:auto 0">
     <div class="group">
       <h3>Cost</h3>
       <ul class="ticks">
@@ -539,7 +699,7 @@ EIP_8250 = True
   </ul>
   <aside class="notes">
     <p>Keep client names off the slide unless the bug is fixed and public. Details in Dan's ACDT #101 prep (vault): the fork was at block 1788 on bogota-devnet-1, intrinsic gas missing the 12,100 keyed-nonce access cost from <code>tests-bogota-devnet@v1.1.0</code>.</p>
-    <p>Public RPC issues: go-ethereum#35783 (callTracer), nethermind#14031 (debug_traceBlockByHash). Spencer and Jochem on 8253: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
+    <p>Public client issues: <a href="https://github.com/ethereum/go-ethereum/issues/35783">go-ethereum#35783</a> (frame tx JSON-RPC drops frames, frameReceipts and payer), <a href="https://github.com/NethermindEth/nethermind/issues/14031">nethermind#14031</a> (public pool defaults to 300k validation gas, the spec limit is 100k). Spencer and Jochem on 8253: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
   </aside>
 </section>
 
@@ -557,7 +717,7 @@ EIP_8250 = True
   </table>
   <p class="lead" style="margin-top:4cqh;font-size:2cqw">Each value was right somewhere. The devnet needs one source, and every layer should read it from config, not a constant.</p>
   <aside class="notes">
-    <p>Snapshot from the ACDT #101 prep (19 Oct). Since then heze-devnet-3 moved to 9 s slots (#3891). Use this as the pattern, not as current status.</p>
+    <p>Snapshot from the ACDT #101 prep (19 Oct). Since then heze-devnet-3 moved to 9 s slots (<a href="https://github.com/ethereum/execution-specs/issues/3891">#3891</a>). Use this as the pattern, not as current status.</p>
     <p>Discussion: could a devnet spec page carry a machine-readable parameter block that the genesis generator, kurtosis and EELS release notes all check against?</p>
   </aside>
 </section>
@@ -569,7 +729,7 @@ EIP_8250 = True
   <h2>What we should build next</h2>
   <div class="grid2">
     <ul class="ticks">
-      <li>Cross-EIP tests: frames in inclusion lists (#3777), frames &times; 8250 &times; 8272.</li>
+      <li>Cross-EIP tests: frames in inclusion lists (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>), frames &times; 8250 &times; 8272.</li>
       <li>FOCIL scenarios in assertoor and spamoor: censored txs, IL timing, equivocation.</li>
       <li>Frame transaction spam and fuzzing on devnets.</li>
     </ul>
@@ -581,7 +741,7 @@ EIP_8250 = True
   </div>
   <aside class="notes">
     <p>These are proposals for discussion, not commitments. Pick owners on the next slide.</p>
-    <p>Hive: #3787 asks for hive-tests <code>hegota</code> workflows and a hive-ui group for the release.</p>
+    <p>Hive: <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a> asks for hive-tests <code>hegota</code> workflows and a hive-ui group for the release.</p>
   </aside>
 </section>
 
