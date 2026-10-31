@@ -743,7 +743,7 @@ EIP_8250 = True
     <li>Fork-transition-only behaviour (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>) needs many devnets, not one.</li>
   </ul>
   <aside class="notes">
-    <p>Keep client names off the slide unless the bug is fixed and public. Details in Dan's ACDT #101 prep (vault): the fork was at block 1788 on bogota-devnet-1, intrinsic gas missing the 12,100 keyed-nonce access cost from <code>tests-bogota-devnet@v1.1.0</code>.</p>
+    <p>Keep client names off the slide unless the bug is fixed and public. Details: the fork was at block 1788 on bogota-devnet-1, intrinsic gas missing the 12,100 keyed-nonce access cost from <code>tests-bogota-devnet@v1.1.0</code>.</p>
     <p>Public client issues: <a href="https://github.com/ethereum/go-ethereum/issues/35783">go-ethereum#35783</a> (frame tx JSON-RPC drops frames, frameReceipts and payer), <a href="https://github.com/NethermindEth/nethermind/issues/14031">nethermind#14031</a> (public pool defaults to 300k validation gas, the spec limit is 100k). Spencer and Jochem on <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
   </aside>
 </section>
@@ -761,7 +761,7 @@ EIP_8250 = True
     <li>Do we keep separate feature devnets after hegota-devnet-0?</li>
   </ol>
   <aside class="notes">
-    <p>Aim for a decision or an owner on each. Capture answers live in the vault project for this session.</p>
+    <p>Aim for a decision or an owner on each. Capture the answers live.</p>
   </aside>
 </section>
 
