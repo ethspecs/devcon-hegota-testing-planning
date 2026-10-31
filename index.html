@@ -79,6 +79,12 @@ svg { display: block; width: 100%; height: auto; }
 .pixels { position: absolute; inset: 0 0 0 auto; width: 46cqw; pointer-events: none; }
 .pixels rect { shape-rendering: crispEdges; }
 
+/* Build steps: data-steps on a slide, data-step set by the script */
+.flow svg > * { transition: opacity 0.25s ease; }
+.slide[data-step="1"] .flow svg > :not(.hl) { opacity: 0.18; }
+.flow .hl rect { transition: fill 0.25s ease; }
+.slide[data-step="1"] .flow .hl rect { fill: var(--lime); stroke: var(--ink); stroke-width: 2.5; }
+.slide[data-step="1"] .flow .hl .d-sub { fill: var(--ink); }
 /* Section dividers */
 .section { justify-content: center; }
 .section .num { font-family: var(--mono); font-size: 9cqw; line-height: 1; color: var(--lime); margin: 0 0 2cqh; }
@@ -493,14 +499,14 @@ a.eip:hover { text-decoration: underline; }
 </section>
 
 <!-- 6. Pipeline -->
-<section class="slide" aria-label="From EIP to devnet">
+<section class="slide" aria-label="From EIP to devnet" data-steps="1">
   <p class="kicker">One flow</p>
   <h2>From EIP to devnet</h2>
   <p class="lead" style="margin:0;font-family:var(--head);font-weight:600;color:var(--indigo)">Alignment on the current flow</p>
-  <figure style="margin:auto 0">
+  <figure class="flow" style="margin:auto 0">
     <svg viewBox="0 0 1340 500" role="img" aria-label="Flow from EIP to devnet. ACD, everyone, reaches rough consensus on CFI EIPs and then on which EIPs go in a devnet. Three rows then go through the same steps: EL specs (execution-specs eips branches, a devnet branch, a tests release), CL specs (consensus-specs features, the fork spec on master, a spec tests release) and EL and CL client teams (EIP branches, a devnet branch, a client release). Clients are tested against the spec releases in hive and spec test runners, then ethPandaOps runs local kurtosis and the public devnet. Finally ACD, everyone, reaches rough consensus that an EIP is SFI&#39;d. Bugs found on devnets flow back as spec tests and client fixes.">
-      <text class="d-team" x="20" y="18">ACD &middot; EVERYONE</text>
-      <path class="d-edge" d="M20 28H295" style="stroke:var(--peri)"/>
+      <text class="d-team hl" x="20" y="18">ACD &middot; EVERYONE</text>
+      <path class="d-edge hl" d="M20 28H295" style="stroke:var(--peri)"/>
       <text class="d-team" x="315" y="18">SPECS AND CLIENT TEAMS</text>
       <path class="d-edge" d="M315 28H895" style="stroke:var(--peri)"/>
       <text class="d-team" x="915" y="18">ETHPANDAOPS</text>
@@ -509,7 +515,7 @@ a.eip:hover { text-decoration: underline; }
       <text class="d-lane" x="315" y="192">CL &middot; specs</text>
       <text class="d-lane" x="315" y="314">EL + CL &middot; client teams</text>
       <g transform="translate(20 78)"><rect class="d-node" width="130" height="332" rx="4"/><text class="d-title" x="12" y="30">Fork scope</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus on</text><text class="d-sub" x="12" y="94">CFI EIPs</text></g>
-      <g transform="translate(165 78)"><rect class="d-node" width="130" height="332" rx="4"/><text class="d-title" x="12" y="30" style="font-size:14px">Devnet scope</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus on</text><text class="d-sub" x="12" y="94">which EIPs go</text><text class="d-sub" x="12" y="114">in a devnet</text></g>
+      <g class="hl" transform="translate(165 78)"><rect class="d-node" width="130" height="332" rx="4"/><text class="d-title" x="12" y="30" style="font-size:14px">Devnet scope</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus on</text><text class="d-sub" x="12" y="94">which EIPs go</text><text class="d-sub" x="12" y="114">in a devnet</text></g>
       <g transform="translate(770 78)"><rect class="d-node" width="125" height="332" rx="4"/><text class="d-title" x="12" y="30">Test</text><text class="d-sub" x="12" y="54">hive (EL)</text><text class="d-sub" x="12" y="74">spec test</text><text class="d-sub" x="12" y="94">runners (CL)</text><text class="d-sub" x="12" y="114"></text><text class="d-sub" x="12" y="134">clients need</text><text class="d-sub" x="12" y="154">a test release</text></g>
       <g transform="translate(915 78)"><rect class="d-node" width="120" height="332" rx="4"/><text class="d-title" x="12" y="30">Kurtosis</text><text class="d-sub" x="12" y="54">local multi-</text><text class="d-sub" x="12" y="74">client,</text><text class="d-sub" x="12" y="94">assertoor</text></g>
       <g transform="translate(1055 78)"><rect class="d-node lime" width="125" height="332" rx="4"/><text class="d-title" x="12" y="30">Devnet</text><text class="d-sub" x="12" y="54" style="fill:var(--ink)">spamoor, dora</text><text class="d-sub" x="12" y="74" style="fill:var(--ink)">execute remote</text></g>
@@ -526,12 +532,13 @@ a.eip:hover { text-decoration: underline; }
       <path class="d-edge dash" d="M1117 78V52H430V78"/><path d="M424 68L430 78L436 68" class="d-edge"/>
       <path class="d-edge dash" d="M1117 410V456H382V410"/><path d="M376 420L382 410L388 420" class="d-edge"/>
       <text class="d-sub" x="520" y="484">bugs found on devnets become spec tests and client fixes</text>
-    <text class="d-team" x="1200" y="18">ACD &middot; EVERYONE</text><path class="d-edge" d="M1200 28H1320" style="stroke:var(--peri)"/><g transform="translate(1200 78)"><rect class="d-node" width="120" height="332" rx="4"/><text class="d-title" x="12" y="30">SFI</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus:</text><text class="d-sub" x="12" y="94">the EIP is</text><text class="d-sub" x="12" y="114">SFI&#39;d</text></g><path class="d-edge" d="M1180 244H1200"/>
+    <text class="d-team hl" x="1200" y="18">ACD &middot; EVERYONE</text><path class="d-edge hl" d="M1200 28H1320" style="stroke:var(--peri)"/><g class="hl" transform="translate(1200 78)"><rect class="d-node" width="120" height="332" rx="4"/><text class="d-title" x="12" y="30">SFI</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus:</text><text class="d-sub" x="12" y="94">the EIP is</text><text class="d-sub" x="12" y="114">SFI&#39;d</text></g><path class="d-edge" d="M1180 244H1200"/>
     </svg>
   </figure>
   <aside class="notes">
     <p>Branch model (Spencer, Mattermost 28 Sep): <code>forks/bogota</code> as the base, one <code>eips/bogota/eip-xxxx</code> branch per CFI EIP, <code>devnets/&lt;feature|fork&gt;/&lt;n&gt;</code> to combine, then <code>devnets/hegota/0</code> merges the two lanes.</p>
-    <p>Both rough-consensus steps belong to ACD, everyone. Client teams go through the same steps as the specs, but their testing depends on a spec test release: the filled boxes.</p>
+    <p>Press next once more to highlight Devnet scope and SFI, the two ACD steps to focus on.</p>
+    <p>The rough-consensus steps belong to ACD, everyone. Client teams go through the same steps as the specs, but their testing depends on a spec test release: the filled boxes.</p>
     <p>CL lane (Justin, the last five years): clients prototype CFI&#39;d EIPs in branches, check they still support them, wait for the latest devnet to stabilize, agree the priority order, merge the priority EIPs into the fork spec on master, repeat. No per-EIP or per-devnet branches. A <code>_devnets/</code> staging directory is an open idea (Justin), Pari worries about tooling branches. Mario and Pari: the priority order (step 4) should be agreed more formally, in the meta EIP.</p>
     <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 13 to 16) would replace the <code>eips/</code> branches with feature flags.</p>
     <p>Ask the room: is the hand-off from release to kurtosis to devnet explicit enough? Who confirms that every client branch runs the release before launch?</p>
@@ -807,9 +814,15 @@ EIP_8250 = True
     s.addEventListener("click", () => { if (root.classList.contains("overview")) { root.classList.remove("overview"); go(i); } });
   });
 
-  let cur = 0;
-  function go(i) {
+  let cur = 0, step = 0;
+  const steps = (i) => parseInt(slides[i].dataset.steps || "0", 10);
+  const showStep = () => slides.forEach((s, j) => { if (j === cur && step) s.dataset.step = step; else delete s.dataset.step; });
+  function next() { if (step < steps(cur)) { step++; showStep(); } else go(cur + 1); }
+  function prev() { if (step > 0) { step--; showStep(); } else if (cur > 0) go(cur - 1, true); }
+  function go(i, atEnd = false) {
     cur = Math.max(0, Math.min(slides.length - 1, i));
+    step = atEnd ? steps(cur) : 0;
+    showStep();
     slides.forEach((s, j) => { s.classList.toggle("active", j === cur); s.inert = j !== cur && !root.classList.contains("overview"); });
     const notes = slides[cur].querySelector("aside.notes");
     notesPanel.innerHTML = `<h4>Notes &middot; ${cur + 1}/${slides.length}</h4>` + (notes ? notes.innerHTML : "<p>No notes.</p>");
@@ -825,8 +838,8 @@ EIP_8250 = True
   addEventListener("keydown", (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const k = e.key;
-    if (["ArrowRight", "ArrowDown", "PageDown", " ", "Enter"].includes(k)) { e.preventDefault(); go(cur + 1); }
-    else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(k)) { e.preventDefault(); go(cur - 1); }
+    if (["ArrowRight", "ArrowDown", "PageDown", " ", "Enter"].includes(k)) { e.preventDefault(); next(); }
+    else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(k)) { e.preventDefault(); prev(); }
     else if (k === "Home") go(0);
     else if (k === "End") go(slides.length - 1);
     else if (k === "n" || k === "N") root.classList.toggle("show-notes");
@@ -842,7 +855,7 @@ EIP_8250 = True
   addEventListener("touchend", (e) => {
     if (x0 === null || root.classList.contains("overview")) return;
     const dx = e.changedTouches[0].clientX - x0; x0 = null;
-    if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 50) (dx < 0 ? next : prev)();
   });
 })();
 </script>
