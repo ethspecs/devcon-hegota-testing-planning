@@ -79,6 +79,14 @@ svg { display: block; width: 100%; height: auto; }
 .pixels { position: absolute; inset: 0 0 0 auto; width: 46cqw; pointer-events: none; }
 .pixels rect { shape-rendering: crispEdges; }
 
+/* Section dividers */
+.section { justify-content: center; }
+.section .num { font-family: var(--mono); font-size: 9cqw; line-height: 1; color: var(--lime); margin: 0 0 2cqh; }
+.section h2 { font-size: 6cqw; margin-bottom: 2.6cqh; max-width: 62cqw; }
+.section .lead { color: var(--paper-2); max-width: 58cqw; }
+.section .track { position: absolute; left: 6cqw; bottom: 6cqh; display: flex; gap: 2.4cqw; margin: 0; padding: 0; list-style: none; font-family: var(--mono); font-size: 1.3cqw; color: var(--peri); }
+.section .track li { padding-top: 1cqh; border-top: 2px solid var(--indigo-2); }
+.section .track li.on { color: var(--lime); border-top-color: var(--lime); }
 /* Cover */
 .cover h1 { max-width: 60cqw; margin-top: 12cqh; }
 .cover .lead { margin-top: 3cqh; color: var(--lime); font-family: var(--head); font-weight: 600; }
@@ -263,7 +271,7 @@ a.eip:hover { text-decoration: underline; }
   </div>
   <div class="foot"><span>Status as of 31 Oct 2026</span><span>ethPandaOps &times; Specs</span></div>
   <aside class="notes">
-    <p>Set expectations: this is a working session, not a status report. Most of the time should go to slides 15 and 16 (config drift, gaps), with the dev fork proposal on 10 to 13 as the specs-side ask.</p>
+    <p>Set expectations: this is a working session, not a status report. Most of the time should go to slides 19 and 20 (config drift, gaps), with the dev fork proposal on 13 to 16 as the specs-side ask.</p>
   </aside>
 </section>
 
@@ -279,6 +287,16 @@ a.eip:hover { text-decoration: underline; }
   <aside class="notes">
     <p>Source: ACDT #97 transcript, t=2092. The EELS tracker (<a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>) states the same principle: "aiming to test the most complex EIPs first: frames x FOCIL interactions, then the more complex single EIPs."</p>
   </aside>
+</section>
+
+<!-- Section 01 -->
+<section class="slide dark section" aria-label="Section 01: Prioritization">
+  <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <p class="num">01</p>
+  <h2>Prioritization</h2>
+  <p class="lead">When does hegota-devnet-0 launch, and which EIPs come after it?</p>
+  <ol class="track" aria-label="Sections"><li class="on">01 Prioritization</li><li>02 Flow</li><li>03 Development fork</li><li>04 Gaps</li></ol>
+  <aside class="notes"><p>What is in the fork, the devnets so far, the EL and CL priority order, and the hegota-devnet-0 vote.</p></aside>
 </section>
 
 <!-- 4. Scope -->
@@ -464,6 +482,16 @@ a.eip:hover { text-decoration: underline; }
   </aside>
 </section>
 
+<!-- Section 02 -->
+<section class="slide dark section" aria-label="Section 02: Flow">
+  <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <p class="num">02</p>
+  <h2>Flow</h2>
+  <p class="lead">A reminder of how an EIP becomes a devnet today.</p>
+  <ol class="track" aria-label="Sections"><li>01 Prioritization</li><li class="on">02 Flow</li><li>03 Development fork</li><li>04 Gaps</li></ol>
+  <aside class="notes"><p>The existing path from EIP to devnet, and who owns each step.</p></aside>
+</section>
+
 <!-- 6. Pipeline -->
 <section class="slide" aria-label="From EIP to devnet">
   <p class="kicker">One flow</p>
@@ -518,9 +546,19 @@ a.eip:hover { text-decoration: underline; }
   <aside class="notes">
     <p>Branch model (Spencer, Mattermost 28 Sep): <code>forks/bogota</code> as the base, one <code>eips/bogota/eip-xxxx</code> branch per CFI EIP, <code>devnets/&lt;feature|fork&gt;/&lt;n&gt;</code> to combine, then <code>devnets/hegota/0</code> merges the two lanes.</p>
     <p>CL lane (Justin, the last five years): clients prototype CFI&#39;d EIPs in branches, check they still support them, wait for the latest devnet to stabilize, agree the priority order, merge the priority EIPs into the fork spec on master, repeat. No per-EIP or per-devnet branches. A <code>_devnets/</code> staging directory is an open idea (Justin), Pari worries about tooling branches. Mario and Pari: the priority order (step 4) should be agreed more formally, in the meta EIP.</p>
-    <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 10 to 13) would replace the <code>eips/</code> branches with feature flags.</p>
+    <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 13 to 16) would replace the <code>eips/</code> branches with feature flags.</p>
     <p>Ask the room: is the hand-off from release to kurtosis to devnet explicit enough? Who confirms that every client branch runs the release before launch?</p>
   </aside>
+</section>
+
+<!-- Section 03 -->
+<section class="slide dark section" aria-label="Section 03: Development fork">
+  <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <p class="num">03</p>
+  <h2>Development fork</h2>
+  <p class="lead">One source tree for every CFI EIP, devnets as targets.</p>
+  <ol class="track" aria-label="Sections"><li>01 Prioritization</li><li>02 Flow</li><li class="on">03 Development fork</li><li>04 Gaps</li></ol>
+  <aside class="notes"><p>Guru&#39;s <code>develop/</code> proposal for execution-specs: today, the proposal, what it buys, and what it costs.</p></aside>
 </section>
 
 <!-- 7. Dev fork: status quo -->
@@ -676,6 +714,16 @@ EIP_8250 = True
     <p>Smaller costs if asked: PRs carry generated output next to the source (one <code>just</code> recipe produces it, CI checks it reproduces); a generated fork can carry residue from a dropped EIP until someone cleans it up; every fill and CI target pays a fold of about ten seconds. The branch tooling stays until the migration is done.</p>
     <p>Ask the room for a decision on the devnet network name, since hive and client configs key on it. Other open points, if raised: sibling generated forks versus copies for a second open fork, what removing an EIP from <code>develop/</code> looks like, and conditional prose in shared docstrings.</p>
   </aside>
+</section>
+
+<!-- Section 04 -->
+<section class="slide dark section" aria-label="Section 04: Gaps">
+  <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <p class="num">04</p>
+  <h2>Gaps</h2>
+  <p class="lead">What we are missing, and what client teams fear for Hegot&aacute;.</p>
+  <ol class="track" aria-label="Sections"><li>01 Prioritization</li><li>02 Flow</li><li>03 Development fork</li><li class="on">04 Gaps</li></ol>
+  <aside class="notes"><p>Lessons from the first devnets, config drift, gaps to close, then questions and owners.</p></aside>
 </section>
 
 <!-- 11. Findings -->
