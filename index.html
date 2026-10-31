@@ -498,53 +498,39 @@ a.eip:hover { text-decoration: underline; }
   <h2>From EIP to devnet</h2>
   <p class="lead" style="margin:0;font-family:var(--head);font-weight:600;color:var(--indigo)">Alignment on the current flow</p>
   <figure style="margin:auto 0">
-    <svg viewBox="0 0 1200 504" role="img" aria-label="Testing flow from EIP to devnet for both layers. The EIP feeds two lanes. EL: execution-specs on an eips branch, a devnets branch, a tests release, then hive. CL: clients prototype CFI'd EIPs in branches, then priority EIPs are integrated into the Heze spec in consensus-specs, then client CI. Both lanes meet in local kurtosis and then the public devnet. Bugs found on devnets flow back into the specs as tests.">
-      <text class="d-team" x="20" y="18">SPECS</text>
-      <path class="d-edge" d="M20 28H765" style="stroke:var(--peri)"/>
-      <text class="d-team" x="785" y="18">ETHPANDAOPS</text>
-      <path class="d-edge" d="M785 28H1190" style="stroke:var(--peri)"/>
-      <text class="d-lane" x="190" y="74">EL</text>
-      <text class="d-lane" x="190" y="248">CL</text>
-      <g transform="translate(20 84)">
-        <rect class="d-node" width="150" height="296" rx="4"/><text class="d-title" x="12" y="38">EIP</text><text class="d-sub" x="12" y="68">ethereum/EIPs</text><text class="d-sub" x="12" y="92">CFI / SFI</text>
-      </g>
-      <g transform="translate(190 84)">
-        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38" style="font-size:13.5px">execution-specs</text><text class="d-sub" x="12" y="68">eips/&lt;fork&gt;/eip-*</text><text class="d-sub" x="12" y="92">develop/ (proposed)</text>
-      </g>
-      <g transform="translate(360 84)">
-        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Devnet branch</text><text class="d-sub" x="12" y="68">devnets/&lt;fork&gt;/&lt;n&gt;</text>
-      </g>
-      <g transform="translate(530 84)">
-        <rect class="d-node done" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Release</text><text class="d-sub" x="12" y="68">tests-*-devnet</text>
-      </g>
-      <g transform="translate(700 84)">
-        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Hive</text><text class="d-sub" x="12" y="68">consume engine,</text><text class="d-sub" x="12" y="92">rlp, enginex</text>
-      </g>
-      <g transform="translate(190 260)">
-        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">CL clients</text><text class="d-sub" x="12" y="68">prototype CFI&#39;d</text><text class="d-sub" x="12" y="92">EIPs in branches</text>
-      </g>
-      <g transform="translate(360 260)">
-        <rect class="d-node" width="320" height="120" rx="4"/><text class="d-title" x="12" y="38" style="font-size:13.5px">consensus-specs</text><text class="d-sub" x="12" y="68">priority EIPs into</text><text class="d-sub" x="12" y="92">Heze spec</text>
-      </g>
-      <g transform="translate(700 260)">
-        <rect class="d-node" width="150" height="120" rx="4"/><text class="d-title" x="12" y="38">Client CI</text><text class="d-sub" x="12" y="68">spec test runners</text>
-      </g>
-      <g transform="translate(870 84)">
-        <rect class="d-node" width="150" height="296" rx="4"/><text class="d-title" x="12" y="38">Kurtosis</text><text class="d-sub" x="12" y="68">local multi-client</text><text class="d-sub" x="12" y="92">assertoor</text>
-      </g>
-      <g transform="translate(1040 84)">
-        <rect class="d-node lime" width="150" height="296" rx="4"/><text class="d-title" x="12" y="38">Devnet</text><text class="d-sub" x="12" y="68" style="fill:var(--ink)">spamoor, dora</text><text class="d-sub" x="12" y="92" style="fill:var(--ink)">execute remote</text>
-      </g>
-      <path class="d-edge" d="M170 144H190M340 144H360M510 144H530M680 144H700M850 144H870M170 320H190M340 320H360M680 320H700M850 320H870M1020 232H1040"/>
-      <path class="d-edge dash" d="M1115 84V52H265V84"/>
-      <path d="M259 74L265 84L271 74" class="d-edge"/>
-      <path class="d-edge dash" d="M1115 380V454H265V380"/>
-      <path d="M259 390L265 380L271 390" class="d-edge"/>
-      <text class="d-sub" x="560" y="486">bugs found on devnets become spec tests</text>
+    <svg viewBox="0 0 1200 500" role="img" aria-label="Flow from EIP to devnet. ACD, everyone, reaches rough consensus on CFI EIPs and then on which EIPs go in a devnet. Three rows then go through the same steps: EL specs (execution-specs eips branches, a devnet branch, a tests release), CL specs (consensus-specs features, the fork spec on master, a spec tests release) and EL and CL client teams (EIP branches, a devnet branch, a client release). Clients are tested against the spec releases in hive and spec test runners, then ethPandaOps runs local kurtosis and the public devnet. Bugs found on devnets flow back as spec tests and client fixes.">
+      <text class="d-team" x="20" y="18">ACD &middot; EVERYONE</text>
+      <path class="d-edge" d="M20 28H295" style="stroke:var(--peri)"/>
+      <text class="d-team" x="315" y="18">SPECS AND CLIENT TEAMS</text>
+      <path class="d-edge" d="M315 28H895" style="stroke:var(--peri)"/>
+      <text class="d-team" x="915" y="18">ETHPANDAOPS</text>
+      <path class="d-edge" d="M915 28H1180" style="stroke:var(--peri)"/>
+      <text class="d-lane" x="315" y="70">EL &middot; specs</text>
+      <text class="d-lane" x="315" y="192">CL &middot; specs</text>
+      <text class="d-lane" x="315" y="314">EL + CL &middot; client teams</text>
+      <g transform="translate(20 78)"><rect class="d-node" width="130" height="332" rx="4"/><text class="d-title" x="12" y="30">Fork scope</text><text class="d-sub" x="12" y="54">rough consensus</text><text class="d-sub" x="12" y="74">on CFI EIPs</text></g>
+      <g transform="translate(165 78)"><rect class="d-node" width="130" height="332" rx="4"/><text class="d-title" x="12" y="30">Devnet scope</text><text class="d-sub" x="12" y="54">rough consensus</text><text class="d-sub" x="12" y="74">on which EIPs</text><text class="d-sub" x="12" y="94">go in a devnet</text></g>
+      <g transform="translate(770 78)"><rect class="d-node" width="125" height="332" rx="4"/><text class="d-title" x="12" y="30">Test</text><text class="d-sub" x="12" y="54">hive (EL)</text><text class="d-sub" x="12" y="74">spec test</text><text class="d-sub" x="12" y="94">runners (CL)</text><text class="d-sub" x="12" y="114"></text><text class="d-sub" x="12" y="134">clients need</text><text class="d-sub" x="12" y="154">a test release</text></g>
+      <g transform="translate(915 78)"><rect class="d-node" width="120" height="332" rx="4"/><text class="d-title" x="12" y="30">Kurtosis</text><text class="d-sub" x="12" y="54">local multi-</text><text class="d-sub" x="12" y="74">client,</text><text class="d-sub" x="12" y="94">assertoor</text></g>
+      <g transform="translate(1055 78)"><rect class="d-node lime" width="125" height="332" rx="4"/><text class="d-title" x="12" y="30">Devnet</text><text class="d-sub" x="12" y="54" style="fill:var(--ink)">spamoor, dora</text><text class="d-sub" x="12" y="74" style="fill:var(--ink)">execute remote</text></g>
+      <g transform="translate(315 78)"><rect class="d-node" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30" style="font-size:13.5px">execution-specs</text><text class="d-sub" x="12" y="54">eips/&lt;fork&gt;/eip-*</text></g>
+      <g transform="translate(465 78)"><rect class="d-node" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30">Devnet branch</text><text class="d-sub" x="12" y="54">devnets/&lt;fork&gt;/&lt;n&gt;</text></g>
+      <g transform="translate(615 78)"><rect class="d-node done" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30">Release</text><text class="d-sub" x="12" y="54">tests-*-devnet</text></g>
+      <g transform="translate(315 200)"><rect class="d-node" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30" style="font-size:13.5px">consensus-specs</text><text class="d-sub" x="12" y="54">_features/eip*</text></g>
+      <g transform="translate(465 200)"><rect class="d-node" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30">Fork spec</text><text class="d-sub" x="12" y="54">priority EIPs into</text><text class="d-sub" x="12" y="74">Heze on master</text></g>
+      <g transform="translate(615 200)"><rect class="d-node done" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30">Release</text><text class="d-sub" x="12" y="54">vX.Y.Z-alpha/beta</text><text class="d-sub" x="12" y="74">spec tests</text></g>
+      <g transform="translate(315 322)"><rect class="d-node" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30">Implement</text><text class="d-sub" x="12" y="54">EIP branches,</text><text class="d-sub" x="12" y="74">prototypes</text></g>
+      <g transform="translate(465 322)"><rect class="d-node" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30">Devnet branch</text><text class="d-sub" x="12" y="54">per client</text></g>
+      <g transform="translate(615 322)"><rect class="d-node" width="135" height="88" rx="4"/><text class="d-title" x="12" y="30">Release</text><text class="d-sub" x="12" y="54">client image</text><text class="d-sub" x="12" y="74">for the devnet</text></g>
+      <path class="d-edge" d="M150 244H165M295 122H315M450 122H465M600 122H615M750 122H770M295 244H315M450 244H465M600 244H615M750 244H770M295 366H315M450 366H465M600 366H615M750 366H770M895 244H915M1035 244H1055"/>
+      <path class="d-edge dash" d="M1117 78V52H430V78"/><path d="M424 68L430 78L436 68" class="d-edge"/>
+      <path class="d-edge dash" d="M1117 410V456H382V410"/><path d="M376 420L382 410L388 420" class="d-edge"/>
+      <text class="d-sub" x="520" y="484">bugs found on devnets become spec tests and client fixes</text>
     </svg>
   </figure>
   <aside class="notes">
     <p>Branch model (Spencer, Mattermost 28 Sep): <code>forks/bogota</code> as the base, one <code>eips/bogota/eip-xxxx</code> branch per CFI EIP, <code>devnets/&lt;feature|fork&gt;/&lt;n&gt;</code> to combine, then <code>devnets/hegota/0</code> merges the two lanes.</p>
+    <p>Both rough-consensus steps belong to ACD, everyone. Client teams go through the same steps as the specs, but their testing depends on a spec test release: the filled boxes.</p>
     <p>CL lane (Justin, the last five years): clients prototype CFI&#39;d EIPs in branches, check they still support them, wait for the latest devnet to stabilize, agree the priority order, merge the priority EIPs into the fork spec on master, repeat. No per-EIP or per-devnet branches. A <code>_devnets/</code> staging directory is an open idea (Justin), Pari worries about tooling branches. Mario and Pari: the priority order (step 4) should be agreed more formally, in the meta EIP.</p>
     <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 13 to 16) would replace the <code>eips/</code> branches with feature flags.</p>
     <p>Ask the room: is the hand-off from release to kurtosis to devnet explicit enough? Who confirms that every client branch runs the release before launch?</p>
