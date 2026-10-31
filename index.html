@@ -88,7 +88,8 @@ svg { display: block; width: 100%; height: auto; }
 /* Proposal slide */
 .proposal { display: grid; grid-template-columns: 1fr 0.95fr; gap: 3.4cqw; flex: 1; min-height: 0; margin-top: 3cqh; }
 .proposal ol { margin: 0; padding: 0; list-style: none; counter-reset: st; }
-.proposal ol li { counter-increment: st; position: relative; padding-left: 3.6cqw; margin: 0 0 2.2cqh; font-size: 1.75cqw; }
+.proposal ol li { counter-increment: st; position: relative; padding-left: 3.6cqw; margin: 0 0 1.5cqh; font-size: 1.75cqw; }
+.proposal ul.ticks li { margin-bottom: 1.2cqh; font-size: 1.7cqw; }
 .proposal ol li::before { content: counter(st); position: absolute; left: 0; top: 0.05em; width: 2.4cqw; height: 2.4cqw; display: grid; place-items: center; background: var(--indigo); color: var(--lime); font-family: var(--mono); font-size: 1.35cqw; }
 .proposal ol li.new::before { background: var(--lime); color: var(--ink); }
 .proposal .shot { margin: 0; border: 1px solid #d3d4ea; background: #fff; overflow-y: auto; min-height: 0; box-shadow: 0 0.6cqw 1.8cqw rgba(25, 21, 37, 0.12); }
@@ -566,10 +567,10 @@ a.eip:hover { text-decoration: underline; }
         <li class="new">No response in reasonable time: agree on the next call how to move forward.</li>
         <li>Merge. Spec and test releases are cut from the agreed list.</li>
       </ol>
-      <ul class="ticks" style="margin-top:3.4cqh">
-        <li>Everyone sees the same list, in one place.</li>
-        <li>Agreement is explicit and on the record, not a call recording or a thread.</li>
-        <li>SFI already lands in the meta EIP by PR. Devnet scope works the same way.</li>
+      <ul class="ticks" style="margin-top:2.6cqh">
+        <li>The right place: SFI already lands in the meta EIP. This extends it to devnet definitions.</li>
+        <li>Teams flag their support or disagreement visibly on the PR.</li>
+        <li>Implication: rough consensus used to be the ACD moderator&#39;s judgement on the call. Now it is explicit. What happens when only one team objects?</li>
       </ul>
     </div>
     <figure class="shot" tabindex="0" aria-label="Draft of a Devnets section in EIP-8081, scrollable">
