@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Hegotá testing planning: devnet sequence, test-release flow, gaps and open questions. L1 Days at Devcon 8, Mumbai.">
+<meta name="description" content="Hegotá testing planning: devnet sequence, test-release flow, a development fork for execution-specs, gaps and open questions. L1 Days at Devcon 8, Mumbai.">
 <meta name="color-scheme" content="light">
 <title>Hegotá Testing Planning</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +106,15 @@ ol.qs { counter-reset: q; list-style: none; padding: 0; margin: 0; display: grid
 ol.qs li { counter-increment: q; font-size: 1.8cqw; padding-left: 4cqw; position: relative; }
 ol.qs li::before { content: counter(q, decimal-leading-zero); position: absolute; left: 0; font-family: var(--mono); color: var(--lime); font-size: 1.5cqw; top: 0.2em; }
 
+/* Dev fork slides */
+ul.ticks.dense li, .card ul.ticks.dense li { font-size: 1.6cqw; margin-bottom: 1.3cqh; }
+pre.code { margin: 0; font-family: var(--mono); font-size: 1.1cqw; line-height: 1.45; white-space: pre; overflow: hidden; color: var(--ink); }
+pre.code .c { color: var(--muted); }
+pre.code .k { color: var(--indigo); font-weight: 600; }
+ol.qs.one { grid-template-columns: 1fr; gap: 1.8cqh; }
+ol.qs.one li { font-size: 1.6cqw; }
+.dark .group h3, .deep .group h3 { color: var(--peri); }
+
 /* Speaker notes: hidden in deck mode until N is pressed. */
 aside.notes { display: none; }
 
@@ -197,7 +206,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   </div>
   <div class="foot"><span>Status as of 29 Oct 2026</span><span>ethPandaOps &times; Specs</span></div>
   <aside class="notes">
-    <p>Set expectations: this is a working session, not a status report. Most of the time should go to slides 8 and 9.</p>
+    <p>Set expectations: this is a working session, not a status report. Most of the time should go to slides 12 and 13 (config drift, gaps), with the dev fork proposal on 7 to 10 as the specs-side ask.</p>
   </aside>
 </section>
 
@@ -351,7 +360,162 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   </aside>
 </section>
 
-<!-- 7. Findings -->
+<!-- 7. Dev fork: status quo -->
+<section class="slide" aria-label="Development fork: status quo">
+  <p class="kicker">A development fork for execution-specs &middot; 1 of 4</p>
+  <h2>Today: one branch per EIP, devnets by hand</h2>
+  <div class="grid2" style="grid-template-columns:1.05fr 1fr">
+    <figure>
+      <svg viewBox="0 0 600 350" role="img" aria-labelledby="sq-t sq-d">
+        <title id="sq-t">Branches today</title>
+        <desc id="sq-d">forks/bogota is the base. eips/bogota/eip-8141 branches from it; eip-8250, eip-8272 and eip-7906 branch from 8141. devnets/bogota/1 is assembled by hand from the 8141 tip, a fast-forward of 8250 and cherry-picks of 8272 and 7906; 8250 and 8272 collide in frame_transaction.py.</desc>
+        <g><rect class="d-node" x="20" y="20" width="170" height="50" rx="4"/><text class="d-title" x="34" y="51">forks/bogota</text></g>
+        <path class="d-edge" d="M105 70V110"/>
+        <g><rect class="d-node done" x="20" y="110" width="170" height="50" rx="4"/><text class="d-title" x="34" y="141">eip-8141</text></g>
+        <path class="d-edge" d="M190 135C230 135 230 82 270 82M190 135H270M190 135C230 135 230 230 270 230"/>
+        <g><rect class="d-node" x="270" y="60" width="130" height="44" rx="4"/><text class="d-title" x="284" y="88">eip-8250</text></g>
+        <g><rect class="d-node" x="270" y="113" width="130" height="44" rx="4"/><text class="d-title" x="284" y="141">eip-8272</text></g>
+        <g><rect class="d-node" x="270" y="208" width="130" height="44" rx="4"/><text class="d-title" x="284" y="236">eip-7906</text></g>
+        <text class="d-sub" x="270" y="282">every 8141 change rebases all three</text>
+        <path class="d-edge" d="M400 82C415 82 415 120 430 120"/>
+        <path class="d-edge dash" d="M400 135H430"/>
+        <path class="d-edge dash" d="M400 230C415 230 415 150 430 150"/>
+        <path class="d-edge" d="M105 160V330H575V170"/>
+        <text class="d-sub" x="120" y="322">8141 tip</text>
+        <text class="d-sub" x="432" y="46" style="fill:#9b2c4a">8250 and 8272 collide</text>
+        <text class="d-sub" x="432" y="66" style="fill:#9b2c4a">in frame_transaction.py</text>
+        <g><rect class="d-node lime" x="430" y="100" width="160" height="70" rx="4"/><text class="d-title" x="442" y="130">devnets/bogota/1</text><text class="d-sub" x="442" y="154" style="fill:var(--ink)">assembled by hand</text></g>
+        <text class="d-sub" x="432" y="194">workflow fails;</text>
+        <text class="d-sub" x="432" y="212">rebuilt by hand</text>
+      </svg>
+    </figure>
+    <ul class="ticks">
+      <li>A devnet is a branch: the 8141 tip, 8250 fast-forwarded, 8272 and 7906 cherry-picked. The update workflow fails on the 8250 and 8272 collision, so every rebuild is manual.</li>
+      <li>Every change to 8141 rebases 8250, 8272 and 7906, each with its own force-push and lease bookkeeping.</li>
+      <li>A change spanning EIPs (#3824, #3825) has no home. On the devnet branch it is lost at the next rebuild, so it becomes stacked PRs.</li>
+      <li>Branches drift: the 8141 branch lagged <code>forks/bogota</code> by one fix, so its diff showed 29 files instead of its own 17.</li>
+    </ul>
+  </div>
+  <p class="lead" style="margin-top:2.5cqh;font-size:2cqw">Cost grows with EIPs &times; changes per EIP &times; devnets that include them.</p>
+  <div class="foot"><span>Solid: branch base or fast-forward. Dashed: cherry-pick. Snapshot 14 Oct 2026.</span><span>execution-specs#3824, #3825</span></div>
+  <aside class="notes">
+    <p>This is the 14 October snapshot from the plan document. The point is not any one incident but that the cost is multiplicative.</p>
+    <p>Details if asked: <code>update-devnet-branch</code> works for <code>devnets/heze/2</code> and <code>devnets/focil/2</code>, where the EIPs do not collide, and fails on bogota because 8250 and 8272 both insert a constants block at the same spot in <code>frame_transaction.py</code>. The 29-versus-17 drift was a modexp fix applied to ten older forks that <code>eips/bogota/eip-8141</code> never picked up.</p>
+  </aside>
+</section>
+
+<!-- 8. Dev fork: proposal -->
+<section class="slide" aria-label="Development fork: the proposal">
+  <p class="kicker">A development fork for execution-specs &middot; 2 of 4</p>
+  <h2>One source tree, devnets as targets</h2>
+  <figure>
+    <svg viewBox="0 0 1200 200" role="img" aria-labelledby="df-t df-d">
+      <title id="df-t">Proposed flow from source to fixtures</title>
+      <desc id="df-d">A single source tree, develop, with every EIP behind a guard. A generator folds it into the checked-in bogota fork, which CI verifies with a check flag. A devnet such as bogota_devnet1 is a target entry, folded transiently at fill time with nothing checked in. The test framework derives its fork classes from the same targets and fills fixtures for both.</desc>
+      <g><rect class="d-node lime" x="20" y="45" width="240" height="110" rx="4"/><text class="d-title" x="34" y="80">develop/</text><text class="d-sub" x="34" y="106" style="fill:var(--ink)">one source, humans edit</text><text class="d-sub" x="34" y="128" style="fill:var(--ink)">every EIP behind if EIP_&lt;n&gt;:</text></g>
+      <path class="d-edge" d="M260 85C380 85 380 50 500 50"/>
+      <text class="d-team" x="365" y="34" text-anchor="middle">generate, --check in CI</text>
+      <path class="d-edge dash" d="M260 115C380 115 380 150 500 150"/>
+      <text class="d-team" x="370" y="184" text-anchor="middle">fold at fill time</text>
+      <g><rect class="d-node done" x="500" y="10" width="240" height="80" rx="4"/><text class="d-title" x="514" y="38">bogota/</text><text class="d-sub" x="514" y="60">generated, checked in, plain WET</text><text class="d-sub" x="514" y="78">read by docs, clients, t8n</text></g>
+      <g><rect class="d-node next" x="500" y="110" width="240" height="80" rx="4"/><text class="d-title" x="514" y="140">bogota_devnet1</text><text class="d-sub" x="514" y="164">bogota + 8250 8272 7906</text><text class="d-sub" x="514" y="182">nothing checked in</text></g>
+      <path class="d-edge" d="M740 50C850 50 850 100 960 100"/>
+      <path class="d-edge dash" d="M740 150C850 150 850 100 960 100"/>
+      <text class="d-team" x="850" y="34" text-anchor="middle">fill Bogota</text>
+      <text class="d-team" x="850" y="184" text-anchor="middle">fill BogotaDevnet1</text>
+      <g><rect class="d-node" x="960" y="45" width="220" height="110" rx="4"/><text class="d-title" x="974" y="80">fixtures</text><text class="d-sub" x="974" y="106">test forks derived</text><text class="d-sub" x="974" y="128">from TARGETS, no EIP list</text></g>
+    </svg>
+  </figure>
+  <div class="grid2" style="grid-template-columns:1.3fr 1fr;gap:2.6cqw;margin-top:2cqh">
+    <div class="card">
+      <span class="tag">develop/eips.py: the control board</span>
+<pre class="code">EIP_8141 = True   <span class="c"># every flag on in develop/</span>
+EIP_8250 = True
+<span class="k">REQUIRES</span> = {8250: {8141}, 8272: {8141}, 7906: {8141}}
+<span class="k">OWNED_MODULES</span> = {8250: ("keyed_nonces",), ...}
+<span class="k">TARGETS</span> = {
+  "bogota":         Target({8141}, generated=True),
+  "bogota_devnet1": Target({8250, 8272, 7906}, base="bogota"),
+}</pre>
+    </div>
+    <div class="card">
+      <span class="tag">In one sentence</span>
+      <p>Every CFI EIP lives in <code>develop/</code> behind its flag, and the tooling generates the code for any fork from any combination of those EIPs.</p>
+      <p>A fork or devnet is a name and an EIP set. The fold produces it; nobody assembles it.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Pilot: four EIPs guarded, Bogota generated, the devnet filled as a pseudo-fork reproduces the branch fixtures, 652 of 652.</span><span></span></div>
+  <aside class="notes">
+    <p>Demo here. Show <code>eips.py</code>, then <code>vm/gas.py</code> and <code>transactions/frame_transaction.py</code>, then move 8250 into Bogota, regenerate, and show the framework following with no edit.</p>
+    <p>The framework side is one line per fork: <code>class Bogota(TargetEIPs("bogota"), Amsterdam)</code> and <code>class BogotaDevnet1(TargetEIPs("bogota_devnet1"), Bogota)</code>. A hand-edited generated folder fails <code>--check</code>. A devnet is a superset of its base, so every <code>valid_from("Bogota")</code> test collects at the pseudo-fork unchanged.</p>
+    <p>Pilot numbers: <code>tests/bogota</code> at BogotaDevnet1 against the devnet worktree at release <code>tests-bogota-devnet@v1.1.1</code>: 652 identical, 0 differ, 4 branch-only (8141's own transition fixtures). Bogota fill unchanged at 256.</p>
+  </aside>
+</section>
+
+<!-- 9. Dev fork: pros -->
+<section class="slide" aria-label="Development fork: what it buys">
+  <p class="kicker">A development fork for execution-specs &middot; 3 of 4</p>
+  <h2>What it buys</h2>
+  <div class="grid2">
+    <ul class="ticks">
+      <li>No EIP branches, no rebases, no devnet assembly. A devnet is one line in <code>TARGETS</code>.</li>
+      <li>EIP interactions are explicit in one place, not implicit in merge order. Adding an EIP forces its author to think about interactions with others.</li>
+      <li>Much faster devnet releases: no combining of EIP branches, and no thinking about interactions at release time.</li>
+    </ul>
+    <ul class="ticks">
+      <li>Closer alignment with the EIP process.</li>
+      <li>Several EIP sets live side by side: <code>bogota</code> next to <code>bogota_devnet1</code>, both generated from the one <code>develop/</code> tree.</li>
+      <li>CI checks every defined target that is of interest to us. No more merges to one branch silently breaking other EIPs upon rebase.</li>
+    </ul>
+  </div>
+  <aside class="notes">
+    <p>The readability of the individual fork is unchanged; what changes is that EIP interactions in development become explicit and easier to follow. Adding and removing EIPs becomes a diff in one tree.</p>
+    <p>CI gets one job per target plus the full <code>develop/</code> checks, so no PR can break a set we care about without saying so.</p>
+  </aside>
+</section>
+
+<!-- 10. Dev fork: cons and open questions -->
+<section class="slide dark" aria-label="Development fork: cost and open questions">
+  <p class="kicker">A development fork for execution-specs &middot; 4 of 4</p>
+  <h2>Cost and open questions</h2>
+  <div class="grid2">
+    <div class="group">
+      <h3>Cost</h3>
+      <ul class="ticks">
+        <li>The barrier for writing specs goes up. An EIP is written in <code>develop/</code>, under its semantics and guard rules, not as a free-standing edit of one fork.</li>
+      </ul>
+      <h3 style="margin-top:3cqh">Mitigation</h3>
+      <ul class="ticks">
+        <li>Keep the semantics as close to today's pseudo-code-like specs as possible.</li>
+        <li>Additional documentation for developers and for AI tools.</li>
+      </ul>
+    </div>
+    <div class="group">
+      <h3>Open</h3>
+      <ul class="ticks">
+        <li>Do we fill every combination of EIPs in <code>develop/</code>?</li>
+      </ul>
+      <h3>Proposal</h3>
+      <ul class="ticks">
+        <li>No. Only the targets named in <code>eips.py</code>, plus the full <code>develop/</code> spec.</li>
+      </ul>
+      <h3 style="margin-top:3cqh">Open</h3>
+      <ul class="ticks">
+        <li>What network name do clients see on a devnet fixture: <code>BogotaDevnet1</code> or <code>Bogota</code>?</li>
+      </ul>
+      <h3>Proposal</h3>
+      <ul class="ticks">
+        <li>The pseudo-fork name, <code>BogotaDevnet1</code>. Hive and client configs key on fork names. To confirm with the hive-tests side.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Smaller costs if asked: PRs carry generated output next to the source (one <code>just</code> recipe produces it, CI checks it reproduces); a generated fork can carry residue from a dropped EIP until someone cleans it up; every fill and CI target pays a fold of about ten seconds. The branch tooling stays until the migration is done.</p>
+    <p>Ask the room for a decision on the devnet network name, since hive and client configs key on it. Other open points, if raised: sibling generated forks versus copies for a second open fork, what removing an EIP from <code>develop/</code> looks like, and conditional prose in shared docstrings.</p>
+  </aside>
+</section>
+
+<!-- 11. Findings -->
 <section class="slide" aria-label="What the first devnets taught us">
   <p class="kicker">bogota-devnet-1 and heze-devnet-1</p>
   <h2>What the first devnets taught us</h2>
@@ -379,7 +543,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   </aside>
 </section>
 
-<!-- 8. Config drift table -->
+<!-- 12. Config drift table -->
 <section class="slide" aria-label="Five places for one parameter">
   <p class="kicker">Config drift, snapshot 19 Oct</p>
   <h2>Five places for one parameter</h2>
@@ -398,7 +562,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   </aside>
 </section>
 
-<!-- 9. Gaps and proposals -->
+<!-- 13. Gaps and proposals -->
 <section class="slide dark" aria-label="Gaps to close">
   <svg class="pixels" data-pixels="corner" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" style="width:14cqw;inset:auto 0 0 auto;height:22cqh"></svg>
   <p class="kicker">Gaps to close before hegota-devnet-0</p>
@@ -421,7 +585,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   </aside>
 </section>
 
-<!-- 10. Questions -->
+<!-- 14. Questions -->
 <section class="slide deep" aria-label="Questions for the room">
   <p class="kicker">Discussion</p>
   <h2>Questions for the room</h2>
@@ -438,7 +602,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   </aside>
 </section>
 
-<!-- 11. Owners -->
+<!-- 15. Owners -->
 <section class="slide" aria-label="Owners and next steps">
   <p class="kicker">Next steps</p>
   <h2>Owners</h2>
@@ -456,7 +620,7 @@ html.deck.overview .notes-panel, html.deck.overview .hud, html.deck.overview .pr
   <aside class="notes"><p>Fill in live.</p></aside>
 </section>
 
-<!-- 12. Links -->
+<!-- 16. Links -->
 <section class="slide dark" aria-label="Links">
   <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
   <p class="kicker">Links</p>
