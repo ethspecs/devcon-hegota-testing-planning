@@ -562,7 +562,7 @@ a.eip:hover { text-decoration: underline; }
     <div>
       <ol>
         <li>Discuss devnet scope on ACDE and ACDC. <span class="small">Unchanged.</span></li>
-        <li class="new">Open a PR against the fork meta EIP: one entry per devnet, with its list of EIPs.</li>
+        <li class="new">Open a PR against the fork meta EIP: one entry per devnet, with its list of EIPs. No versions.</li>
         <li class="new">Client teams approve the PR, or request changes.</li>
         <li class="new">No response in reasonable time: agree on the next call how to move forward.</li>
         <li>Merge. Spec and test releases are cut from the agreed list.</li>
@@ -578,6 +578,7 @@ a.eip:hover { text-decoration: underline; }
     </figure>
   </div>
   <aside class="notes">
+    <p>Versions: the meta EIP PR lists which EIPs are in a devnet, not which version of each. Pinning versions there would add too much friction. Versions stay in a separate devnet spec document, so far ethPandaOps&#39; HackMD pages (<a href="https://notes.ethereum.org/@ethpandaops">notes.ethereum.org/@ethpandaops</a>). Suggestion for ethPandaOps, not part of this proposal: keep those devnet definitions in a GitHub repo in the ethpandaops org, so the history of each definition is visible when an EIP spec changes, without having to remember or diff it by hand.</p>
     <p>Lime numbers are the new steps. Nothing else changes: the call still decides, the PR records it and lets client teams sign off asynchronously.</p>
     <p>EIP-7723 already asks facilitators and testing teams to propose a CFI priority order and reflect it in the meta EIP. This makes the per-devnet result explicit.</p>
     <p>The screenshot is a local draft (Dan&#39;s EIPs branch <code>eip-8081-devnet-scope</code>, not opened as a PR). It uses the devnets from slides 6 to 9. The frame scrolls.</p>
