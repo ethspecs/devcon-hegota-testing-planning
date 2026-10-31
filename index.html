@@ -271,7 +271,7 @@ a.eip:hover { text-decoration: underline; }
   </div>
   <div class="foot"><span>Status as of 31 Oct 2026</span><span>ethPandaOps &times; Specs</span></div>
   <aside class="notes">
-    <p>Set expectations: this is a working session, not a status report. Most of the time should go to slides 19 and 20 (config drift, gaps), with the dev fork proposal on 13 to 16 as the specs-side ask.</p>
+    <p>Set expectations: this is a working session, not a status report. Most of the time should go to the gaps section, with the dev fork proposal on 13 to 16 as the specs-side ask.</p>
   </aside>
 </section>
 
@@ -723,7 +723,7 @@ EIP_8250 = True
   <h2>Gaps</h2>
   <p class="lead">What we are missing, and what client teams fear for Hegot&aacute;.</p>
   <ol class="track" aria-label="Sections"><li>01 Prioritization</li><li>02 Flow</li><li>03 Development fork</li><li class="on">04 Gaps</li></ol>
-  <aside class="notes"><p>Lessons from the first devnets, config drift, gaps to close, then questions and owners.</p></aside>
+  <aside class="notes"><p>Lessons from the first devnets, then questions and owners.</p></aside>
 </section>
 
 <!-- 11. Findings -->
@@ -751,48 +751,6 @@ EIP_8250 = True
   <aside class="notes">
     <p>Keep client names off the slide unless the bug is fixed and public. Details in Dan's ACDT #101 prep (vault): the fork was at block 1788 on bogota-devnet-1, intrinsic gas missing the 12,100 keyed-nonce access cost from <code>tests-bogota-devnet@v1.1.0</code>.</p>
     <p>Public client issues: <a href="https://github.com/ethereum/go-ethereum/issues/35783">go-ethereum#35783</a> (frame tx JSON-RPC drops frames, frameReceipts and payer), <a href="https://github.com/NethermindEth/nethermind/issues/14031">nethermind#14031</a> (public pool defaults to 300k validation gas, the spec limit is 100k). Spencer and Jochem on <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
-  </aside>
-</section>
-
-<!-- 12. Config drift table -->
-<section class="slide" aria-label="Five places for one parameter">
-  <p class="kicker">Config drift, snapshot 19 Oct</p>
-  <h2>Five places for one parameter</h2>
-  <table>
-    <thead><tr><th>Parameter</th><th>Devnet page</th><th>consensus-specs</th><th>EELS release</th><th>Genesis tooling</th><th>CL branches</th></tr></thead>
-    <tbody>
-      <tr><td>Slot duration</td><td class="bad">12 s to 10 s</td><td class="bad">10 s, separate fork</td><td class="ok">12 s</td><td class="ok">12 s</td><td>mixed</td></tr>
-      <tr><td>Blob schedule</td><td>12 / 18</td><td class="bad">no Heze entry</td><td>12 / 18</td><td class="bad">14 / 21 (copied)</td><td>n/a</td></tr>
-      <tr><td>IL deadline</td><td>9 s (7500 bps)</td><td>7500, unreleased</td><td>n/a</td><td>n/a</td><td class="bad">6667</td></tr>
-    </tbody>
-  </table>
-  <p class="lead" style="margin-top:4cqh;font-size:2cqw">Each value was right somewhere. The devnet needs one source, and every layer should read it from config, not a constant.</p>
-  <aside class="notes">
-    <p>Snapshot from the ACDT #101 prep (19 Oct). Since then heze-devnet-3 moved to 9 s slots (<a href="https://github.com/ethereum/execution-specs/issues/3891">#3891</a>). Use this as the pattern, not as current status.</p>
-    <p>Discussion: could a devnet spec page carry a machine-readable parameter block that the genesis generator, kurtosis and EELS release notes all check against?</p>
-  </aside>
-</section>
-
-<!-- 13. Gaps and proposals -->
-<section class="slide dark" aria-label="Gaps to close">
-  <svg class="pixels" data-pixels="corner" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" style="width:14cqw;inset:auto 0 0 auto;height:22cqh"></svg>
-  <p class="kicker">Gaps to close before hegota-devnet-0</p>
-  <h2>What we should build next</h2>
-  <div class="grid2">
-    <ul class="ticks">
-      <li>Cross-EIP tests: frames in inclusion lists (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>), frames &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md" title="EIP-8250: Keyed Nonces for Frame Transactions">8250</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md" title="EIP-8272: Recent Roots for Frame Transactions">8272</a>.</li>
-      <li>FOCIL scenarios in assertoor and spamoor: censored txs, IL timing, equivocation.</li>
-      <li>Frame transaction spam and fuzzing on devnets.</li>
-    </ul>
-    <ul class="ticks">
-      <li>RPC and tracing coverage for new tx types.</li>
-      <li>Fork-transition tests run on every devnet, not just the first.</li>
-      <li>Faster hive feedback per release: EngineX and WireX on the hegota groups.</li>
-    </ul>
-  </div>
-  <aside class="notes">
-    <p>These are proposals for discussion, not commitments. Pick owners on the next slide.</p>
-    <p>Hive: <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a> asks for hive-tests <code>hegota</code> workflows and a hive-ui group for the release.</p>
   </aside>
 </section>
 
