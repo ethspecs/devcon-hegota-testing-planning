@@ -303,7 +303,7 @@ a.eip:hover { text-decoration: underline; }
   <p class="kicker">Devnet sequence</p>
   <h2>heze + bogotá = He🐐á</h2>
   <figure style="margin:auto 0">
-    <svg viewBox="0 0 920 376" role="img" aria-label="Hegotá devnet sequence. The heze lane (FOCIL, CL and EL) runs devnets 1 to 3. The bogota lane (frames, EL only) runs devnets 1 and 2. Both merge into hegota-devnet-0 after Devcon, followed by hegota-devnet-1 with 8131 and 8279 and then hegota-devnet-N with the remaining CFI EIPs, neither agreed yet. Each devnet box links to its test release.">
+    <svg viewBox="0 0 920 376" role="img" aria-label="Hegotá devnet sequence. The heze lane (FOCIL, CL and EL) runs devnets 1 to 3. The bogota lane (frames, EL only) runs devnets 1 and 2. Both merge into hegota-devnet-0 after Devcon, followed by hegota-devnet-1 with 8131 and 8279 and then hegota-devnet-N with the remaining CFI EIPs, neither agreed yet. Devnet boxes link to their test release, bogota-devnet-2 to its devnet spec.">
       <rect class="d-band" x="636" y="10" width="74" height="326"/>
       <text class="d-band-label" x="673" y="356" text-anchor="middle">DEVCON</text>
       <text class="d-lane" x="10" y="34">heze &middot; FOCIL &middot; CL + EL</text>
@@ -316,7 +316,7 @@ a.eip:hover { text-decoration: underline; }
       <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-heze-devnet%40v2.0.1"><g><rect class="d-node done" x="200" y="50" width="170" height="76" rx="4"/><text class="d-title" x="215" y="80">heze-devnet-2</text><text class="d-sub" x="215" y="104">+ CL 8015, 8365</text></g></a>
       <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-heze-devnet%40v3.0.0"><g><rect class="d-node done" x="390" y="50" width="170" height="76" rx="4"/><text class="d-title" x="405" y="80">heze-devnet-3</text><text class="d-sub" x="405" y="104">+ 8198 at 9 s slots</text></g></a>
       <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-bogota-devnet%40v1.1.1"><g><rect class="d-node done" x="200" y="216" width="170" height="76" rx="4"/><text class="d-title" x="215" y="246">bogota-devnet-1</text><text class="d-sub" x="215" y="270">8141 8250 8272 7906</text></g></a>
-      <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-bogota-devnet%40v2.0.0"><g><rect class="d-node done" x="440" y="216" width="170" height="76" rx="4"/><text class="d-title" x="455" y="246">bogota-devnet-2</text><text class="d-sub" x="455" y="270">+ 8298 8253 4758 8151</text></g></a>
+      <a href="https://notes.ethereum.org/@ethpandaops/bogota-devnet-2"><g><rect class="d-node done" x="440" y="216" width="170" height="76" rx="4"/><text class="d-title" x="455" y="246">bogota-devnet-2</text><text class="d-sub" x="455" y="270">+ 8298 8253 4758 8151</text></g></a>
       <g><rect class="d-node lime" x="740" y="40" width="170" height="112" rx="4"/><text class="d-title" x="755" y="70">hegota-devnet-0</text><text class="d-sub" x="755" y="94" style="fill:var(--ink)">frames &times; FOCIL</text><text class="d-sub" x="755" y="116" style="fill:var(--ink)">launch date TBD,</text><text class="d-sub" x="755" y="138" style="fill:var(--ink)">between 3 and 17 Nov</text></g>
       <g><rect class="d-node next" x="740" y="182" width="170" height="76" rx="4"/><text class="d-title" x="755" y="212">hegota-devnet-1</text><text class="d-sub" x="755" y="236">devnet-0 + 2 to 4 weeks</text></g>
       <g><rect class="d-node next" x="740" y="290" width="170" height="76" rx="4"/><text class="d-title" x="755" y="320">hegota-devnet-N</text><text class="d-sub" x="755" y="344">remaining CFI</text></g>
@@ -330,7 +330,7 @@ a.eip:hover { text-decoration: underline; }
   <aside class="notes">
     <p>heze-devnet-3 test release <code>tests-heze-devnet@v3.0.0</code> on 21 Oct; bogota-devnet-2 <code>tests-bogota-devnet@v2.0.0</code> on 27 Oct. hegota-devnet-0 = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>, launch after Devcon (ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>). Frame txs in inclusion lists on devnet-0: exempt like blobs (this week) or enforced at the end of the payload (10 days after Devcon). Full frames &times; FOCIL with omission claims (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md" title="EIP-8369: VOPS Profiles for FOCIL Eligibility">EIP-8369</a>) comes later.</p>
     <p>heze lane releases: <code>tests-focil-devnet@v0.3.0</code> (24 Sep), <code>tests-heze-devnet@v2.0.0</code> (15 Oct), <code>v3.0.0</code> (21 Oct).</p>
-    <p>Sources: <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>.</p>
+    <p>Sources: <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>, <a href="https://notes.ethereum.org/@ethpandaops/bogota-devnet-2">bogota-devnet-2 spec</a>.</p>
   </aside>
 </section>
 
