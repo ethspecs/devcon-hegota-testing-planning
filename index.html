@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Hegotá testing planning: devnet sequence, test-release flow, a development fork for execution-specs, gaps and open questions. L1 Days at Devcon 8, Mumbai.">
+<meta name="description" content="Hegotá testing planning: devnet timeline, must-have tooling, devnet scheduling, client capacity, spec release process and feedback. L1 Days at Devcon 8, Mumbai.">
 <meta name="color-scheme" content="light">
 <title>Hegotá Testing Planning</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -254,7 +254,6 @@ a.eip:hover { text-decoration: underline; }
 <body>
 <div class="progress" aria-hidden="true"></div>
 <p class="sr-only" aria-live="polite" id="announce"></p>
-
 <!-- 1. Cover -->
 <section class="slide dark cover" id="cover" aria-label="Cover">
   <div class="wordmark" aria-label="Ethereum Foundation protocol">
@@ -265,126 +264,38 @@ a.eip:hover { text-decoration: underline; }
   <h1>Hegotá Testing Planning</h1>
   <p class="lead">Testing frames and FOCIL together, early</p>
   <ul class="plain speakers" aria-label="Speakers">
-    <li>ethPandaOps</li><li>Specs</li>
+    <li>Specs</li><li>ethPandaOps</li>
   </ul>
-  <div class="foot"><span>L1 Days at Devcon 8, Mumbai &middot; Sunday 1 November 2026</span><span>ethPandaOps &times; Specs</span></div>
+  <div class="foot"><span>L1 Days at Devcon 8, Mumbai &middot; Sunday 1 November 2026</span><span>Specs &times; ethPandaOps</span></div>
   <aside class="notes">
     <p>Working title; confirm against the schedule.</p>
     <p>Status on these slides is as of 31 October 2026 (EELS tracker <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, forkcast and test releases).</p>
   </aside>
 </section>
 
-<!-- 2. Goals -->
-<section class="slide" aria-label="Goals for this session">
+<!-- 2. Agenda -->
+<section class="slide" aria-label="Agenda">
   <p class="kicker">This session</p>
-  <h2>Leave the room with a testing plan for Hegotá</h2>
-  <div class="grid3 agenda" style="flex:1;margin:5cqh 0 4cqh;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr">
-    <div class="card"><span class="tag">01 Prioritization</span><p>Decide when to launch hegota-devnet-0, then agree the EL and CL priority order for the devnets after it. Keep the plans in the fork meta EIP moving forward?</p></div>
-    <div class="card"><span class="tag">02 CFI to SFI Flow</span><p>An overview of how an EIP goes from CFI to SFI today, then a proposal: record each devnet&#39;s scope in the fork meta EIP by pull request.</p></div>
-    <div class="card"><span class="tag">03 Development fork</span><p>Guru&#39;s <code>develop/</code> proposal for execution-specs: every CFI EIP behind a flag, devnets generated as targets instead of EIP branches.</p></div>
-    <div class="card"><span class="tag">04 Gaps</span><p>State the gaps. What do client teams fear for Hegot&aacute;, which EIPs need more thought, and what tooling are we missing?</p></div>
+  <h2>Leave the room with a testing plan for Hegot&aacute;</h2>
+  <div class="grid3 agenda" style="flex:1;margin:3cqh 0 3cqh;grid-template-rows:1fr 1fr;gap:2cqw">
+    <div class="card"><span class="tag">01 Devnet timeline</span><p style="font-size:1.6cqw">When can we get a merged devnet? What is the blocker?</p></div>
+    <div class="card"><span class="tag">02 Must-haves</span><p style="font-size:1.6cqw">Which tools and testing interactions are a must for Hegot&aacute;? Mempool spec? DoS resilience?</p></div>
+    <div class="card"><span class="tag">03 Devnet schedule</span><p style="font-size:1.6cqw">Align devnet scope and schedule on ACD, or let the testing team decide?</p></div>
+    <div class="card"><span class="tag">04 Capacity</span><p style="font-size:1.6cqw">How many parallel streams can clients take? How do we avoid &ldquo;no one looked at it&rdquo;?</p></div>
+    <div class="card"><span class="tag">05 Spec releases</span><p style="font-size:1.6cqw">Merge features into trunk or release from branches? CL, EL, hybrid or status quo?</p></div>
+    <div class="card"><span class="tag">06 Feedback</span><p style="font-size:1.6cqw">Complaints, feedback, where do you need help?</p></div>
   </div>
   <div class="foot"><span>Status as of 31 Oct 2026</span><span>ethPandaOps &times; Specs</span></div>
-  <aside class="notes">
-    <p>Set expectations: this is a working session, not a status report. Most of the time should go to the gaps section, with the dev fork proposal on 14 to 17 as the specs-side ask.</p>
-  </aside>
-</section>
-
-<!-- 3. Lesson -->
-<section class="slide deep" aria-label="Lesson from Glamsterdam">
-  <p class="kicker">Lesson from Glamsterdam</p>
-  <blockquote style="margin-top:auto;font-size:3.5cqw">One of the mistakes we made on our side on the EL was underestimating the complexity of <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8037.md" title="EIP-8037: State Creation Gas Cost Increase">8037</a>. The idea would be to include the more complex EIPs a lot earlier in the cycle.</blockquote>
-  <cite style="margin-top:4cqh;font-size:1.8cqw">Spencer, ACDT #97, 21 September 2026</cite>
-  <ul class="ticks" style="margin:8cqh 0 auto">
-    <li style="font-size:2.2cqw;margin-bottom:2.4cqh">Test the hardest interactions first: frames &times; FOCIL.</li>
-    <li style="font-size:2.2cqw">Then the complex single EIPs. Simple EIPs ride along later.</li>
-  </ul>
-  <aside class="notes">
-    <p>Source: ACDT #97 transcript, t=2092. The EELS tracker (<a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>) states the same principle: "aiming to test the most complex EIPs first: frames x FOCIL interactions, then the more complex single EIPs."</p>
-  </aside>
+  <aside class="notes"><p>Working session, not a status report. Aim for a decision or an owner per section.</p></aside>
 </section>
 
 <!-- Section 01 -->
-<section class="slide dark section" aria-label="Section 01: Prioritization">
+<section class="slide dark section" aria-label="Section 01: Devnet timeline">
   <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
   <p class="num">01</p>
-  <h2>Prioritization</h2>
-  <p class="lead">When does hegota-devnet-0 launch, and which EIPs come after it?</p>
-  <ol class="track" aria-label="Sections"><li class="on">01 Prioritization</li><li>02 CFI to SFI Flow</li><li>03 Development fork</li><li>04 Gaps</li></ol>
-  <aside class="notes"><p>What is in the fork, the devnets so far, the EL and CL priority order, and the hegota-devnet-0 vote.</p></aside>
-</section>
-
-<!-- 4. Scope -->
-<section class="slide scope" aria-label="What is in Hegotá">
-  <p class="kicker">Scope</p>
-  <h2>Two headliners and a long CFI list</h2>
-  <div class="group">
-    <h3>Scheduled for inclusion</h3>
-    <div class="chips" style="margin-bottom:4.5cqh">
-      <span class="chip sfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md" title="EIP-7805: Fork-choice enforced Inclusion Lists (FOCIL)">7805</a></b>FOCIL</span>
-      <span class="chip sfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a></b>Frame transactions</span>
-      <span class="chip sfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8015.md" title="EIP-8015: Remove deposit and eth1data fields">8015</a></b>Beacon state cleanup</span>
-    </div>
-  </div>
-  <div class="grid3" style="gap:3cqw;grid-template-columns:1fr 1.25fr 0.9fr">
-    <div class="group">
-      <h3>CFI: frames companions</h3>
-      <div class="chips">
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md" title="EIP-8250: Keyed Nonces for Frame Transactions">8250</a></b>Keyed nonces</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md" title="EIP-8272: Recent Roots for Frame Transactions">8272</a></b>Recent roots</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md" title="EIP-7906: Transaction Assertions via State Diff Opcode">7906</a></b>Tx assertions</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8151.md" title="EIP-8151: Account Code Restricted ecRecover">8151</a></b>Restricted ecRecover</span>
-      </div>
-      <h3 style="margin-top:4cqh">CFI: data and networking</h3>
-      <div class="chips">
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7668.md" title="EIP-7668: Remove bloom filters">7668</a></b>Remove blooms</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8116.md" title="EIP-8116: Replace cumulative receipt fields">8116</a></b>Receipt fields</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8077.md" title="EIP-8077: eth/XX - announce transactions with nonce">8077</a></b>eth/XX nonce announce</span>
-      </div>
-    </div>
-    <div class="group">
-      <h3>CFI: EVM, state and gas</h3>
-      <div class="chips">
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8298.md" title="EIP-8298: SETCODEFROM Code Reuse Instruction">8298</a></b>SETCODEFROM</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a></b>Nonce bump</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md" title="EIP-4758: Deactivate SELFDESTRUCT">4758</a></b>Deactivate SELFDESTRUCT</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md" title="EIP-8360: TCREATE Opcode">8360</a></b>TCREATE</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md" title="EIP-8131: Unified Transaction Content Floor">8131</a></b>Content floor</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md" title="EIP-8279: Block Access List Byte Floor">8279</a></b>BAL byte floor</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3298.md" title="EIP-3298: Remove storage-clear refund and refund cap">3298</a></b>Refund removal</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7709.md" title="EIP-7709: Read BLOCKHASH from Storage and Update Cost">7709</a></b>BLOCKHASH from storage</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7979.md" title="EIP-7979: Call and Return Opcodes for the EVM">7979</a></b>CALLF / RETF</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-5920.md" title="EIP-5920: PAY opcode">5920</a></b>PAY</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8163.md" title="EIP-8163: Reserve EXTENSION (0xae) opcode">8163</a></b>Reserve 0xae</span>
-      </div>
-    </div>
-    <div class="group">
-      <h3>CFI: CL</h3>
-      <div class="chips">
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md" title="EIP-8198: Quick Slots">8198</a></b>Quick slots</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8365.md" title="EIP-8365: Disallow new 0x00 validators">8365</a></b>No new 0x00 validators</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md" title="EIP-8148: Custom sweep threshold for validators">8148</a></b>Custom sweep threshold</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/sukunrt/EIPs/blob/sukun/attestation-broadcast/EIPS/eip-8334.md" title="EIP-8334: Bundled Attestation Propagation">8334</a></b>Bundled attestations</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8383.md" title="EIP-8383: Reduce CL Block Retention Window">8383</a></b>Shorter block retention</span>
-        <span class="chip"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8411.md" title="EIP-8411: Fast Execution Payload Broadcast">8411</a></b>Fast payload broadcast</span>
-      </div>
-    </div>
-  </div>
-  <div class="group" style="margin-top:4.5cqh">
-    <h3>PFI</h3>
-    <div class="chips">
-      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md" title="EIP-7907: Meter Contract Code Size">7907</a></b>Code size metering</span>
-      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8173.md" title="EIP-8173: Foundations of EVM Control Flow">8173</a></b>EVM control flow</span>
-      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8368.md" title="EIP-8368: CPSB Recalibration for New Gas Limit">8368</a></b>CPSB recalibration</span>
-      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8372.md" title="EIP-8372: Normalized state gas limit">8372</a></b>Normalized state gas</span>
-      <span class="chip pfi"><b><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md" title="EIP-8369: VOPS Profiles for FOCIL Eligibility">8369</a></b>VOPS profiles</span>
-    </div>
-  </div>
-  <aside class="notes">
-    <p>EL: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a> SFI plus 18 CFI. CL: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md" title="EIP-7805: Fork-choice enforced Inclusion Lists (FOCIL)">7805</a> FOCIL SFI (cross-layer), <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8015.md" title="EIP-8015: Remove deposit and eth1data fields">8015</a> SFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md" title="EIP-8198: Quick Slots">8198</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8365.md" title="EIP-8365: Disallow new 0x00 validators">8365</a> CFI on ACDC <a href="https://forkcast.org/calls/acdc/188/">#188</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8148.md" title="EIP-8148: Custom sweep threshold for validators">8148</a>, <a class="eip" href="https://github.com/sukunrt/EIPs/blob/sukun/attestation-broadcast/EIPS/eip-8334.md" title="EIP-8334: Bundled Attestation Propagation">8334</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8383.md" title="EIP-8383: Reduce CL Block Retention Window">8383</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8411.md" title="EIP-8411: Fast Execution Payload Broadcast">8411</a> CFI on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8205.md" title="EIP-8205: Withdrawal credentials preregistration">8205</a> DFI'd on ACDC <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
-    <p>PFI (forkcast, 31 Oct): EL <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md" title="EIP-7907: Meter Contract Code Size">7907</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8173.md" title="EIP-8173: Foundations of EVM Control Flow">8173</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8368.md" title="EIP-8368: CPSB Recalibration for New Gas Limit">8368</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8372.md" title="EIP-8372: Normalized state gas limit">8372</a>. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8368.md" title="EIP-8368: CPSB Recalibration for New Gas Limit">8368</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8372.md" title="EIP-8372: Normalized state gas limit">8372</a> wait for about 30 days of Glamsterdam mainnet data. CL <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md" title="EIP-8369: VOPS Profiles for FOCIL Eligibility">8369</a> VOPS profiles, informational, set aside on ACDC <a href="https://forkcast.org/calls/acdc/187/">#187</a>, <a href="https://forkcast.org/calls/acdc/189/">#189</a> and <a href="https://forkcast.org/calls/acdc/190/">#190</a>.</p>
-    <p>Source: <a href="https://github.com/ethereum/execution-specs/issues/3664">execution-specs#3664</a>, <a href="https://forkcast.org">forkcast</a>.</p>
-  </aside>
+  <h2>Devnet timeline</h2>
+  <p class="lead">When can we get a merged devnet, and what is the blocker?</p>
+  <ol class="track" aria-label="Sections"><li class="on">01 Timeline</li><li>02 Must-haves</li><li>03 Schedule</li><li>04 Capacity</li><li>05 Releases</li><li>06 Feedback</li></ol>
 </section>
 
 <!-- 5. Devnet ladder -->
@@ -392,7 +303,7 @@ a.eip:hover { text-decoration: underline; }
   <p class="kicker">Devnet sequence</p>
   <h2>heze + bogotá = He🐐á</h2>
   <figure style="margin:auto 0">
-    <svg viewBox="0 0 920 376" role="img" aria-label="Hegotá devnet sequence. The heze lane (FOCIL, CL and EL) runs devnets 1 to 3. The bogota lane (frames, EL only) runs devnets 1 and 2. Both merge into hegota-devnet-0 after Devcon, followed by hegota-devnet-1 with 8131 and 8279 and then hegota-devnet-N with the remaining CFI EIPs, neither agreed yet. Each devnet box links to its test release.">
+    <svg viewBox="0 0 920 376" role="img" aria-label="Hegotá devnet sequence. The heze lane (FOCIL, CL and EL) runs devnets 1 to 3. The bogota lane (frames, EL only) runs devnets 1 and 2. Both merge into hegota-devnet-0 after Devcon, followed by hegota-devnet-1 with 8131 and 8279 and then hegota-devnet-N with the remaining CFI EIPs, neither agreed yet. Devnet boxes link to their test release, bogota-devnet-2 to its devnet spec.">
       <rect class="d-band" x="636" y="10" width="74" height="326"/>
       <text class="d-band-label" x="673" y="356" text-anchor="middle">DEVCON</text>
       <text class="d-lane" x="10" y="34">heze &middot; FOCIL &middot; CL + EL</text>
@@ -405,7 +316,7 @@ a.eip:hover { text-decoration: underline; }
       <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-heze-devnet%40v2.0.1"><g><rect class="d-node done" x="200" y="50" width="170" height="76" rx="4"/><text class="d-title" x="215" y="80">heze-devnet-2</text><text class="d-sub" x="215" y="104">+ CL 8015, 8365</text></g></a>
       <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-heze-devnet%40v3.0.0"><g><rect class="d-node done" x="390" y="50" width="170" height="76" rx="4"/><text class="d-title" x="405" y="80">heze-devnet-3</text><text class="d-sub" x="405" y="104">+ 8198 at 9 s slots</text></g></a>
       <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-bogota-devnet%40v1.1.1"><g><rect class="d-node done" x="200" y="216" width="170" height="76" rx="4"/><text class="d-title" x="215" y="246">bogota-devnet-1</text><text class="d-sub" x="215" y="270">8141 8250 8272 7906</text></g></a>
-      <a href="https://github.com/ethereum/execution-specs/releases/tag/tests-bogota-devnet%40v2.0.0"><g><rect class="d-node done" x="440" y="216" width="170" height="76" rx="4"/><text class="d-title" x="455" y="246">bogota-devnet-2</text><text class="d-sub" x="455" y="270">+ 8298 8253 4758 8151</text></g></a>
+      <a href="https://notes.ethereum.org/@ethpandaops/bogota-devnet-2"><g><rect class="d-node done" x="440" y="216" width="170" height="76" rx="4"/><text class="d-title" x="455" y="246">bogota-devnet-2</text><text class="d-sub" x="455" y="270">+ 8298 8253 4758 8151</text></g></a>
       <g><rect class="d-node lime" x="740" y="40" width="170" height="112" rx="4"/><text class="d-title" x="755" y="70">hegota-devnet-0</text><text class="d-sub" x="755" y="94" style="fill:var(--ink)">frames &times; FOCIL</text><text class="d-sub" x="755" y="116" style="fill:var(--ink)">launch date TBD,</text><text class="d-sub" x="755" y="138" style="fill:var(--ink)">between 3 and 17 Nov</text></g>
       <g><rect class="d-node next" x="740" y="182" width="170" height="76" rx="4"/><text class="d-title" x="755" y="212">hegota-devnet-1</text><text class="d-sub" x="755" y="236">devnet-0 + 2 to 4 weeks</text></g>
       <g><rect class="d-node next" x="740" y="290" width="170" height="76" rx="4"/><text class="d-title" x="755" y="320">hegota-devnet-N</text><text class="d-sub" x="755" y="344">remaining CFI</text></g>
@@ -419,8 +330,91 @@ a.eip:hover { text-decoration: underline; }
   <aside class="notes">
     <p>heze-devnet-3 test release <code>tests-heze-devnet@v3.0.0</code> on 21 Oct; bogota-devnet-2 <code>tests-bogota-devnet@v2.0.0</code> on 27 Oct. hegota-devnet-0 = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>, launch after Devcon (ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>). Frame txs in inclusion lists on devnet-0: exempt like blobs (this week) or enforced at the end of the payload (10 days after Devcon). Full frames &times; FOCIL with omission claims (<a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md" title="EIP-8369: VOPS Profiles for FOCIL Eligibility">EIP-8369</a>) comes later.</p>
     <p>heze lane releases: <code>tests-focil-devnet@v0.3.0</code> (24 Sep), <code>tests-heze-devnet@v2.0.0</code> (15 Oct), <code>v3.0.0</code> (21 Oct).</p>
-    <p>Sources: <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>.</p>
+    <p>Sources: <a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>, <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>, <a href="https://notes.ethereum.org/@ethpandaops/bogota-devnet-2">bogota-devnet-2 spec</a>.</p>
   </aside>
+</section>
+
+<!-- Section 02 -->
+<section class="slide dark section" aria-label="Section 02: Must-haves">
+  <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <p class="num">02</p>
+  <h2>Must-haves</h2>
+  <p class="lead">Tools and testing interactions we cannot ship without. Mempool spec? DoS?</p>
+  <ol class="track" aria-label="Sections"><li>01 Timeline</li><li class="on">02 Must-haves</li><li>03 Schedule</li><li>04 Capacity</li><li>05 Releases</li><li>06 Feedback</li></ol>
+</section>
+
+<!-- 11. Findings -->
+<section class="slide" aria-label="What the first devnets taught us">
+  <p class="kicker">bogota-devnet-1 and heze-devnet-1</p>
+  <h2>What the first devnets taught us</h2>
+  <div class="grid3">
+    <div class="card">
+      <span class="tag">Late spec changes</span>
+      <p>A consensus-breaking test release two days before launch. One EL client forked at the first keyed-nonce transaction.</p>
+    </div>
+    <div class="card">
+      <span class="tag">RPC and tooling</span>
+      <p>Tracing and RPC endpoints failed on frame transactions in several clients. No spec tests cover them.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Config drift</span>
+      <p>Slot duration, blob schedule and IL deadline lived in five places that did not agree.</p>
+    </div>
+  </div>
+  <ul class="ticks" style="margin-top:5cqh">
+    <li>FOCIL has no censorship-resistance scenarios in assertoor or spamoor yet.</li>
+    <li>Fork-transition-only behaviour (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>) needs many devnets, not one.</li>
+  </ul>
+  <aside class="notes">
+    <p>Keep client names off the slide unless the bug is fixed and public. Details: the fork was at block 1788 on bogota-devnet-1, intrinsic gas missing the 12,100 keyed-nonce access cost from <code>tests-bogota-devnet@v1.1.0</code>.</p>
+    <p>Public client issues: <a href="https://github.com/ethereum/go-ethereum/issues/35783">go-ethereum#35783</a> (frame tx JSON-RPC drops frames, frameReceipts and payer), <a href="https://github.com/NethermindEth/nethermind/issues/14031">nethermind#14031</a> (public pool defaults to 300k validation gas, the spec limit is 100k). Spencer and Jochem on <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
+  </aside>
+</section>
+
+<!-- Must-haves -->
+<section class="slide deep" aria-label="Must-have tooling and DoS">
+  <p class="kicker">Must-haves</p>
+  <h2>What do we need before Hegot&aacute; can ship?</h2>
+  <div class="grid2 roomy" style="margin:auto 0">
+    <div class="group">
+      <h3>Tools and interactions</h3>
+      <ul class="ticks">
+        <li>Frames &times; FOCIL scenarios: ILs with frame txs, omission claims, censorship tests in assertoor / spamoor.</li>
+        <li>RPC and tracing spec tests for frame transactions.</li>
+        <li>Fork-transition tests on every devnet (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>).</li>
+        <li>What else is a MUST, and who owns it?</li>
+      </ul>
+    </div>
+    <div class="group">
+      <h3>Mempool and DoS</h3>
+      <ul class="ticks">
+        <li>Frame txs run arbitrary validation: do we need a mempool spec, or is per-client policy enough?</li>
+        <li>FOCIL makes the mempool consensus-adjacent: IL contents depend on what each EL accepts.</li>
+        <li>How do we test DoS resilience: validation gas limits, spam on devnets?</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>Known divergence already: nethermind#14031, public pool defaults to 300k validation gas against a 100k spec limit. That is the argument for a written mempool spec.</p></aside>
+</section>
+
+<!-- Section 03 -->
+<section class="slide dark section" aria-label="Section 03: Devnet schedule">
+  <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
+  <p class="num">03</p>
+  <h2>Devnet schedule</h2>
+  <p class="lead">Align on ACD, or let the testing team decide?</p>
+  <ol class="track" aria-label="Sections"><li>01 Timeline</li><li>02 Must-haves</li><li class="on">03 Schedule</li><li>04 Capacity</li><li>05 Releases</li><li>06 Feedback</li></ol>
+</section>
+
+<!-- Schedule ownership -->
+<section class="slide" aria-label="Who decides the devnet schedule">
+  <p class="kicker">Devnet schedule</p>
+  <h2>ACD decides, or the testing team decides?</h2>
+  <div class="grid2" style="margin:auto 0;gap:3cqw">
+    <div class="card"><span class="tag">Align on ACD</span><ul class="ticks dense"><li>Every team commits on the call.</li><li>Slow: a devnet waits up to a week for a call slot.</li><li>Scope creep negotiated live.</li></ul></div>
+    <div class="card"><span class="tag">Testing team decides</span><ul class="ticks dense"><li>Fast: launch when N clients pass the test release.</li><li>ACD sets priority order, testing sets dates.</li><li>Risk: teams feel scheduled at, not consulted.</li></ul></div>
+  </div>
+  <p class="lead" style="margin:0 0 auto;max-width:none;font-family:var(--head);font-weight:600;color:var(--indigo)">Middle ground: ACD agrees scope via a meta EIP PR, testing owns the launch date.</p>
 </section>
 
 <!-- 5b. EL priority -->
@@ -432,18 +426,16 @@ a.eip:hover { text-decoration: underline; }
     <dl class="lanes">
       <dt>bogota-devnet-1</dt><dd class="on"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8250.md" title="EIP-8250: Keyed Nonces for Frame Transactions">8250</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8272.md" title="EIP-8272: Recent Roots for Frame Transactions">8272</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7906.md" title="EIP-7906: Transaction Assertions via State Diff Opcode">7906</a></span></dd>
       <dt>bogota-devnet-2</dt><dd class="on"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8298.md" title="EIP-8298: SETCODEFROM Code Reuse Instruction">8298</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8151.md" title="EIP-8151: Account Code Restricted ecRecover">8151</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md" title="EIP-4758: Deactivate SELFDESTRUCT">4758</a></span></dd>
-      <dt>hegoat-devnet-0</dt><dd class="now"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md" title="EIP-7805: Fork-choice enforced Inclusion Lists (FOCIL)">7805</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a></span><span class="policy"><a class="eip" href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949" title="MATCHA: Mempool Account Transaction Capacity from Historical Activity (ethresear.ch, soispoke)">MATCHA</a>?</span></dd>
+      <dt>hegoat-devnet-0</dt><dd class="now"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md" title="EIP-7805: Fork-choice enforced Inclusion Lists (FOCIL)">7805</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a></span></dd>
     <dt>hegoat-devnet-1?</dt><dd class="next"><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md" title="EIP-8360: TCREATE Opcode">8360</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md" title="EIP-8279: Block Access List Byte Floor">8279</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md" title="EIP-8131: Unified Transaction Content Floor">8131</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7668.md" title="EIP-7668: Remove bloom filters">7668</a></span></dd>
       <dt>not on a devnet</dt><dd><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3298.md" title="EIP-3298: Remove storage-clear refund and refund cap">3298</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7709.md" title="EIP-7709: Read BLOCKHASH from Storage and Update Cost">7709</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7979.md" title="EIP-7979: Call and Return Opcodes for the EVM">7979</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8163.md" title="EIP-8163: Reserve EXTENSION (0xae) opcode">8163</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-5920.md" title="EIP-5920: PAY opcode">5920</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8077.md" title="EIP-8077: eth/XX - announce transactions with nonce">8077</a></span><span><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8116.md" title="EIP-8116: Replace cumulative receipt fields">8116</a></span><span class="pfi"><a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md" title="EIP-7907: Meter Contract Code Size">7907</a></span></dd>
     </dl>
   </div>
   <div class="axis axis-h" aria-hidden="true"><span>higher priority</span><i></i><span>lower priority</span></div>
-  <p class="small" style="margin:auto 0 2.2cqh;font-size:1.25cqw"><a href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949">MATCHA</a>: Mempool Account Transaction Capacity from Historical Activity, mempool policy, no fork</p>
   <div class="foot" style="margin-top:0"><span class="legend"><i class="sw on"></i>on a devnet <i class="sw now"></i>next <i class="sw next"></i>candidate, not proposed yet <i class="sw"></i>not scheduled <i class="sw pfi"></i>PFI</span><span>SFI: <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md" title="EIP-7805: Fork-choice enforced Inclusion Lists (FOCIL)">7805</a>, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a> &middot; Order: <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's EL CFI priority list</a></span></div>
   <aside class="notes">
     <p>Order from <a href="https://gist.github.com/nixorokish/1f17a8527d18fcc8d10370c9c1b5583e">Nixo's Hegotá EL CFI priority list</a>, working v1 from ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a>. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7723.md" title="EIP-7723: Network Upgrade Inclusion Stages">EIP-7723</a> asks facilitators and testing teams to propose this order for client developers to review.</p>
     <p>Rule: most complex first, pairs ship together. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8298.md" title="EIP-8298: SETCODEFROM Code Reuse Instruction">8298</a> + <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8151.md" title="EIP-8151: Account Code Restricted ecRecover">8151</a> both on bogota-devnet-2. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md" title="EIP-4758: Deactivate SELFDESTRUCT">4758</a> is on bogota-devnet-2 but its pair <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md" title="EIP-8360: TCREATE Opcode">8360</a> is not. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md" title="EIP-8279: Block Access List Byte Floor">8279</a> + <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md" title="EIP-8131: Unified Transaction Content Floor">8131</a> are candidates for hegota-devnet-1, not proposed yet (<a href="https://github.com/ethereum/execution-specs/issues/3788">#3788</a>). <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8360.md" title="EIP-8360: TCREATE Opcode">8360</a> added to complete the <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4758.md" title="EIP-4758: Deactivate SELFDESTRUCT">4758</a> pair, <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7668.md" title="EIP-7668: Remove bloom filters">7668</a> as next in order and the cheapest.</p>
-    <p>MATCHA (<a href="https://ethresear.ch/t/mempool-account-transaction-capacity-from-historical-activity-matcha/25949">ethresear.ch</a>, soispoke) is a local EL mempool policy, not an EIP: no fork, no CL work, no EELS fixtures. ELs can trial it on hegota-devnet-0 if they agree parameter values. Raised on ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a> with dropping <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a>'s one-pending-tx-per-sender limit. A MATCHA rejection never excuses a FOCIL omission.</p>
     <p>hegota-devnet-0 is the frames &times; FOCIL interaction (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md" title="EIP-7805: Fork-choice enforced Inclusion Lists (FOCIL)">7805</a> &times; <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8141.md" title="EIP-8141: Frame Transaction">8141</a>). Quick slots (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8198.md" title="EIP-8198: Quick Slots">8198</a>) also comes over from heze-devnet-3. Row = first devnet for each EIP. Everything on bogota-devnet-2 carries into hegota-devnet-0. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8077.md" title="EIP-8077: eth/XX - announce transactions with nonce">8077</a> is devp2p only. <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7907.md" title="EIP-7907: Meter Contract Code Size">7907</a> still PFI, wants a slot right away if CFI'd.</p>
   </aside>
 </section>
@@ -474,130 +466,69 @@ a.eip:hover { text-decoration: underline; }
   </aside>
 </section>
 
-<!-- 5d. hegota-devnet-0 -->
-<section class="slide dark" aria-label="hegota-devnet-0 next">
-  <svg class="pixels" data-pixels="corner" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" style="width:14cqw;inset:auto 0 0 auto;height:22cqh"></svg>
-  <p class="kicker">Next: frames &times; FOCIL</p>
-  <h2>Do we want to launch He🐐 devnet 0 this week?</h2>
-  <p class="lead" style="margin:0;max-width:none"><span class="lime">Raise hands for yes. Otherwise 10 days after Devcon?</span></p>
-  <div class="grid3 squares" style="margin-top:4.5cqh;flex:1;grid-template-columns:repeat(2,minmax(0,1fr));gap:2cqh 2cqw">
-    <div class="card"><span class="tag">EIPs</span><p style="margin-bottom:2.6cqh"><b>Update <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7805.md" title="EIP-7805: Fork-choice enforced Inclusion Lists (FOCIL)">EIP-7805</a>:</b> omission claims and per-IL VERIFY budgets (<a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a>)? <b>EL + CL.</b></p><p style="margin-bottom:2.6cqh">Design from <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md" title="EIP-8369: VOPS Profiles for FOCIL Eligibility">EIP-8369</a> (<a href="https://github.com/ethereum/EIPs/issues/12396">EIPs#12396</a>).</p><p><b>@thomas @matt/lightclient?</b></p></div>
-    <div class="card"><span class="tag">Specs</span><p><b><span style="white-space:nowrap">consensus-specs</span>:</b> omission claims in Heze (<a href="https://github.com/ethereum/consensus-specs/issues/5698"><span style="white-space:nowrap">consensus-specs#5698</span></a>).</p><p><b><span style="white-space:nowrap">execution-specs</span>:</b> merge both devnet branches into <code>devnets/hegota/0</code>, add <a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a> and frames &times; FOCIL tests, release <code>tests-hegota-devnet@v0.0.0</code>.</p><p style="margin-bottom:0"><b><span style="white-space:nowrap">execution-apis</span>:</b> newPayloadV6 takes separate ILs and claims, returns the verdict (<a href="https://github.com/ethereum/execution-apis/issues/911"><span style="white-space:nowrap">execution-apis#911</span></a>).</p></div>
-    <div class="card"><span class="tag">EL clients</span><p><b>Majority of changes.</b> Merge frames and FOCIL branches, add omission claims, separate ILs and frame validation at the claimed index? Nethermind has a prototype.</p></div>
-    <div class="card"><span class="tag">CL clients</span><p><b>Code change:</b> omission claims (<a href="https://github.com/ethereum/consensus-specs/issues/5698"><span style="white-space:nowrap">consensus-specs#5698</span></a>) in bids, payload envelope, gossip, Engine API and fork choice. Build on your <span style="white-space:nowrap">heze-devnet-3</span> branch? First frame txs devnet on <span style="white-space:nowrap">non-Lighthouse</span> CLs!</p></div>
-  </div>
-  <p class="small" style="margin:2.6cqh 0 0;font-size:1.4cqw;text-align:center">Thanks to Marc (<a href="https://github.com/Marchhill">Marchhill</a>) from Nethermind for all of these open PRs!</p>
-  <aside class="notes">
-    <p>Tracker <a href="https://github.com/ethereum/execution-specs/issues/3787">#3787</a>. <code>devnets/hegota/0</code> = <code>devnets/bogota/2</code> + <code>devnets/heze/3</code>. ACDE <a href="https://forkcast.org/calls/acde/248/">#248</a> agreed "after Devcon". Ask the room whether we can pull it forward to this week.</p>
-    <p>Frames are EL only, so the CL side of hegota-devnet-0 is heze-devnet-3. The EL side has to combine each client's bogota (frames) and heze (FOCIL) branches.</p>
-    <p><a href="https://github.com/ethereum/execution-specs/issues/3777">#3777</a> (Marchhill, draft) is <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8369.md" title="EIP-8369: VOPS Profiles for FOCIL Eligibility">EIP-8369</a> Profile 2: <a href="https://github.com/ethereum/EIPs/issues/12394">EIPs#12394</a> and <a href="https://github.com/ethereum/EIPs/issues/12396">#12396</a>, <a href="https://github.com/ethereum/execution-apis/issues/911">execution-apis#911</a>, <a href="https://github.com/ethereum/consensus-specs/issues/5698">consensus-specs#5698</a>. It targets <code>devnets/hegota/0</code>, so it needs a rebase once that branch is force-pushed.</p>
-    <p>No Engine API change for CLs: Bogota&#39;s engine methods on the merged branch are exactly heze-devnet-3&#39;s (newPayloadV6, forkchoiceUpdatedV5, getInclusionListV1). The branch is built locally and the Bogota fill passes except the 19 frame-in-IL variants, which wait on the IL rule. Not pushed or released yet.</p>
-    <p>Config only: Heze activates at the Hegota time in the devnet genesis. bogota-devnet-2 ran only Lighthouse. If ELs disagree on IL verdicts for frame txs, it shows up as CL attestations splitting.</p>
-    <p>If the room picks this week with frame txs exempt: the EIPs box becomes "frame txs exempt, like blobs", and the Specs and EL boxes lose their second sentences. Enforcement makes this week unlikely.</p>
-  </aside>
-</section>
-
-<!-- Section 02 -->
-<section class="slide dark section" aria-label="Section 02: CFI to SFI Flow">
+<!-- Section 04 -->
+<section class="slide dark section" aria-label="Section 04: Capacity">
   <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
-  <p class="num">02</p>
-  <h2>CFI to SFI Flow</h2>
-  <p class="lead">How an EIP gets SFI&#39;d today and a suggestion for more transparency for devnet inclusion and SFI status.</p>
-  <ol class="track" aria-label="Sections"><li>01 Prioritization</li><li class="on">02 CFI to SFI Flow</li><li>03 Development fork</li><li>04 Gaps</li></ol>
-  <aside class="notes"><p>The existing path from EIP to devnet, and who owns each step.</p></aside>
+  <p class="num">04</p>
+  <h2>Capacity</h2>
+  <p class="lead">How many streams of work can clients take on?</p>
+  <ol class="track" aria-label="Sections"><li>01 Timeline</li><li>02 Must-haves</li><li>03 Schedule</li><li class="on">04 Capacity</li><li>05 Releases</li><li>06 Feedback</li></ol>
 </section>
 
-<!-- 6. Pipeline -->
-<section class="slide" aria-label="From EIP to devnet to SFI" data-steps="1">
-  <p class="kicker">One flow</p>
-  <h2>From EIP to devnet to SFI</h2>
-  <p class="lead" style="margin:0;font-family:var(--head);font-weight:600;color:var(--indigo)">Alignment on the current inclusion flow.</p>
-  <figure class="flow" style="margin:auto 0">
-    <svg viewBox="0 0 1250 500" role="img" aria-label="Inclusion flow. ACD, everyone including EIP champions, reaches rough consensus on CFI EIPs, then on which EIPs go in a devnet. EL specs, CL specs and client teams each implement and cut a release. Clients are tested against the spec test releases in hive, spec test runners and kurtosis, then run on the devnet. Finally ACD reaches rough consensus that an EIP is SFI&#39;d. Bugs found on devnets flow back as spec tests and client fixes.">
-      <text class="d-team hl" x="20" y="18">ACD &middot; EVERYONE + CHAMPIONS</text>
-      <path class="d-edge hl" d="M20 28H340" style="stroke:var(--peri)"/>
-      <text class="d-team" x="360" y="18">SPECS AND CLIENT TEAMS</text>
-      <path class="d-edge" d="M360 28H720" style="stroke:var(--peri)"/>
-      <text class="d-team" x="740" y="18">TESTING AND ETHPANDAOPS</text>
-      <path class="d-edge" d="M740 28H1060" style="stroke:var(--peri)"/>
-      <text class="d-team hl" x="1080" y="18">ACD &middot; EVERYONE</text>
-      <path class="d-edge hl" d="M1080 28H1230" style="stroke:var(--peri)"/>
-      <text class="d-lane" x="360" y="70">EL &middot; specs</text>
-      <text class="d-lane" x="360" y="192">CL &middot; specs</text>
-      <text class="d-lane" x="360" y="314">EL + CL &middot; client teams</text>
-      <g transform="translate(20 78)"><rect class="d-node" width="150" height="332" rx="4"/><text class="d-title" x="12" y="30">Fork scope</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus on</text><text class="d-sub" x="12" y="94">CFI EIPs</text></g>
-      <g class="hl" transform="translate(190 78)"><rect class="d-node" width="150" height="332" rx="4"/><text class="d-title" x="12" y="30">Devnet scope</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus on</text><text class="d-sub" x="12" y="94">which EIPs go</text><text class="d-sub" x="12" y="114">in a devnet</text></g>
-      <g transform="translate(360 78)"><rect class="d-node" width="170" height="88" rx="4"/><text class="d-title" x="12" y="30">execution-specs</text><text class="d-sub" x="12" y="54">spec + tests</text></g>
-      <g transform="translate(550 78)"><rect class="d-node done" width="170" height="88" rx="4"/><text class="d-title" x="12" y="30">Release</text><text class="d-sub" x="12" y="54">tests-*-devnet</text></g>
-      <g transform="translate(360 200)"><rect class="d-node" width="170" height="88" rx="4"/><text class="d-title" x="12" y="30">consensus-specs</text><text class="d-sub" x="12" y="54">spec + tests</text></g>
-      <g transform="translate(550 200)"><rect class="d-node done" width="170" height="88" rx="4"/><text class="d-title" x="12" y="30">Release</text><text class="d-sub" x="12" y="54">spec tests</text></g>
-      <g transform="translate(360 322)"><rect class="d-node" width="170" height="88" rx="4"/><text class="d-title" x="12" y="30">Implement</text><text class="d-sub" x="12" y="54">EL + CL clients</text></g>
-      <g transform="translate(550 322)"><rect class="d-node" width="170" height="88" rx="4"/><text class="d-title" x="12" y="30">Release</text><text class="d-sub" x="12" y="54">client images</text></g>
-      <g transform="translate(740 78)"><rect class="d-node" width="150" height="332" rx="4"/><text class="d-title" x="12" y="30">Test</text><text class="d-sub" x="12" y="54">hive,</text><text class="d-sub" x="12" y="74">spec test</text><text class="d-sub" x="12" y="94">runners,</text><text class="d-sub" x="12" y="114">kurtosis</text><text class="d-sub" x="12" y="134"></text><text class="d-sub" x="12" y="154">clients need</text><text class="d-sub" x="12" y="174">a test release</text></g>
-      <g transform="translate(910 78)"><rect class="d-node lime" width="150" height="332" rx="4"/><text class="d-title" x="12" y="30">Devnet</text><text class="d-sub" x="12" y="54" style="fill:var(--ink)">spamoor, dora,</text><text class="d-sub" x="12" y="74" style="fill:var(--ink)">execute remote</text></g>
-      <g class="hl" transform="translate(1080 78)"><rect class="d-node" width="150" height="332" rx="4"/><text class="d-title" x="12" y="30">SFI</text><text class="d-sub" x="12" y="54">rough</text><text class="d-sub" x="12" y="74">consensus:</text><text class="d-sub" x="12" y="94">the EIP is</text><text class="d-sub" x="12" y="114">SFI&#39;d</text></g>
-      <path class="d-edge" d="M170 244H190M340 122H360M530 122H550M720 122H740M340 244H360M530 244H550M720 244H740M340 366H360M530 366H550M720 366H740M890 244H910M1060 244H1080"/>
-      <path class="d-edge dash" d="M985 78V52H500V78"/><path d="M494 68L500 78L506 68" class="d-edge"/>
-      <path class="d-edge dash" d="M985 410V456H445V410"/><path d="M439 420L445 410L451 420" class="d-edge"/>
-      <text class="d-sub" x="560" y="484">bugs found on devnets become spec tests and client fixes</text>
-    </svg>
-  </figure>
+<!-- 3. Lesson -->
+<section class="slide deep" aria-label="Lesson from Glamsterdam">
+  <p class="kicker">Lesson from Glamsterdam</p>
+  <blockquote style="margin-top:auto;font-size:3.5cqw">One of the mistakes we made on our side on the EL was underestimating the complexity of <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8037.md" title="EIP-8037: State Creation Gas Cost Increase">8037</a>. The idea would be to include the more complex EIPs a lot earlier in the cycle.</blockquote>
+  <cite style="margin-top:4cqh;font-size:1.8cqw">Spencer, ACDT #97, 21 September 2026</cite>
+  <ul class="ticks" style="margin:8cqh 0 auto">
+    <li style="font-size:2.2cqw;margin-bottom:2.4cqh">Test the hardest interactions first: frames &times; FOCIL.</li>
+    <li style="font-size:2.2cqw">Then the complex single EIPs. Simple EIPs ride along later.</li>
+  </ul>
   <aside class="notes">
-    <p>Branch model (Spencer, Mattermost 28 Sep): <code>forks/bogota</code> as the base, one <code>eips/bogota/eip-xxxx</code> branch per CFI EIP, <code>devnets/&lt;feature|fork&gt;/&lt;n&gt;</code> to combine, then <code>devnets/hegota/0</code> merges the two lanes.</p>
-    <p>Press next once more to highlight Devnet scope and SFI, the two ACD steps to focus on.</p>
-    <p>The rough-consensus steps belong to ACD, everyone. Client teams go through the same steps as the specs, but their testing depends on a spec test release: the filled boxes.</p>
-    <p>CL lane (Justin, the last five years): clients prototype CFI&#39;d EIPs in branches, check they still support them, wait for the latest devnet to stabilize, agree the priority order, merge the priority EIPs into the fork spec on master, repeat. No per-EIP or per-devnet branches. A <code>_devnets/</code> staging directory is an open idea (Justin), Pari worries about tooling branches. Mario and Pari: the priority order (step 4) should be agreed more formally, in the meta EIP.</p>
-    <p>EL lane: Guru&#39;s <code>develop/</code> proposal (slides 14 to 17) would replace the <code>eips/</code> branches with feature flags.</p>
-    <p>Branch details are left off on purpose: the next slide zooms in on Devnet scope and SFI.</p>
+    <p>Source: ACDT #97 transcript, t=2092. The EELS tracker (<a href="https://github.com/ethereum/execution-specs/issues/3664">#3664</a>) states the same principle: "aiming to test the most complex EIPs first: frames x FOCIL interactions, then the more complex single EIPs."</p>
   </aside>
 </section>
 
-<!-- 6b. Devnet scope proposal -->
-<section class="slide" aria-label="Proposal: devnet scope in the meta EIP">
-  <p class="kicker">Proposal &middot; Devnet scope</p>
-  <h2>Record each devnet in the fork meta EIP</h2>
-  <p class="lead" style="margin:0;max-width:none;font-family:var(--head);font-weight:600;color:var(--indigo)">Suggestion: Each devnet definition becomes a PR to the fork&#39;s meta EIP</p>
-  <p class="small" style="margin:0.8cqh 0 0;font-size:1.7cqw">The process stays the same, but becomes more transparent.</p>
-  <div class="proposal">
-    <div>
-      <ol>
-        <li>Discuss devnet scope on ACDE and ACDC. <span class="small">Unchanged.</span></li>
-        <li class="new">Open a PR against the fork meta EIP: one entry per devnet, with its list of EIPs. No versions.</li>
-        <li class="new">Client teams approve the PR, or request changes.</li>
-        <li class="new">No response in reasonable time: agree on the next call how to move forward.</li>
-        <li>Merge. Spec and test releases are cut from the agreed list.</li>
-      </ol>
-      <ul class="ticks" style="margin-top:2.6cqh">
-        <li>The right place: SFI already lands in the meta EIP. This extends it to devnet definitions.</li>
-        <li>Teams flag their support or disagreement visibly on the PR.</li>
-        <li>Implication: rough consensus used to be the ACD moderator&#39;s judgement on the call. Now it is explicit. What happens when only one team objects?</li>
-      </ul>
-    </div>
-    <figure class="shot" tabindex="0" aria-label="Draft of a Devnets section in EIP-8081, scrollable">
-      <img src="img/eip-8081-devnets.png" alt="Draft Devnets section for EIP-8081: hegota-devnet-1 proposed with 8360, 8279, 8131, 7668, 8148 and 8383; hegota-devnet-0 planned, combining bogota-devnet-2 and heze-devnet-3; a table of the feature devnets with launch dates and test releases." loading="lazy">
-    </figure>
+<!-- Capacity -->
+<section class="slide" aria-label="Client capacity">
+  <p class="kicker">Capacity</p>
+  <h2>Fewer streams, or more in parallel?</h2>
+  <div class="grid2" style="margin:auto 0;gap:3cqw">
+    <div class="card"><span class="tag">Fewer streams</span><ul class="ticks dense"><li>One merged devnet, everyone on the same thing.</li><li>Deep review of each EIP.</li><li>Slow: complex EIPs queue behind each other.</li></ul></div>
+    <div class="card"><span class="tag">More in parallel</span><ul class="ticks dense"><li>Feature devnets per lane (heze, bogota).</li><li>Faster coverage of the CFI list.</li><li>Thin review: flaws found late, at merge time.</li></ul></div>
   </div>
-  <aside class="notes">
-    <p>Versions: the meta EIP PR lists which EIPs are in a devnet, not which version of each. Pinning versions there would add too much friction. Versions stay in a separate devnet spec document, so far ethPandaOps&#39; HackMD pages (<a href="https://notes.ethereum.org/@ethpandaops">notes.ethereum.org/@ethpandaops</a>). Suggestion for ethPandaOps, not part of this proposal: keep those devnet definitions in a GitHub repo in the ethpandaops org, so the history of each definition is visible when an EIP spec changes, without having to remember or diff it by hand.</p>
-    <p>Lime numbers are the new steps. Nothing else changes: the call still decides, the PR records it and lets client teams sign off asynchronously.</p>
-    <p>EIP-7723 already asks facilitators and testing teams to propose a CFI priority order and reflect it in the meta EIP. This makes the per-devnet result explicit.</p>
-    <p>The screenshot is a local draft (Dan&#39;s EIPs branch <code>eip-8081-devnet-scope</code>, not opened as a PR). It uses the devnets from slides 6 to 9. The frame scrolls.</p>
-  </aside>
+  <ul class="ticks" style="margin:0 0 auto">
+    <li>What would best let your team do this: headcount, clearer priorities, fewer spec changes?</li>
+    <li>&ldquo;No one looked at it&rdquo;: named reviewer per EIP from each client team before devnet inclusion?</li>
+  </ul>
 </section>
 
-<!-- Section 03 -->
-<section class="slide dark section" aria-label="Section 03: Development fork">
+<!-- Section 05 -->
+<section class="slide dark section" aria-label="Section 05: Spec releases">
   <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
-  <p class="num">03</p>
-  <h2>Development fork</h2>
-  <p class="lead">One source tree for every CFI EIP, devnets as targets.</p>
-  <ol class="track" aria-label="Sections"><li>01 Prioritization</li><li>02 CFI to SFI Flow</li><li class="on">03 Development fork</li><li>04 Gaps</li></ol>
-  <aside class="notes"><p>Guru&#39;s <code>develop/</code> proposal for execution-specs: today, the proposal, what it buys, and what it costs.</p></aside>
+  <p class="num">05</p>
+  <h2>Spec releases</h2>
+  <p class="lead">Merge features into trunk, or release from branches?</p>
+  <ol class="track" aria-label="Sections"><li>01 Timeline</li><li>02 Must-haves</li><li>03 Schedule</li><li>04 Capacity</li><li class="on">05 Releases</li><li>06 Feedback</li></ol>
+</section>
+
+<!-- Release approaches -->
+<section class="slide" aria-label="Spec release approaches">
+  <p class="kicker">Spec releases</p>
+  <h2>Trunk or branches?</h2>
+  <table style="margin:auto 0">
+    <tr><th>Approach</th><th>How</th><th>Good</th><th>Bad</th></tr>
+    <tr><td><b>CL</b></td><td>Prioritised EIPs merge into the fork spec on master; releases from master</td><td class="ok">One source of truth, no assembly</td><td class="bad">Only merged EIPs testable; prototypes live in client branches</td></tr>
+    <tr><td><b>EL</b></td><td>One branch per EIP, devnet branches assembled, released from branches</td><td class="ok">Any EIP set on demand</td><td class="bad">Rebases, drift, cross-EIP changes have no home</td></tr>
+    <tr><td><b>Hybrid</b></td><td>Every CFI EIP in trunk behind a flag; devnets are generated targets (<code>develop/</code>)</td><td class="ok">Trunk + any EIP set, CI on every target</td><td class="bad">Higher barrier to writing specs</td></tr>
+    <tr><td><b>Status quo</b></td><td>CL and EL keep separate approaches</td><td class="ok">No migration</td><td class="bad">Two mental models, cross-layer devnets assembled twice</td></tr>
+  </table>
+  <aside class="notes"><p>Next slides: the EL status quo and Guru's develop/ proposal as the hybrid option.</p></aside>
 </section>
 
 <!-- 7. Dev fork: status quo -->
 <section class="slide" aria-label="Development fork: status quo">
-  <p class="kicker">A development fork for execution-specs &middot; 1 of 4</p>
+  <p class="kicker">A development fork for execution-specs &middot; 1 of 3</p>
   <h2>Today: one branch per EIP, devnets by hand</h2>
   <div class="grid2" style="grid-template-columns:1.05fr 1fr;margin-top:auto">
     <figure>
@@ -641,7 +572,7 @@ a.eip:hover { text-decoration: underline; }
 
 <!-- 8. Dev fork: proposal -->
 <section class="slide" aria-label="Development fork: the proposal">
-  <p class="kicker">A development fork for execution-specs &middot; 2 of 4</p>
+  <p class="kicker">A development fork for execution-specs &middot; 2 of 3</p>
   <h2>One source tree, devnets as targets</h2>
   <figure style="margin-top:auto">
     <svg viewBox="0 0 1200 200" role="img" aria-labelledby="df-t df-d">
@@ -687,31 +618,9 @@ EIP_8250 = True
   </aside>
 </section>
 
-<!-- 9. Dev fork: pros -->
-<section class="slide" aria-label="Development fork: what it buys">
-  <p class="kicker">A development fork for execution-specs &middot; 3 of 4</p>
-  <h2>What it buys</h2>
-  <div class="grid2 buys-list" style="margin:5cqh 0 auto;gap:5cqw">
-    <ul class="ticks">
-      <li>No EIP branches, no rebases, no devnet assembly. A devnet is one line in <code>TARGETS</code>.</li>
-      <li>EIP interactions are explicit in one place, not implicit in merge order. Adding an EIP forces its author to think about interactions with others.</li>
-      <li>Much faster devnet releases: no combining of EIP branches, and no thinking about interactions at release time.</li>
-    </ul>
-    <ul class="ticks">
-      <li>Closer alignment with the EIP process.</li>
-      <li>Several EIP sets live side by side: <code>bogota</code> next to <code>bogota_devnet1</code>, both generated from the one <code>develop/</code> tree.</li>
-      <li>CI checks every defined target that is of interest to us. No more merges to one branch silently breaking other EIPs upon rebase.</li>
-    </ul>
-  </div>
-  <aside class="notes">
-    <p>The readability of the individual fork is unchanged; what changes is that EIP interactions in development become explicit and easier to follow. Adding and removing EIPs becomes a diff in one tree.</p>
-    <p>CI gets one job per target plus the full <code>develop/</code> checks, so no PR can break a set we care about without saying so.</p>
-  </aside>
-</section>
-
 <!-- 10. Dev fork: cons and open questions -->
 <section class="slide dark" aria-label="Development fork: cost and open questions">
-  <p class="kicker">A development fork for execution-specs &middot; 4 of 4</p>
+  <p class="kicker">A development fork for execution-specs &middot; 3 of 3</p>
   <h2>Cost and open questions</h2>
   <div class="grid2 roomy" style="margin:auto 0">
     <div class="group">
@@ -750,59 +659,26 @@ EIP_8250 = True
   </aside>
 </section>
 
-<!-- Section 04 -->
-<section class="slide dark section" aria-label="Section 04: Gaps">
+<!-- Section 06 -->
+<section class="slide dark section" aria-label="Section 06: Feedback">
   <svg class="pixels" data-pixels="end" viewBox="0 0 46 56" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"></svg>
-  <p class="num">04</p>
-  <h2>Gaps</h2>
-  <p class="lead">What we are missing, and what client teams fear for Hegot&aacute;.</p>
-  <ol class="track" aria-label="Sections"><li>01 Prioritization</li><li>02 CFI to SFI Flow</li><li>03 Development fork</li><li class="on">04 Gaps</li></ol>
-  <aside class="notes"><p>Lessons from the first devnets, then questions for the room.</p></aside>
+  <p class="num">06</p>
+  <h2>Feedback</h2>
+  <p class="lead">Complaints, feedback, help?</p>
+  <ol class="track" aria-label="Sections"><li>01 Timeline</li><li>02 Must-haves</li><li>03 Schedule</li><li>04 Capacity</li><li>05 Releases</li><li class="on">06 Feedback</li></ol>
 </section>
 
-<!-- 11. Findings -->
-<section class="slide" aria-label="What the first devnets taught us">
-  <p class="kicker">bogota-devnet-1 and heze-devnet-1</p>
-  <h2>What the first devnets taught us</h2>
-  <div class="grid3">
-    <div class="card">
-      <span class="tag">Late spec changes</span>
-      <p>A consensus-breaking test release two days before launch. One EL client forked at the first keyed-nonce transaction.</p>
-    </div>
-    <div class="card">
-      <span class="tag">RPC and tooling</span>
-      <p>Tracing and RPC endpoints failed on frame transactions in several clients. No spec tests cover them.</p>
-    </div>
-    <div class="card">
-      <span class="tag">Config drift</span>
-      <p>Slot duration, blob schedule and IL deadline lived in five places that did not agree.</p>
-    </div>
-  </div>
-  <ul class="ticks" style="margin-top:5cqh">
-    <li>FOCIL has no censorship-resistance scenarios in assertoor or spamoor yet.</li>
-    <li>Fork-transition-only behaviour (<a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>) needs many devnets, not one.</li>
-  </ul>
-  <aside class="notes">
-    <p>Keep client names off the slide unless the bug is fixed and public. Details: the fork was at block 1788 on bogota-devnet-1, intrinsic gas missing the 12,100 keyed-nonce access cost from <code>tests-bogota-devnet@v1.1.0</code>.</p>
-    <p>Public client issues: <a href="https://github.com/ethereum/go-ethereum/issues/35783">go-ethereum#35783</a> (frame tx JSON-RPC drops frames, frameReceipts and payer), <a href="https://github.com/NethermindEth/nethermind/issues/14031">nethermind#14031</a> (public pool defaults to 300k validation gas, the spec limit is 100k). Spencer and Jochem on <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8253.md" title="EIP-8253: Bump nonce of zero-nonce storage accounts">8253</a>: behaviour only at the fork transition, so test it on as many devnets as possible.</p>
-  </aside>
-</section>
-
-<!-- 14. Questions -->
-<section class="slide deep" aria-label="Questions for the room">
-  <p class="kicker">Discussion</p>
-  <h2>Questions for the room</h2>
-  <ol class="qs">
-    <li>When does hegota-devnet-0 launch, and what is the gate: N clients, M days stable?</li>
-    <li>Do <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8131.md" title="EIP-8131: Unified Transaction Content Floor">8131</a> and <a class="eip" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8279.md" title="EIP-8279: Block Access List Byte Floor">8279</a> go into hegota-devnet-1, and which complex EIP comes next?</li>
-    <li>How late may a consensus-breaking test release land before a launch?</li>
-    <li>Where does the single source of devnet parameters live?</li>
-    <li>Which FOCIL and frames scenarios do client teams want from tooling first?</li>
-    <li>Do we keep separate feature devnets after hegota-devnet-0?</li>
+<!-- Feedback -->
+<section class="slide deep" aria-label="Complaints, feedback, help">
+  <p class="kicker">Open floor</p>
+  <h2>Complaints, feedback, help?</h2>
+  <ol class="qs" style="margin:auto 0">
+    <li>What slowed your team down most in Glamsterdam or the first Hegot&aacute; devnets?</li>
+    <li>Which test release or devnet process should we change?</li>
+    <li>Where do you need help from testing / ethPandaOps / specs?</li>
+    <li>What should we stop doing?</li>
   </ol>
-  <aside class="notes">
-    <p>Aim for a decision or an owner on each. Capture the answers live.</p>
-  </aside>
+  <aside class="notes"><p>Capture answers live; assign owners.</p></aside>
 </section>
 
 <!-- 16. Links -->
